@@ -5,6 +5,8 @@ import expo.modules.kotlin.modules.ModuleDefinition
 import com.mapbox.navigation.base.options.NavigationOptions
 import com.mapbox.navigation.core.lifecycle.MapboxNavigationApp
 import com.mapbox.geojson.Point
+import androidx.lifecycle.LifecycleOwner
+import expo.modules.kotlin.jni.JavaScriptValue
 
 
 class ExpoMapboxNavigationModule : Module() {
@@ -25,11 +27,11 @@ class ExpoMapboxNavigationModule : Module() {
     }
 
     OnActivityEntersForeground {
-      MapboxNavigationApp.attach(activity)
+      MapboxNavigationApp.attach(activity as LifecycleOwner)
     }
 
     OnActivityEntersBackground {
-      MapboxNavigationApp.detach(activity)
+      MapboxNavigationApp.detach(activity as LifecycleOwner)
     }
 
     View(ExpoMapboxNavigationView::class) {
@@ -37,11 +39,15 @@ class ExpoMapboxNavigationModule : Module() {
         val points = mutableListOf<Point>()
         for (coordinate in coordinatesList) {
             if(coordinate.isObject()){
-              val coordObject = value.getObject()
-              points.add(Point.fromLngLat(coordObject.getProperty("longitude"), coordObject.getProperty("latitude")))
+              val coordObject = coordinate.getObject()
+              val longValue = coordObject.getProperty("longitude")
+              val latValue = coordObject.getProperty("latitude")
+              if(longValue.isNumber() && latValue.isNumber()){
+                points.add(Point.fromLngLat(longValue.getDouble(), latValue.getDouble()))
+              }
             }
         }
-        setCoordinatesList(points)
+        view.setCoordinatesList(points)
       }
     }
   }
