@@ -1,3 +1,3 @@
 export type ExpoMapboxNavigationViewProps = {
-  name: string;
+  coordinatesList: Array<{ latitude: number; longitude: number }>;
 };
