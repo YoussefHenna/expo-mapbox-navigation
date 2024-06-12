@@ -18,15 +18,12 @@ class ExpoMapboxNavigationModule : Module() {
 
     Name("ExpoMapboxNavigation")
 
-    OnCreate {
+    OnActivityEntersForeground {
       if (!MapboxNavigationApp.isSetup()) {
             MapboxNavigationApp.setup {
                 NavigationOptions.Builder(activity.applicationContext).build()
             }
         }
-    }
-
-    OnActivityEntersForeground {
       MapboxNavigationApp.attach(activity as LifecycleOwner)
     }
 
@@ -35,19 +32,17 @@ class ExpoMapboxNavigationModule : Module() {
     }
 
     View(ExpoMapboxNavigationView::class) {
-      Prop("coordinatesList") { view: ExpoMapboxNavigationView, coordinatesList: List<JavaScriptValue> ->
+      Prop("coordinates") { view: ExpoMapboxNavigationView, coordinates: List<Map<String, Any>> ->
         val points = mutableListOf<Point>()
-        for (coordinate in coordinatesList) {
-            if(coordinate.isObject()){
-              val coordObject = coordinate.getObject()
-              val longValue = coordObject.getProperty("longitude")
-              val latValue = coordObject.getProperty("latitude")
-              if(longValue.isNumber() && latValue.isNumber()){
-                points.add(Point.fromLngLat(longValue.getDouble(), latValue.getDouble()))
+        for (coordinate in coordinates) {
+              val longValue = coordinate.get("longitude")
+              val latValue = coordinate.get("latitude")
+              if(longValue is Double && latValue is Double){
+                points.add(Point.fromLngLat(longValue, latValue))
               }
-            }
+            
         }
-        view.setCoordinatesList(points)
+        view.setCoordinates(points)
       }
     }
   }
