@@ -2,6 +2,7 @@ package expo.modules.mapboxnavigation
 
 import android.content.Context
 import android.widget.TextView;
+import android.content.res.Resources
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.common.location.Location
@@ -36,6 +37,8 @@ import com.mapbox.navigation.ui.maps.route.line.api.MapboxRouteLineView
 import com.mapbox.navigation.ui.maps.route.line.model.*
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
+import com.mapbox.maps.EdgeInsets
+import android.content.res.Configuration
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private val mapboxNavigation = MapboxNavigationApp.current()
@@ -63,8 +66,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
     private val mapboxMap = mapView.mapboxMap   
 
-    private val viewportDataSource = MapboxNavigationViewportDataSource(mapboxMap)
-    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource)
+    
 
     private val routeLineApiOptions = MapboxRouteLineApiOptions.Builder().build()
     private val routeLineApi = MapboxRouteLineApi(routeLineApiOptions)
@@ -76,10 +78,38 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val routeArrowOptions = RouteArrowOptions.Builder(context).build()
     private val routeArrowView = MapboxRouteArrowView(routeArrowOptions)
 
+    private val pixelDensity = Resources.getSystem().displayMetrics.density
+    private val followingPadding: EdgeInsets by lazy {
+        EdgeInsets(
+            180.0 * pixelDensity,
+            40.0 * pixelDensity,
+            150.0 * pixelDensity,
+            40.0 * pixelDensity
+        )
+    }
+    private val landscapeFollowingPadding: EdgeInsets by lazy {
+        EdgeInsets(
+            30.0 * pixelDensity,
+            380.0 * pixelDensity,
+            110.0 * pixelDensity,
+            40.0 * pixelDensity
+        )
+    }
+
+    private val viewportDataSource = MapboxNavigationViewportDataSource(mapboxMap).apply {
+        if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            followingPadding = landscapeFollowingPadding
+        } else {
+            followingPadding = followingPadding
+        }
+    }
+    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource)
 
     private val routesRequestCallback = object : NavigationRouterCallback {
         override fun onRoutesReady(routes: List<NavigationRoute>, @RouterOrigin routerOrigin: String) {
             mapboxNavigation?.setNavigationRoutes(routes)
+            mapboxNavigation?.startTripSession()
+            navigationCamera.requestNavigationCameraToFollowing()
         }
         override fun onCanceled(routeOptions: RouteOptions, @RouterOrigin routerOrigin: String) {}
         override fun onFailure(reasons: List<RouterFailure>, routeOptions: RouteOptions) {}
@@ -92,7 +122,6 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
             if (result.navigationRoutes.isNotEmpty()) {
                 viewportDataSource.onRouteChanged(result.navigationRoutes.first())
                 viewportDataSource.evaluate()
-                navigationCamera.requestNavigationCameraToFollowing()
             } else {
                 viewportDataSource.clearRouteData()
                 viewportDataSource.evaluate()
