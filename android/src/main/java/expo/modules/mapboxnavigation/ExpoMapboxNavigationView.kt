@@ -51,7 +51,9 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
         it.location.apply {
             locationPuck = LocationPuck2D(
-                bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon)
+                topImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
+                bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
+                shadowImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon)
             )
             setLocationProvider(navigationLocationProvider)
             puckBearingEnabled = true
