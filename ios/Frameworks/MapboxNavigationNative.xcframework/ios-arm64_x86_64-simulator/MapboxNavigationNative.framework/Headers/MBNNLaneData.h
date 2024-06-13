@@ -14,7 +14,6 @@ __attribute__((visibility ("default")))
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
 - (nonnull instancetype)initWithId:(uint64_t)id_
-                       laneGroupId:(uint64_t)laneGroupId
                             length:(double)length
                        rightLaneId:(nullable NSNumber *)rightLaneId
                         leftLaneId:(nullable NSNumber *)leftLaneId
@@ -26,9 +25,6 @@ __attribute__((visibility ("default")))
 
 /** Lane id in HD graph */
 @property (nonatomic, readonly) uint64_t id;
-
-/** Lane group id in HD graph */
-@property (nonatomic, readonly) uint64_t laneGroupId;
 
 /** Length of lane geometry */
 @property (nonatomic, readonly) double length;

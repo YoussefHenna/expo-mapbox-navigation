@@ -11889,17 +11889,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
           }
         ]
       },
@@ -25391,13 +25391,6 @@
           },
           {
             "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -25409,6 +25402,13 @@
             "printedName": "Encodable",
             "usr": "s:SE",
             "mangledName": "$sSE"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
           }
         ]
       },
@@ -28998,6 +28998,13 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -29009,13 +29016,6 @@
             "printedName": "Encodable",
             "usr": "s:SE",
             "mangledName": "$sSE"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
           },
           {
             "kind": "Conformance",
@@ -47336,6 +47336,13 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Decodable",
             "printedName": "Decodable",
             "usr": "s:Se",
@@ -47347,13 +47354,6 @@
             "printedName": "Encodable",
             "usr": "s:SE",
             "mangledName": "$sSE"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
           },
           {
             "kind": "Conformance",
@@ -67587,854 +67587,854 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 6369,
+      "offset": 6348,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 6411,
+      "offset": 6390,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 6655,
+      "offset": 6634,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 6710,
+      "offset": 6689,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7063,
+      "offset": 7042,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 7118,
+      "offset": 7097,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7322,
+      "offset": 7301,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7447,
+      "offset": 7426,
       "length": 11,
       "value": "\"waypoints\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7525,
+      "offset": 7504,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7817,
+      "offset": 7796,
       "length": 12,
       "value": "\"approaches\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7856,
+      "offset": 7835,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7891,
+      "offset": 7870,
       "length": 10,
       "value": "\"bearings\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7928,
+      "offset": 7907,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 7963,
+      "offset": 7942,
       "length": 10,
       "value": "\"radiuses\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8000,
+      "offset": 7979,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8035,
+      "offset": 8014,
       "length": 16,
       "value": "\"waypoint_names\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8078,
+      "offset": 8057,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8113,
+      "offset": 8092,
       "length": 27,
       "value": "\"snapping_include_closures\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8167,
+      "offset": 8146,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8202,
+      "offset": 8181,
       "length": 34,
       "value": "\"snapping_include_static_closures\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8263,
+      "offset": 8242,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 8418,
+      "offset": 8397,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 8620,
+      "offset": 8599,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8725,
+      "offset": 8704,
       "length": 14,
       "value": "\"unrestricted\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 8742,
+      "offset": 8721,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 8749,
+      "offset": 8728,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 8829,
+      "offset": 8808,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 8873,
+      "offset": 8852,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 9137,
+      "offset": 9116,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 9314,
+      "offset": 9293,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 9414,
+      "offset": 9393,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 9506,
+      "offset": 9485,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 9634,
+      "offset": 9613,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 9698,
+      "offset": 9677,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 9876,
+      "offset": 9855,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 10001,
+      "offset": 9980,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 10440,
+      "offset": 10419,
       "length": 1,
       "value": "3"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 10560,
+      "offset": 10539,
       "length": 7,
       "value": "\".json\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 10575,
+      "offset": 10554,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 10655,
+      "offset": 10634,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 10730,
+      "offset": 10709,
       "length": 3,
       "value": "\",\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 10774,
+      "offset": 10753,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 11265,
+      "offset": 11244,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 11418,
+      "offset": 11397,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 11456,
+      "offset": 11435,
       "length": 3,
       "value": "\"\/\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 11648,
+      "offset": 11627,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 11812,
+      "offset": 11791,
       "length": 3,
       "value": "\"\/\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 11993,
+      "offset": 11972,
       "length": 9,
       "value": "\"profile\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12032,
+      "offset": 12011,
       "length": 7,
       "value": "\"steps\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12067,
+      "offset": 12046,
       "length": 12,
       "value": "\"geometries\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12116,
+      "offset": 12095,
       "length": 10,
       "value": "\"overview\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12159,
+      "offset": 12138,
       "length": 13,
       "value": "\"annotations\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12195,
+      "offset": 12174,
       "length": 10,
       "value": "\"language\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12248,
+      "offset": 12227,
       "length": 20,
       "value": "\"voice_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12310,
+      "offset": 12289,
       "length": 13,
       "value": "\"voice_units\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12366,
+      "offset": 12345,
       "length": 21,
       "value": "\"banner_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 11993,
+      "offset": 11972,
       "length": 9,
       "value": "\"profile\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12032,
+      "offset": 12011,
       "length": 7,
       "value": "\"steps\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12067,
+      "offset": 12046,
       "length": 12,
       "value": "\"geometries\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12116,
+      "offset": 12095,
       "length": 10,
       "value": "\"overview\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12159,
+      "offset": 12138,
       "length": 13,
       "value": "\"annotations\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12195,
+      "offset": 12174,
       "length": 10,
       "value": "\"language\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12248,
+      "offset": 12227,
       "length": 20,
       "value": "\"voice_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12310,
+      "offset": 12289,
       "length": 13,
       "value": "\"voice_units\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 12366,
+      "offset": 12345,
       "length": 21,
       "value": "\"banner_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 15121,
+      "offset": 15100,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "Array",
-      "offset": 15137,
+      "offset": 15116,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 16492,
+      "offset": 16471,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "Array",
-      "offset": 17468,
+      "offset": 17447,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 18692,
+      "offset": 18671,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "BooleanLiteral",
-      "offset": 19651,
+      "offset": 19630,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20439,
+      "offset": 20418,
       "length": 46,
       "value": "\"abridgedPath should be overriden by subclass\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20502,
+      "offset": 20481,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20697,
+      "offset": 20676,
       "length": 10,
       "value": "\"No query\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20728,
+      "offset": 20707,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 20771,
+      "offset": 20750,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20794,
+      "offset": 20773,
       "length": 17,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20810,
+      "offset": 20789,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20838,
+      "offset": 20817,
       "length": 32,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20854,
+      "offset": 20833,
       "length": 1,
       "value": "\"\/\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 20869,
+      "offset": 20848,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21186,
+      "offset": 21165,
       "length": 12,
       "value": "\"geometries\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21261,
+      "offset": 21240,
       "length": 10,
       "value": "\"overview\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21344,
+      "offset": 21323,
       "length": 7,
       "value": "\"steps\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21415,
+      "offset": 21394,
       "length": 10,
       "value": "\"language\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21682,
+      "offset": 21661,
       "length": 14,
       "value": "\"unrestricted\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21699,
+      "offset": 21678,
       "length": 6,
       "value": "\"curb\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21757,
+      "offset": 21736,
       "length": 12,
       "value": "\"approaches\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21807,
+      "offset": 21786,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 21914,
+      "offset": 21893,
       "length": 20,
       "value": "\"voice_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22029,
+      "offset": 22008,
       "length": 13,
       "value": "\"voice_units\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22188,
+      "offset": 22167,
       "length": 21,
       "value": "\"banner_instructions\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22435,
+      "offset": 22414,
       "length": 10,
       "value": "\"bearings\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22645,
+      "offset": 22624,
       "length": 10,
       "value": "\"radiuses\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22764,
+      "offset": 22743,
       "length": 13,
       "value": "\"annotations\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 22893,
+      "offset": 22872,
       "length": 11,
       "value": "\"waypoints\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 23030,
+      "offset": 23009,
       "length": 16,
       "value": "\"waypoint_names\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 23167,
+      "offset": 23146,
       "length": 27,
       "value": "\"snapping_include_closures\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 23313,
+      "offset": 23292,
       "length": 34,
       "value": "\"snapping_include_static_closures\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 23508,
+      "offset": 23487,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 23514,
+      "offset": 23493,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 23628,
+      "offset": 23607,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 23735,
+      "offset": 23714,
       "length": 2,
       "value": "-1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 23741,
+      "offset": 23720,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 23924,
+      "offset": 23903,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 23956,
+      "offset": 23935,
       "length": 11,
       "value": "\"unlimited\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 24072,
+      "offset": 24051,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 24296,
+      "offset": 24275,
       "length": 14,
       "value": "\"unrestricted\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 24313,
+      "offset": 24292,
       "length": 6,
       "value": "\"curb\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 24340,
+      "offset": 24319,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 24730,
+      "offset": 24709,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 24907,
+      "offset": 24886,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "IntegerLiteral",
-      "offset": 25031,
+      "offset": 25010,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25119,
+      "offset": 25098,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25142,
+      "offset": 25121,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25265,
+      "offset": 25244,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25800,
+      "offset": 25779,
       "length": 6,
       "value": "\"true\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25809,
+      "offset": 25788,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25832,
+      "offset": 25811,
       "length": 3,
       "value": "\";\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 25915,
+      "offset": 25894,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 26042,
+      "offset": 26021,
       "length": 13,
       "value": "\"coordinates\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/DirectionsOptions.swift",
       "kind": "StringLiteral",
-      "offset": 26137,
+      "offset": 26116,
       "length": 2,
       "value": "\"\""
     },
@@ -72830,77 +72830,77 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "Dictionary",
-      "offset": 509,
+      "offset": 499,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "StringLiteral",
-      "offset": 2997,
+      "offset": 3063,
       "length": 6,
       "value": "\"uuid\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "StringLiteral",
-      "offset": 2997,
+      "offset": 3063,
       "length": 6,
       "value": "\"uuid\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "Array",
-      "offset": 5818,
+      "offset": 5884,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "BooleanLiteral",
-      "offset": 7405,
+      "offset": 7471,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "IntegerLiteral",
-      "offset": 7473,
+      "offset": 7539,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "BooleanLiteral",
-      "offset": 7583,
+      "offset": 7649,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "Array",
-      "offset": 9594,
+      "offset": 9660,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "StringLiteral",
-      "offset": 13398,
+      "offset": 13464,
       "length": 79,
       "value": "\"It is forbidden to select `intersectionIndex` without specifying `stepIndex`.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "Array",
-      "offset": 13619,
+      "offset": 13685,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",
       "kind": "BooleanLiteral",
-      "offset": 13630,
+      "offset": 13696,
       "length": 4,
       "value": "true"
     },

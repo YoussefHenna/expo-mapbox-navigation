@@ -193,8 +193,6 @@ __attribute__((visibility ("default")))
  * @param  observer  object that was added by addRouteRefreshObserver
  */
 - (void)removeRouteRefreshObserverForObserver:(nonnull id<MBNNRouteRefreshObserver>)observer;
-/** Get RouteAlternativesController */
-- (nonnull id<MBNNRouteAlternativesControllerInterface>)getRouteAlternativesController __attribute((ns_returns_retained));
 /**
  * Caution: Beta feature for ADAS / ADASIS SDK. Method interface may change soon.
  *

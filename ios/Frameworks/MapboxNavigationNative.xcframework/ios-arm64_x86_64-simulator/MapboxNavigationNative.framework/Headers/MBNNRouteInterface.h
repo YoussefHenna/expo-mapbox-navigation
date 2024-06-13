@@ -1,9 +1,7 @@
 // This file is generated and will be overwritten automatically.
 
 #import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
 #import <MapboxNavigationNative/MBNNRouterOrigin.h>
-@class MBXCoordinate2D;
 @class MBXDataRef;
 
 @class MBNNRouteInfo;
@@ -46,6 +44,4 @@ NS_SWIFT_NAME(RouteInterface)
 - (nullable NSNumber *)getExpirationTimeMs;
 /** Timestamp of last refresh. Empty if the route has not been refreshed. */
 - (nullable NSDate *)getLastRefreshTimestamp;
-/** Route geometry as Navigator uses its indices */
-- (nonnull NSArray<MBXCoordinate2D *> *)getRouteGeometry;
 @end

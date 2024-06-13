@@ -9,11 +9,6 @@
 NS_SWIFT_NAME(LaneGraphAccessor)
 @protocol MBNNLaneGraphAccessor
 /**
- * Gets lane group geometry (aka center line).
- * Empty if laneGroupId is invalid, or tile with the lane is not loaded.
- */
-- (nullable NSArray<MBXCoordinate2D *> *)getLaneGroupGeometryForLaneGroupId:(uint64_t)laneGroupId;
-/**
  * Gets all data related to the lane, except lane geometry.
  * Empty if laneId is invalid, or tile with the lane is not loaded.
  */

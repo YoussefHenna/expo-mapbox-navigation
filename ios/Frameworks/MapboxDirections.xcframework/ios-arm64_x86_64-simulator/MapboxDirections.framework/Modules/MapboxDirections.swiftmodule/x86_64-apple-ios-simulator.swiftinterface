@@ -472,7 +472,7 @@ public struct DirectionsPriority : Swift.Hashable, Swift.RawRepresentable, Swift
   public var rawValue: Swift.Double
   public typealias RawValue = Swift.Double
 }
-open class DirectionsOptions : Swift.Codable, @unchecked Swift.Sendable {
+open class DirectionsOptions : Swift.Codable {
   required public init(waypoints: [MapboxDirections.Waypoint], profileIdentifier: MapboxDirections.ProfileIdentifier? = nil, queryItems: [Foundation.URLQueryItem]? = nil)
   convenience public init?(url: Foundation.URL)
   public func encode(to encoder: any Swift.Encoder) throws
@@ -818,6 +818,9 @@ extension MapboxDirections.MapMatchingResponse : Swift.Codable {
   public init(httpResponse: Foundation.HTTPURLResponse?, matches: [MapboxDirections.Match]? = nil, tracepoints: [MapboxDirections.Match.Tracepoint]? = nil, options: MapboxDirections.MatchOptions, credentials: MapboxDirections.Credentials)
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
+}
+@available(*, unavailable)
+extension MapboxDirections.MapMatchingResponse : @unchecked Swift.Sendable {
 }
 public enum Weight : Swift.Equatable, Swift.Sendable {
   case routability(value: Swift.Float)
@@ -1390,7 +1393,7 @@ extension MapboxDirections.RefreshedRouteLeg : MapboxDirections.RouteLegRefreshS
     get
   }
 }
-public enum ResponseOptions : Swift.Sendable {
+public enum ResponseOptions {
   case route(MapboxDirections.RouteOptions)
   case match(MapboxDirections.MatchOptions)
 }
@@ -1412,6 +1415,9 @@ public struct RouteResponse : Turf.ForeignMemberContainer {
   public var roadClassExclusionViolations: [MapboxDirections.RoadClassExclusionViolation]? {
     get
   }
+}
+@available(*, unavailable)
+extension MapboxDirections.RouteResponse : @unchecked Swift.Sendable {
 }
 extension MapboxDirections.RouteResponse : Swift.Codable {
   public init(httpResponse: Foundation.HTTPURLResponse?, identifier: Swift.String? = nil, routes: [MapboxDirections.Route]? = nil, waypoints: [MapboxDirections.Waypoint]? = nil, options: MapboxDirections.ResponseOptions, credentials: MapboxDirections.Credentials)

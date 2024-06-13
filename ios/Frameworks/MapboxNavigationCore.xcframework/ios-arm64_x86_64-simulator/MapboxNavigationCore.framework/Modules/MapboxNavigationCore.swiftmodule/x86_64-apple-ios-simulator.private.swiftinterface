@@ -15,6 +15,7 @@ import Foundation
 import Foundation/*.Bundle*/
 import Foundation/*.ProcessInfo*/
 import Foundation/*.URL*/
+import MapboxCommon_Private.MBXLog_Internal
 import MapboxCommon
 import MapboxCommon_Private
 import MapboxDirections
@@ -827,14 +828,7 @@ extension MapboxNavigationCore.NavigationMapView : UIKit.UIGestureRecognizerDele
     get
     set
   }
-  @_Concurrency.MainActor public var showsIntersectionAnnotations: Swift.Bool {
-    get
-    set
-  }
-  @_Concurrency.MainActor public var showsAlternatives: Swift.Bool {
-    get
-    set
-  }
+  @_Concurrency.MainActor public var showsIntersectionAnnotations: Swift.Bool
   @_Concurrency.MainActor public var routeLineTracksTraversal: Swift.Bool
   @_Concurrency.MainActor public var poiClickableAreaSize: CoreFoundation.CGFloat
   @_Concurrency.MainActor public var showsRestrictedAreasOnRoute: Swift.Bool
@@ -858,24 +852,6 @@ extension MapboxNavigationCore.NavigationMapView : UIKit.UIGestureRecognizerDele
     get
     set
   }
-  @objc @_Concurrency.MainActor dynamic public var routeColor: UIKit.UIColor {
-    @objc get
-    @objc set
-  }
-  @objc @_Concurrency.MainActor dynamic public var routeAlternateColor: UIKit.UIColor {
-    @objc get
-    @objc set
-  }
-  @objc @_Concurrency.MainActor dynamic public var routeCasingColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeAlternateCasingColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeRestrictedAreaColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var traversedRouteColor: UIKit.UIColor?
-  @objc @_Concurrency.MainActor dynamic public var maneuverArrowColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var maneuverArrowStrokeColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeAnnotationSelectedColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeAnnotationColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeAnnotationSelectedTextColor: UIKit.UIColor
-  @objc @_Concurrency.MainActor dynamic public var routeAnnotationTextColor: UIKit.UIColor
   @_Concurrency.MainActor public func update(navigationCameraState: MapboxNavigationCore.NavigationCameraState)
   @_Concurrency.MainActor public func updateFreeDriveAlertAnnotations(_ roadObjects: [MapboxNavigationCore.RoadObjectAhead])
   @_Concurrency.MainActor public func showcase(_ navigationRoutes: MapboxNavigationCore.NavigationRoutes, routesPresentationStyle: MapboxNavigationCore.RoutesPresentationStyle = .all(), routeAnnotationKinds: Swift.Set<MapboxNavigationCore.RouteAnnotationKind> = [.relativeDurationsOnAlternative], animated: Swift.Bool = false, duration: Foundation.TimeInterval = 1.0)
@@ -884,7 +860,7 @@ extension MapboxNavigationCore.NavigationMapView : UIKit.UIGestureRecognizerDele
   @_Concurrency.MainActor public func localizeLabels(locale: Foundation.Locale? = nil)
   @objc deinit
 }
-@_Concurrency.MainActor public protocol NavigationMapViewDelegate : AnyObject, MapboxNavigationCore.UnimplementedLogging {
+@_Concurrency.MainActor public protocol NavigationMapViewDelegate : AnyObject {
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didSelect alternativeRoute: MapboxNavigationCore.AlternativeRoute)
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, userDidTap mapPoint: MapboxNavigationCore.MapPoint)
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, userDidLongTap mapPoint: MapboxNavigationCore.MapPoint)
@@ -893,17 +869,8 @@ extension MapboxNavigationCore.NavigationMapView : UIKit.UIGestureRecognizerDele
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didChangeCameraState cameraState: MapboxNavigationCore.NavigationCameraState)
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didSelect waypoint: MapboxNavigationCore.Waypoint)
   @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didAdd finalDestinationAnnotation: MapboxMaps.PointAnnotation, pointAnnotationManager: MapboxMaps.PointAnnotationManager)
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, waypointCircleLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.CircleLayer?
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, waypointSymbolLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.SymbolLayer?
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, shapeFor waypoints: [MapboxNavigationCore.Waypoint], legIndex: Swift.Int) -> Turf.FeatureCollection?
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeCasingLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
-  @_Concurrency.MainActor func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeRestrictedAreasLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
 }
 extension MapboxNavigationCore.NavigationMapViewDelegate {
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeCasingLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, routeRestrictedAreasLineLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.LineLayer?
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didSelect alternativeRoute: MapboxNavigationCore.AlternativeRoute)
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, userDidTap mapPoint: MapboxNavigationCore.MapPoint)
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, userDidLongTap mapPoint: MapboxNavigationCore.MapPoint)
@@ -912,9 +879,6 @@ extension MapboxNavigationCore.NavigationMapViewDelegate {
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didChangeCameraState cameraState: MapboxNavigationCore.NavigationCameraState)
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didSelect waypoint: MapboxNavigationCore.Waypoint)
   @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, didAdd finalDestinationAnnotation: MapboxMaps.PointAnnotation, pointAnnotationManager: MapboxMaps.PointAnnotationManager)
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, shapeFor waypoints: [MapboxNavigationCore.Waypoint], legIndex: Swift.Int) -> Turf.FeatureCollection?
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, waypointCircleLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.CircleLayer?
-  @_Concurrency.MainActor public func navigationMapView(_ navigationMapView: MapboxNavigationCore.NavigationMapView, waypointSymbolLayerWithIdentifier identifier: Swift.String, sourceIdentifier: Swift.String) -> MapboxMaps.SymbolLayer?
 }
 extension CoreLocation.CLLocationCoordinate2D {
   public func projectedDistance(to coordinate: CoreLocation.CLLocationCoordinate2D) -> Swift.Double
@@ -938,74 +902,6 @@ extension MapboxDirections.Route {
 public enum RoutesPresentationStyle {
   case main
   case all(shouldFit: Swift.Bool = true)
-}
-@_spi(MapboxInternal) extension UIKit.UIColor {
-  @_spi(MapboxInternal) public class var defaultTintColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultRouteCasing: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultRouteLayer: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultAlternateLine: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultAlternateLineCasing: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultManeuverArrowStroke: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultManeuverArrow: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var trafficUnknown: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var trafficLow: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var trafficModerate: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var trafficHeavy: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var trafficSevere: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var alternativeTrafficUnknown: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var alternativeTrafficLow: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var alternativeTrafficModerate: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var alternativeTrafficHeavy: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var alternativeTrafficSevere: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultRouteRestrictedAreaColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultRouteAnnotationColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultSelectedRouteAnnotationColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultRouteAnnotationTextColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
-  @_spi(MapboxInternal) public class var defaultSelectedRouteAnnotationTextColor: UIKit.UIColor {
-    @_spi(MapboxInternal) get
-  }
 }
 public struct CongestionColorsConfiguration : Swift.Equatable, Swift.Sendable {
   public var mainRouteColors: MapboxNavigationCore.CongestionColorsConfiguration.Colors
@@ -2047,25 +1943,15 @@ public struct AlternativeRoutesDetectionConfig : Swift.Equatable, Swift.Sendable
     public typealias ArrayLiteralElement = MapboxNavigationCore.AlternativeRoutesDetectionConfig.AcceptionPolicy
     public typealias Element = MapboxNavigationCore.AlternativeRoutesDetectionConfig.AcceptionPolicy
   }
-  @available(*, deprecated, message: "This feature no longer has any effect.")
   public var refreshesAfterPassingDeviation: Swift.Bool
-  @available(*, deprecated, message: "This feature no longer has any effect other then setting the refresh interval. Use 'refreshIntervalSeconds' instead to configure the refresh interval directly.")
-  public var refreshesWhenNoAvailableAlternatives: MapboxNavigationCore.AlternativeRoutesDetectionConfig.RefreshOnEmpty {
-    get
-    set
-  }
-  @available(*, deprecated, message: "This feature no longer has any effect.")
+  public var refreshesWhenNoAvailableAlternatives: MapboxNavigationCore.AlternativeRoutesDetectionConfig.RefreshOnEmpty
   public enum RefreshOnEmpty : Swift.Equatable, Swift.Sendable {
     case noPeriodicRefresh
-    case refreshesPeriodically(_: Foundation.TimeInterval = AlternativeRoutesDetectionConfig.defaultRefreshIntervalSeconds)
+    case refreshesPeriodically(_: Foundation.TimeInterval = 180)
     public static func == (a: MapboxNavigationCore.AlternativeRoutesDetectionConfig.RefreshOnEmpty, b: MapboxNavigationCore.AlternativeRoutesDetectionConfig.RefreshOnEmpty) -> Swift.Bool
   }
   public var acceptionPolicy: MapboxNavigationCore.AlternativeRoutesDetectionConfig.AcceptionPolicy
-  public var refreshIntervalSeconds: Foundation.TimeInterval
-  @available(*, deprecated, message: "Use 'init(acceptionPolicy:refreshIntervalSeconds:)' instead.")
   public init(refreshesAfterPassingDeviation: Swift.Bool = true, refreshesWhenNoAvailableAlternatives: MapboxNavigationCore.AlternativeRoutesDetectionConfig.RefreshOnEmpty = .noPeriodicRefresh, acceptionPolicy: MapboxNavigationCore.AlternativeRoutesDetectionConfig.AcceptionPolicy = .unfiltered)
-  public init(acceptionPolicy: MapboxNavigationCore.AlternativeRoutesDetectionConfig.AcceptionPolicy = .unfiltered, refreshIntervalSeconds: Foundation.TimeInterval = Self.defaultRefreshIntervalSeconds)
-  public static let defaultRefreshIntervalSeconds: Swift.Double
   public static func == (a: MapboxNavigationCore.AlternativeRoutesDetectionConfig, b: MapboxNavigationCore.AlternativeRoutesDetectionConfig) -> Swift.Bool
 }
 public struct CoreConfig : Swift.Equatable {
@@ -2452,7 +2338,7 @@ public enum VoiceInstructionEvents {
     public init(error: MapboxNavigationCore.SpeechError)
   }
 }
-public enum VolumeMode : Swift.Equatable, Swift.Sendable {
+public enum VolumeMode : Swift.Equatable {
   case system
   case override(Swift.Float)
   public static func == (a: MapboxNavigationCore.VolumeMode, b: MapboxNavigationCore.VolumeMode) -> Swift.Bool

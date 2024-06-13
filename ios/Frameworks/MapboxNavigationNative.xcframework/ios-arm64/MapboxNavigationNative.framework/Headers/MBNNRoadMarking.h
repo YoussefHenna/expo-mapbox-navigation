@@ -19,8 +19,7 @@ __attribute__((visibility ("default")))
 
 - (nonnull instancetype)initWithType:(MBNNRoadMarkingType)type
                                color:(nullable NSNumber *)color
-                              offset:(nullable MBXCoordinate2D *)offset
-                         probability:(nullable NSNumber *)probability;
+                              offset:(nullable MBXCoordinate2D *)offset;
 
 /** Type of the road marking */
 @property (nonatomic, readonly) MBNNRoadMarkingType type;
@@ -30,9 +29,6 @@ __attribute__((visibility ("default")))
 
 /** Offset of the road marking in meters, relative to the car */
 @property (nonatomic, readonly, nullable) MBXCoordinate2D *offset;
-
-/** Detection probability in [0.0, 1.0] range */
-@property (nonatomic, readonly, nullable) NSNumber *probability;
 
 
 @end

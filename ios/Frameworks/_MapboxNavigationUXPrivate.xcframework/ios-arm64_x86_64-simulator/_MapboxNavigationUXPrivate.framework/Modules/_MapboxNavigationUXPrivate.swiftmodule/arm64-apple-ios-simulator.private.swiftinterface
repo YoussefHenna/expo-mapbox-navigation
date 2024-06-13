@@ -144,8 +144,6 @@ final public class UnfairLock : Foundation.NSLocking, Swift.Sendable {
   @objc final public func lock()
   @objc final public func unlock()
 }
-extension Swift.UnsafeMutablePointer : @unchecked Swift.Sendable where Pointee == Darwin.os_unfair_lock_s {
-}
 public typealias UnfairLocked<Value> = _MapboxNavigationUXPrivate.Locked<Value, _MapboxNavigationUXPrivate.UnfairLock>
 extension _MapboxNavigationUXPrivate.Locked where Lock == _MapboxNavigationUXPrivate.UnfairLock {
   convenience public init(_ wrappedValue: Value)

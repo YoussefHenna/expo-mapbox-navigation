@@ -344,7 +344,6 @@ SWIFT_CLASS("_TtC20MapboxNavigationCore25NavigationLocationManager")
 @end
 
 @class NSCoder;
-@class UIColor;
 
 /// <code>NavigationMapView</code> is a subclass of <code>UIView</code>, which draws <code>MapView</code> on its surface and provides
 /// convenience functions for adding <code>NavigationRoutes</code> lines to a map.
@@ -354,34 +353,6 @@ SWIFT_CLASS("_TtC20MapboxNavigationCore17NavigationMapView")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 - (void)safeAreaInsetsDidChange;
-/// Configures the route line color for the main route.
-/// If set, overrides the <code>.unknown</code> and <code>.low</code> traffic colors.
-@property (nonatomic, strong) UIColor * _Nonnull routeColor;
-/// Configures the route line color for alternative routes.
-/// If set, overrides the <code>.unknown</code> and <code>.low</code> traffic colors.
-@property (nonatomic, strong) UIColor * _Nonnull routeAlternateColor;
-/// Configures the casing route line color for the main route.
-@property (nonatomic, strong) UIColor * _Nonnull routeCasingColor;
-/// Configures the casing route line color for alternative routes.
-@property (nonatomic, strong) UIColor * _Nonnull routeAlternateCasingColor;
-/// Configures the color for restricted areas on the route line.
-@property (nonatomic, strong) UIColor * _Nonnull routeRestrictedAreaColor;
-/// Configures the color for the traversed part of the main route. The traversed part is rendered only if the color
-/// is not <code>nil</code>.
-/// Defaults to <code>nil</code>.
-@property (nonatomic, strong) UIColor * _Nullable traversedRouteColor;
-/// Configures the color of the maneuver arrow.
-@property (nonatomic, strong) UIColor * _Nonnull maneuverArrowColor;
-/// Configures the stroke color of the maneuver arrow.
-@property (nonatomic, strong) UIColor * _Nonnull maneuverArrowStrokeColor;
-/// Configures the color of the route annotation for the main route.
-@property (nonatomic, strong) UIColor * _Nonnull routeAnnotationSelectedColor;
-/// Configures the color of the route annotation for alternative routes.
-@property (nonatomic, strong) UIColor * _Nonnull routeAnnotationColor;
-/// Configures the text color of the route annotation for the main route.
-@property (nonatomic, strong) UIColor * _Nonnull routeAnnotationSelectedTextColor;
-/// Configures the text color of the route annotation for alternative routes.
-@property (nonatomic, strong) UIColor * _Nonnull routeAnnotationTextColor;
 @end
 
 
