@@ -16,6 +16,24 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
+  s.dependency 'MapboxMaps', $RNMapboxMapsVersion
+
+  s.source_files = "**/*.{h,m,swift}"
+  s.exclude_files = ["Frameworks/*.xcframework/**/*.h"]
+  s.preserve_paths = [
+    "Frameworks/*.xcframework",
+    "**/*.h",
+    "Frameworks/*.xcframework/**/*.h"
+  ]
+
+  s.vendored_frameworks=[
+    'Frameworks/MapboxNavigationCore.xcframework',
+    'Frameworks/MapboxDirections.xcframework',
+    'Frameworks/MapboxNavigationUIKit.xcframework',
+    'Frameworks/_MapboxNavigationUXPrivate.xcframework',
+    'Frameworks/Turf.xcframework',
+    'Frameworks/MapboxNavigationNative.xcframework',
+  ]
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
@@ -23,5 +41,4 @@ Pod::Spec.new do |s|
     'SWIFT_COMPILATION_MODE' => 'wholemodule'
   }
 
-  s.source_files = "**/*.{h,m,swift}"
 end
