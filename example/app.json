@@ -3,7 +3,6 @@
     "name": "Expo Mapbox Navigation Example",
     "slug": "expo_mapbox_navigation_example",
     "version": "1.0.0",
-    "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",

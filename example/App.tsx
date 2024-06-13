@@ -3,10 +3,15 @@ import { StyleSheet, View, Text } from "react-native";
 import { MapboxNavigationView } from "expo-mapbox-navigation";
 import Mapbox from "@rnmapbox/maps";
 import * as Location from "expo-location";
+import * as ScreenOrientation from "expo-screen-orientation";
 
 Mapbox.setAccessToken("<TOKEN_HERE>");
 
 export default function App() {
+  React.useEffect(() => {
+    ScreenOrientation.unlockAsync();
+  }, []);
+
   React.useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -25,8 +30,8 @@ export default function App() {
         <MapboxNavigationView
           style={{ flex: 1 }}
           coordinates={[
-            { latitude: 30.044874, longitude: 31.46149 },
-            { latitude: 30.068016, longitude: 31.42541 },
+            { latitude: 30.021, longitude: 31.4962 },
+            { latitude: 30.0552, longitude: 31.4988 },
           ]}
         />
       ) : (
