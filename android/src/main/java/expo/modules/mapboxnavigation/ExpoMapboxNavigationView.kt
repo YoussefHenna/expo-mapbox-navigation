@@ -1,12 +1,14 @@
 package expo.modules.mapboxnavigation
 
 import android.content.Context
-import android.widget.TextView;
+import android.content.res.Configuration
 import android.content.res.Resources
+import android.widget.TextView;
 import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.common.location.Location
 import com.mapbox.geojson.Point
+import com.mapbox.maps.EdgeInsets
 import com.mapbox.maps.ImageHolder
 import com.mapbox.maps.MapView
 import com.mapbox.maps.plugin.animation.camera
@@ -26,7 +28,9 @@ import com.mapbox.navigation.core.lifecycle.MapboxNavigationApp
 import com.mapbox.navigation.core.trip.session.LocationMatcherResult
 import com.mapbox.navigation.core.trip.session.LocationObserver
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
+import com.mapbox.navigation.ui.maps.camera.data.FollowingFrameOptions.FocalPoint
 import com.mapbox.navigation.ui.maps.camera.data.MapboxNavigationViewportDataSource
+import com.mapbox.navigation.ui.maps.camera.lifecycle.NavigationBasicGesturesHandler
 import com.mapbox.navigation.ui.maps.camera.NavigationCamera
 import com.mapbox.navigation.ui.maps.location.NavigationLocationProvider
 import com.mapbox.navigation.ui.maps.route.arrow.api.MapboxRouteArrowApi
@@ -35,10 +39,9 @@ import com.mapbox.navigation.ui.maps.route.arrow.model.RouteArrowOptions
 import com.mapbox.navigation.ui.maps.route.line.api.MapboxRouteLineApi
 import com.mapbox.navigation.ui.maps.route.line.api.MapboxRouteLineView
 import com.mapbox.navigation.ui.maps.route.line.model.*
+import com.mapbox.navigation.ui.maps.route.RouteLayerConstants.TOP_LEVEL_ROUTE_LINE_LAYER_ID
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
-import com.mapbox.maps.EdgeInsets
-import android.content.res.Configuration
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private val mapboxNavigation = MapboxNavigationApp.current()
@@ -48,15 +51,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val mapView = MapView(context).also {
         addView(it, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))   
 
-        it.mapboxMap.getStyle { style ->
+        it.mapboxMap.loadStyle(Style.MAPBOX_STREETS) { style: Style ->
             mapboxStyle = style
         }
 
         it.location.apply {
             locationPuck = LocationPuck2D(
-                topImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
                 bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
-                shadowImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon)
             )
             setLocationProvider(navigationLocationProvider)
             puckBearingEnabled = true
@@ -66,19 +67,37 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
     private val mapboxMap = mapView.mapboxMap   
 
-    
-
     private val routeLineApiOptions = MapboxRouteLineApiOptions.Builder().build()
     private val routeLineApi = MapboxRouteLineApi(routeLineApiOptions)
 
-    private val routeLineViewOptions = MapboxRouteLineViewOptions.Builder(context).build()
+    private val routeLineViewOptions = MapboxRouteLineViewOptions.Builder(context)
+        .routeLineBelowLayerId("road-label")
+        .build()
     private val routeLineView = MapboxRouteLineView(routeLineViewOptions)
 
     private val routeArrow = MapboxRouteArrowApi()
-    private val routeArrowOptions = RouteArrowOptions.Builder(context).build()
+    private val routeArrowOptions = RouteArrowOptions.Builder(context)
+        .withAboveLayerId(TOP_LEVEL_ROUTE_LINE_LAYER_ID)
+        .build()
     private val routeArrowView = MapboxRouteArrowView(routeArrowOptions)
 
     private val pixelDensity = Resources.getSystem().displayMetrics.density
+    private val overviewPadding: EdgeInsets by lazy {
+        EdgeInsets(
+            140.0 * pixelDensity,
+            40.0 * pixelDensity,
+            120.0 * pixelDensity,
+            40.0 * pixelDensity
+        )
+    }
+    private val landscapeOverviewPadding: EdgeInsets by lazy {
+        EdgeInsets(
+            30.0 * pixelDensity,
+            380.0 * pixelDensity,
+            110.0 * pixelDensity,
+            20.0 * pixelDensity
+        )
+    }
     private val followingPadding: EdgeInsets by lazy {
         EdgeInsets(
             180.0 * pixelDensity,
@@ -97,13 +116,20 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
     private val viewportDataSource = MapboxNavigationViewportDataSource(mapboxMap).apply {
+        options.followingFrameOptions.focalPoint = FocalPoint(0.5, 0.9)
         if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             followingPadding = landscapeFollowingPadding
+            overviewPadding = landscapeOverviewPadding
         } else {
             followingPadding = followingPadding
+            overviewPadding = overviewPadding
         }
     }
-    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource)
+    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource).also {
+        mapView.camera.addCameraAnimationsLifecycleListener(
+            NavigationBasicGesturesHandler(it)
+        )
+    }
 
     private val routesRequestCallback = object : NavigationRouterCallback {
         override fun onRoutesReady(routes: List<NavigationRoute>, @RouterOrigin routerOrigin: String) {
@@ -114,7 +140,6 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         override fun onCanceled(routeOptions: RouteOptions, @RouterOrigin routerOrigin: String) {}
         override fun onFailure(reasons: List<RouterFailure>, routeOptions: RouteOptions) {}
     }
-
 
     private val routesObserver = object : RoutesObserver {
         override fun onRoutesChanged(result: RoutesUpdatedResult) {
