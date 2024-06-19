@@ -47,7 +47,8 @@
           "RNMapboxMapsDownloadToken": "<DOWNLOAD_TOKEN>",
           "RNMapboxMapsVersion": "11.3.0"
         }
-      ]
+      ],
+      ["../app.plugin.js"]
     ]
   }
 }
