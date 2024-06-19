@@ -11,13 +11,12 @@ Pod::Spec.new do |s|
   s.author         = package['author']
   s.homepage       = package['homepage']
   s.platforms      = { :ios => '13.4', :tvos => '13.4' }
-  s.swift_version  = '5.9'
+  s.swift_version  = '5.4'
   s.source         = { git: 'https://github.com/YoussefHenna/expo-mapbox-navigation' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'MapboxMaps', $RNMapboxMapsVersion
-  s.dependency 'Turf', '2.8.0'
 
   s.source_files = "**/*.{h,m,swift}"
   s.exclude_files = ["Frameworks/*.xcframework/**/*.h"]
@@ -32,6 +31,7 @@ Pod::Spec.new do |s|
     'Frameworks/MapboxDirections.xcframework',
     'Frameworks/MapboxNavigationUIKit.xcframework',
     'Frameworks/_MapboxNavigationUXPrivate.xcframework',
+    'Frameworks/Turf.xcframework',
     'Frameworks/MapboxNavigationNative.xcframework',
   ]
 
