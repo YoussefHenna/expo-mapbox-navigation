@@ -3,8 +3,6 @@ import * as React from "react";
 
 import { ExpoMapboxNavigationViewProps } from "./ExpoMapboxNavigation.types";
 
-type Props = ExpoMapboxNavigationViewProps;
-
 const NativeView: React.ComponentType<ExpoMapboxNavigationViewProps> =
   requireNativeViewManager("ExpoMapboxNavigation");
 
