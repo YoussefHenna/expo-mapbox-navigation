@@ -1345,6 +1345,35 @@ extension MapboxDirections.RouteRefreshResponse : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
+extension MapboxDirections.Route {
+  public struct RefreshParameters : Swift.Sendable {
+    public struct PropertiesToMerge : Swift.OptionSet, Swift.Sendable {
+      public var rawValue: Swift.Int
+      public init(rawValue: Swift.Int)
+      public static let annotations: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public static let incidents: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public static let closures: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public static let everything: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public typealias ArrayLiteralElement = MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public typealias Element = MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+      public typealias RawValue = Swift.Int
+    }
+    public struct StartingIndex : Swift.Sendable {
+      public let legIndex: Swift.Int
+      public let legShapeIndex: Swift.Int
+      public init(legIndex: Swift.Int, legShapeIndex: Swift.Int)
+    }
+    public var propertiesToMerge: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
+    public var startingIndex: MapboxDirections.Route.RefreshParameters.StartingIndex?
+    public init(propertiesToMerge: MapboxDirections.Route.RefreshParameters.PropertiesToMerge = .everything, startingIndex: MapboxDirections.Route.RefreshParameters.StartingIndex? = nil)
+  }
+  public mutating func refresh(from refreshedRoute: any MapboxDirections.RouteRefreshSource, refreshParameters: MapboxDirections.Route.RefreshParameters = RefreshParameters())
+  public mutating func refreshLegAttributes(from refreshedRoute: any MapboxDirections.RouteRefreshSource)
+  public mutating func refreshLegAttributes(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int, legShapeIndex: Swift.Int)
+  public mutating func refreshLegIncidents(from refreshedRoute: any MapboxDirections.RouteRefreshSource)
+  public mutating func refreshLegIncidents(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int, legShapeIndex: Swift.Int)
+  public mutating func refreshLegClosures(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int = 0, legShapeIndex: Swift.Int = 0)
+}
 public protocol RouteRefreshSource {
   var refreshedLegs: [any MapboxDirections.RouteLegRefreshSource] { get }
 }

@@ -39372,6 +39372,1062 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "TypeDecl",
+            "name": "RefreshParameters",
+            "printedName": "RefreshParameters",
+            "children": [
+              {
+                "kind": "TypeDecl",
+                "name": "PropertiesToMerge",
+                "printedName": "PropertiesToMerge",
+                "children": [
+                  {
+                    "kind": "Var",
+                    "name": "rawValue",
+                    "printedName": "rawValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivp",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivp",
+                    "moduleName": "MapboxDirections",
+                    "declAttributes": [
+                      "HasStorage",
+                      "AccessControl"
+                    ],
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivg",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivg",
+                        "moduleName": "MapboxDirections",
+                        "implicit": true,
+                        "accessorKind": "get"
+                      },
+                      {
+                        "kind": "Accessor",
+                        "name": "Set",
+                        "printedName": "Set()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivs",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivs",
+                        "moduleName": "MapboxDirections",
+                        "implicit": true,
+                        "accessorKind": "set"
+                      },
+                      {
+                        "kind": "Accessor",
+                        "name": "Modify",
+                        "printedName": "Modify()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Void",
+                            "printedName": "()"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivM",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueSivM",
+                        "moduleName": "MapboxDirections",
+                        "implicit": true,
+                        "accessorKind": "_modify"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Constructor",
+                    "name": "init",
+                    "printedName": "init(rawValue:)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Constructor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueAGSi_tcfc",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8rawValueAGSi_tcfc",
+                    "moduleName": "MapboxDirections",
+                    "declAttributes": [
+                      "AccessControl"
+                    ],
+                    "init_kind": "Designated"
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "annotations",
+                    "printedName": "annotations",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV11annotationsAGvpZ",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV11annotationsAGvpZ",
+                    "moduleName": "MapboxDirections",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV11annotationsAGvgZ",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV11annotationsAGvgZ",
+                        "moduleName": "MapboxDirections",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "incidents",
+                    "printedName": "incidents",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV9incidentsAGvpZ",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV9incidentsAGvpZ",
+                    "moduleName": "MapboxDirections",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV9incidentsAGvgZ",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV9incidentsAGvgZ",
+                        "moduleName": "MapboxDirections",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "closures",
+                    "printedName": "closures",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8closuresAGvpZ",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8closuresAGvpZ",
+                    "moduleName": "MapboxDirections",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8closuresAGvgZ",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV8closuresAGvgZ",
+                        "moduleName": "MapboxDirections",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "everything",
+                    "printedName": "everything",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV10everythingAGvpZ",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV10everythingAGvpZ",
+                    "moduleName": "MapboxDirections",
+                    "static": true,
+                    "declAttributes": [
+                      "HasInitialValue",
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV10everythingAGvgZ",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV10everythingAGvgZ",
+                        "moduleName": "MapboxDirections",
+                        "static": true,
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "Struct",
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV",
+                "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV",
+                "moduleName": "MapboxDirections",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "conformances": [
+                  {
+                    "kind": "Conformance",
+                    "name": "OptionSet",
+                    "printedName": "OptionSet",
+                    "children": [
+                      {
+                        "kind": "TypeWitness",
+                        "name": "Element",
+                        "printedName": "Element",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:s9OptionSetP",
+                    "mangledName": "$ss9OptionSetP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Sendable",
+                    "printedName": "Sendable",
+                    "usr": "s:s8SendableP",
+                    "mangledName": "$ss8SendableP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "RawRepresentable",
+                    "printedName": "RawRepresentable",
+                    "children": [
+                      {
+                        "kind": "TypeWitness",
+                        "name": "RawValue",
+                        "printedName": "RawValue",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:SY",
+                    "mangledName": "$sSY"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "SetAlgebra",
+                    "printedName": "SetAlgebra",
+                    "children": [
+                      {
+                        "kind": "TypeWitness",
+                        "name": "Element",
+                        "printedName": "Element",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:s10SetAlgebraP",
+                    "mangledName": "$ss10SetAlgebraP"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "Equatable",
+                    "printedName": "Equatable",
+                    "usr": "s:SQ",
+                    "mangledName": "$sSQ"
+                  },
+                  {
+                    "kind": "Conformance",
+                    "name": "ExpressibleByArrayLiteral",
+                    "printedName": "ExpressibleByArrayLiteral",
+                    "children": [
+                      {
+                        "kind": "TypeWitness",
+                        "name": "ArrayLiteralElement",
+                        "printedName": "ArrayLiteralElement",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "PropertiesToMerge",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                          }
+                        ]
+                      }
+                    ],
+                    "usr": "s:s25ExpressibleByArrayLiteralP",
+                    "mangledName": "$ss25ExpressibleByArrayLiteralP"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeDecl",
+                "name": "StartingIndex",
+                "printedName": "StartingIndex",
+                "children": [
+                  {
+                    "kind": "Var",
+                    "name": "legIndex",
+                    "printedName": "legIndex",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG0Sivp",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG0Sivp",
+                    "moduleName": "MapboxDirections",
+                    "declAttributes": [
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG0Sivg",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG0Sivg",
+                        "moduleName": "MapboxDirections",
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Var",
+                    "name": "legShapeIndex",
+                    "printedName": "legShapeIndex",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Var",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV08legShapeG0Sivp",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV08legShapeG0Sivp",
+                    "moduleName": "MapboxDirections",
+                    "declAttributes": [
+                      "HasStorage",
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "isLet": true,
+                    "hasStorage": true,
+                    "accessors": [
+                      {
+                        "kind": "Accessor",
+                        "name": "Get",
+                        "printedName": "Get()",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Int",
+                            "printedName": "Swift.Int",
+                            "usr": "s:Si"
+                          }
+                        ],
+                        "declKind": "Accessor",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV08legShapeG0Sivg",
+                        "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV08legShapeG0Sivg",
+                        "moduleName": "MapboxDirections",
+                        "implicit": true,
+                        "accessorKind": "get"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "Constructor",
+                    "name": "init",
+                    "printedName": "init(legIndex:legShapeIndex:)",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StartingIndex",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Constructor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG00h5ShapeG0AGSi_Sitcfc",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV03legG00h5ShapeG0AGSi_Sitcfc",
+                    "moduleName": "MapboxDirections",
+                    "declAttributes": [
+                      "AccessControl",
+                      "RawDocComment"
+                    ],
+                    "init_kind": "Designated"
+                  }
+                ],
+                "declKind": "Struct",
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV",
+                "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV",
+                "moduleName": "MapboxDirections",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "conformances": [
+                  {
+                    "kind": "Conformance",
+                    "name": "Sendable",
+                    "printedName": "Sendable",
+                    "usr": "s:s8SendableP",
+                    "mangledName": "$ss8SendableP"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "propertiesToMerge",
+                "printedName": "propertiesToMerge",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PropertiesToMerge",
+                    "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvp",
+                "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvp",
+                "moduleName": "MapboxDirections",
+                "declAttributes": [
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvg",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvg",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PropertiesToMerge",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvs",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0Vvs",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0VvM",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17propertiesToMergeAE010PropertiesgH0VvM",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Var",
+                "name": "startingIndex",
+                "printedName": "startingIndex",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StartingIndex",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvp",
+                "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvp",
+                "moduleName": "MapboxDirections",
+                "declAttributes": [
+                  "HasInitialValue",
+                  "HasStorage",
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "hasStorage": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "StartingIndex",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvg",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvg",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Set",
+                    "printedName": "Set()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Optional",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex?",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "StartingIndex",
+                            "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex",
+                            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV"
+                          }
+                        ],
+                        "usr": "s:Sq"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvs",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvs",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "set"
+                  },
+                  {
+                    "kind": "Accessor",
+                    "name": "Modify",
+                    "printedName": "Modify()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvM",
+                    "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV13startingIndexAE08StartingG0VSgvM",
+                    "moduleName": "MapboxDirections",
+                    "implicit": true,
+                    "accessorKind": "_modify"
+                  }
+                ]
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(propertiesToMerge:startingIndex:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RefreshParameters",
+                    "printedName": "MapboxDirections.Route.RefreshParameters",
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PropertiesToMerge",
+                    "printedName": "MapboxDirections.Route.RefreshParameters.PropertiesToMerge",
+                    "hasDefaultArg": true,
+                    "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17PropertiesToMergeV"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StartingIndex",
+                        "printedName": "MapboxDirections.Route.RefreshParameters.StartingIndex",
+                        "usr": "s:16MapboxDirections5RouteV17RefreshParametersV13StartingIndexV"
+                      }
+                    ],
+                    "hasDefaultArg": true,
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV17propertiesToMerge13startingIndexA2E010PropertiesgH0V_AE08StartingJ0VSgtcfc",
+                "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV17propertiesToMerge13startingIndexA2E010PropertiesgH0V_AE08StartingJ0VSgtcfc",
+                "moduleName": "MapboxDirections",
+                "declAttributes": [
+                  "AccessControl",
+                  "RawDocComment"
+                ],
+                "init_kind": "Designated"
+              }
+            ],
+            "declKind": "Struct",
+            "usr": "s:16MapboxDirections5RouteV17RefreshParametersV",
+            "mangledName": "$s16MapboxDirections5RouteV17RefreshParametersV",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "refresh",
+            "printedName": "refresh(from:refreshParameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RefreshParameters",
+                "printedName": "MapboxDirections.Route.RefreshParameters",
+                "hasDefaultArg": true,
+                "usr": "s:16MapboxDirections5RouteV17RefreshParametersV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV7refresh4from0D10ParametersyAA0C13RefreshSource_p_AC0gF0VtF",
+            "mangledName": "$s16MapboxDirections5RouteV7refresh4from0D10ParametersyAA0C13RefreshSource_p_AC0gF0VtF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "refreshLegAttributes",
+            "printedName": "refreshLegAttributes(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV20refreshLegAttributes4fromyAA0C13RefreshSource_p_tF",
+            "mangledName": "$s16MapboxDirections5RouteV20refreshLegAttributes4fromyAA0C13RefreshSource_p_tF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "refreshLegAttributes",
+            "printedName": "refreshLegAttributes(from:legIndex:legShapeIndex:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV20refreshLegAttributes4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "mangledName": "$s16MapboxDirections5RouteV20refreshLegAttributes4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "refreshLegIncidents",
+            "printedName": "refreshLegIncidents(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV19refreshLegIncidents4fromyAA0C13RefreshSource_p_tF",
+            "mangledName": "$s16MapboxDirections5RouteV19refreshLegIncidents4fromyAA0C13RefreshSource_p_tF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "refreshLegIncidents",
+            "printedName": "refreshLegIncidents(from:legIndex:legShapeIndex:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV19refreshLegIncidents4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "mangledName": "$s16MapboxDirections5RouteV19refreshLegIncidents4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
+            "kind": "Function",
+            "name": "refreshLegClosures",
+            "printedName": "refreshLegClosures(from:legIndex:legShapeIndex:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "RouteRefreshSource",
+                "printedName": "MapboxDirections.RouteRefreshSource",
+                "usr": "s:16MapboxDirections18RouteRefreshSourceP"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "hasDefaultArg": true,
+                "usr": "s:Si"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "hasDefaultArg": true,
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:16MapboxDirections5RouteV18refreshLegClosures4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "mangledName": "$s16MapboxDirections5RouteV18refreshLegClosures4from8legIndex0h5ShapeI0yAA0C13RefreshSource_p_S2itF",
+            "moduleName": "MapboxDirections",
+            "declAttributes": [
+              "Mutating",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "Mutating"
+          },
+          {
             "kind": "Var",
             "name": "refreshedLegs",
             "printedName": "refreshedLegs",
@@ -72826,6 +73882,97 @@
       "offset": 2010,
       "length": 6,
       "value": "\"uuid\""
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4137,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4286,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4291,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4438,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4443,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6904,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 6984,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9431,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 9451,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 11611,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 12637,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 12669,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteRefreshResponse.swift",
+      "kind": "IntegerLiteral",
+      "offset": 13004,
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxDirections\/RouteResponse.swift",

@@ -50454,7 +50454,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(navigationRoutes:waypoints:congestionConfiguration:)",
+            "printedName": "init(navigationRoute:waypoints:congestionConfiguration:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -50464,9 +50464,9 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "NavigationRoutes",
-                "printedName": "MapboxNavigationCore.NavigationRoutes",
-                "usr": "s:20MapboxNavigationCore0B6RoutesV"
+                "name": "NavigationRoute",
+                "printedName": "MapboxNavigationCore.NavigationRoute",
+                "usr": "s:20MapboxNavigationCore0B5RouteV"
               },
               {
                 "kind": "TypeNominal",
@@ -50490,8 +50490,8 @@
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:20MapboxNavigationCore13RouteProgressV16navigationRoutes9waypoints23congestionConfigurationAcA0bG0V_Say0A10Directions8WaypointVGAA016CongestionRangesJ0Vtcfc",
-            "mangledName": "$s20MapboxNavigationCore13RouteProgressV16navigationRoutes9waypoints23congestionConfigurationAcA0bG0V_Say0A10Directions8WaypointVGAA016CongestionRangesJ0Vtcfc",
+            "usr": "s:20MapboxNavigationCore13RouteProgressV010navigationD09waypoints23congestionConfigurationAcA0bD0V_Say0A10Directions8WaypointVGAA016CongestionRangesI0Vtcfc",
+            "mangledName": "$s20MapboxNavigationCore13RouteProgressV010navigationD09waypoints23congestionConfigurationAcA0bD0V_Say0A10Directions8WaypointVGAA016CongestionRangesI0Vtcfc",
             "moduleName": "MapboxNavigationCore",
             "declAttributes": [
               "AccessControl",
@@ -50905,51 +50905,6 @@
           },
           {
             "kind": "Var",
-            "name": "navigationRoutes",
-            "printedName": "navigationRoutes",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "NavigationRoutes",
-                "printedName": "MapboxNavigationCore.NavigationRoutes",
-                "usr": "s:20MapboxNavigationCore0B6RoutesV"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:20MapboxNavigationCore13RouteProgressV16navigationRoutesAA0bG0Vvp",
-            "mangledName": "$s20MapboxNavigationCore13RouteProgressV16navigationRoutesAA0bG0Vvp",
-            "moduleName": "MapboxNavigationCore",
-            "declAttributes": [
-              "HasStorage",
-              "SetterAccess",
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "NavigationRoutes",
-                    "printedName": "MapboxNavigationCore.NavigationRoutes",
-                    "usr": "s:20MapboxNavigationCore0B6RoutesV"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:20MapboxNavigationCore13RouteProgressV16navigationRoutesAA0bG0Vvg",
-                "mangledName": "$s20MapboxNavigationCore13RouteProgressV16navigationRoutesAA0bG0Vvg",
-                "moduleName": "MapboxNavigationCore",
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
             "name": "route",
             "printedName": "route",
             "children": [
@@ -50965,8 +50920,12 @@
             "mangledName": "$s20MapboxNavigationCore13RouteProgressV5route0A10Directions0D0Vvp",
             "moduleName": "MapboxNavigationCore",
             "declAttributes": [
-              "AccessControl"
+              "HasStorage",
+              "SetterAccess",
+              "AccessControl",
+              "RawDocComment"
             ],
+            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -50984,6 +50943,7 @@
                 "usr": "s:20MapboxNavigationCore13RouteProgressV5route0A10Directions0D0Vvg",
                 "mangledName": "$s20MapboxNavigationCore13RouteProgressV5route0A10Directions0D0Vvg",
                 "moduleName": "MapboxNavigationCore",
+                "implicit": true,
                 "accessorKind": "get"
               }
             ]
@@ -51005,8 +50965,11 @@
             "mangledName": "$s20MapboxNavigationCore13RouteProgressV7routeIdAA0dG0Vvp",
             "moduleName": "MapboxNavigationCore",
             "declAttributes": [
+              "HasStorage",
               "AccessControl"
             ],
+            "isLet": true,
+            "hasStorage": true,
             "accessors": [
               {
                 "kind": "Accessor",
@@ -51024,6 +50987,7 @@
                 "usr": "s:20MapboxNavigationCore13RouteProgressV7routeIdAA0dG0Vvg",
                 "mangledName": "$s20MapboxNavigationCore13RouteProgressV7routeIdAA0dG0Vvg",
                 "moduleName": "MapboxNavigationCore",
+                "implicit": true,
                 "accessorKind": "get"
               }
             ]
@@ -84051,91 +84015,91 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "Array",
-      "offset": 2227,
+      "offset": 2135,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "IntegerLiteral",
-      "offset": 4082,
+      "offset": 3899,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "IntegerLiteral",
-      "offset": 4125,
+      "offset": 3942,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "IntegerLiteral",
-      "offset": 5278,
+      "offset": 5095,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "IntegerLiteral",
-      "offset": 5305,
+      "offset": 5122,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "StringLiteral",
-      "offset": 6607,
+      "offset": 6424,
       "length": 12,
       "value": "\"routeIndex\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "IntegerLiteral",
-      "offset": 6729,
+      "offset": 6546,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "StringLiteral",
-      "offset": 6854,
+      "offset": 6671,
       "length": 25,
       "value": "\"Unable to access routes\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "StringLiteral",
-      "offset": 7070,
+      "offset": 6887,
       "length": 48,
       "value": "\"Unable to access an alternative route at index\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "BooleanLiteral",
-      "offset": 8698,
+      "offset": 8515,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "BooleanLiteral",
-      "offset": 8729,
+      "offset": 8546,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "BooleanLiteral",
-      "offset": 9092,
+      "offset": 8909,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView+Gestures.swift",
       "kind": "BooleanLiteral",
-      "offset": 9122,
+      "offset": 8939,
       "length": 5,
       "value": "false"
     },
@@ -84380,196 +84344,196 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 5808,
+      "offset": 5657,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "Array",
-      "offset": 7154,
+      "offset": 7003,
       "length": 7,
       "value": "[0, 15]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "Array",
-      "offset": 8107,
+      "offset": 7956,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "StringLiteral",
-      "offset": 9044,
+      "offset": 8893,
       "length": 47,
       "value": "\"NavigationMapView.init(frame:) is unavailable\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "StringLiteral",
-      "offset": 9170,
+      "offset": 9019,
       "length": 41,
       "value": "\"NavigationMapView.init() is unavailable\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "StringLiteral",
-      "offset": 9314,
+      "offset": 9163,
       "length": 47,
       "value": "\"NavigationMapView.init(coder:) is unavailable\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 9807,
+      "offset": 9656,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 10078,
+      "offset": 9927,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 10543,
+      "offset": 10392,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 10711,
+      "offset": 10560,
       "length": 2,
       "value": "40"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 10854,
+      "offset": 10703,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "FloatLiteral",
-      "offset": 11073,
+      "offset": 10922,
       "length": 4,
       "value": "0.85"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 11478,
+      "offset": 11327,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 11670,
+      "offset": 11519,
       "length": 2,
       "value": "50"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 11836,
+      "offset": 11685,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 12072,
+      "offset": 11921,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 15288,
+      "offset": 15137,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "FloatLiteral",
-      "offset": 15328,
+      "offset": 15177,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 18225,
+      "offset": 18188,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 18654,
+      "offset": 18617,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 18928,
+      "offset": 18891,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 19847,
+      "offset": 19810,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "Array",
-      "offset": 20116,
+      "offset": 20079,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 20632,
+      "offset": 20595,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 20654,
+      "offset": 20617,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "FloatLiteral",
-      "offset": 20745,
+      "offset": 20708,
       "length": 3,
       "value": "0.0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "IntegerLiteral",
-      "offset": 22359,
+      "offset": 22322,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Map\/NavigationMapView.swift",
       "kind": "BooleanLiteral",
-      "offset": 22802,
+      "offset": 22765,
       "length": 4,
       "value": "true"
     },
@@ -89147,14 +89111,14 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/AlternativeRoute.swift",
       "kind": "StringLiteral",
-      "offset": 6052,
+      "offset": 5786,
       "length": 60,
       "value": "\"Alternative routes parsing lost route with id: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/AlternativeRoute.swift",
       "kind": "StringLiteral",
-      "offset": 6111,
+      "offset": 5845,
       "length": 25,
       "value": "\"\""
     },
@@ -90526,266 +90490,266 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 18695,
+      "offset": 18728,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 19677,
+      "offset": 19736,
       "length": 73,
       "value": "\"Received `NavigationStatus` while not in Active Guidance or Free Drive.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 19925,
+      "offset": 19984,
       "length": 67,
       "value": "\"Received `NavigationStatus` while billing session is not running.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 21426,
+      "offset": 21485,
       "length": 68,
       "value": "\"Unhandled speed limit locale unit: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 21493,
+      "offset": 21552,
       "length": 25,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 21865,
+      "offset": 21924,
       "length": 72,
       "value": "\"Unknown native speed limit sign locale \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 21936,
+      "offset": 21995,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 24180,
+      "offset": 24170,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 25499,
+      "offset": 25302,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 25846,
+      "offset": 25649,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 28841,
+      "offset": 28644,
       "length": 64,
       "value": "\"Received location update while billing session is not running.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 30888,
+      "offset": 30691,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 34731,
+      "offset": 34534,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 34951,
+      "offset": 34754,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 35038,
+      "offset": 34841,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 35246,
+      "offset": 35049,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 35333,
+      "offset": 35136,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 35449,
+      "offset": 35252,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 36093,
+      "offset": 35896,
       "length": 60,
       "value": "\"Failed to update alternative routes, error: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 36152,
+      "offset": 35955,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 37055,
+      "offset": 36858,
       "length": 49,
       "value": "\"Failed to change alternative routes: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 37103,
+      "offset": 36906,
       "length": 25,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "Array",
-      "offset": 37911,
+      "offset": 37714,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 38161,
+      "offset": 37964,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 42819,
+      "offset": 42632,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "Array",
-      "offset": 44033,
+      "offset": 43846,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 44094,
+      "offset": 43907,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 44291,
+      "offset": 44104,
       "length": 23,
       "value": "\"Reroute was detected.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 44675,
+      "offset": 44488,
       "length": 153,
       "value": "\"Reroute was fetched with primary route id '\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 44760,
+      "offset": 44573,
       "length": 69,
       "value": "\"' and \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 44805,
+      "offset": 44618,
       "length": 11,
       "value": "\" alternative route(s).\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "IntegerLiteral",
-      "offset": 45253,
+      "offset": 45066,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 45447,
+      "offset": 45260,
       "length": 24,
       "value": "\"Reroute was cancelled.\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 45896,
+      "offset": 45709,
       "length": 36,
       "value": "\"Failed to reroute, error: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "StringLiteral",
-      "offset": 45931,
+      "offset": 45744,
       "length": 25,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 49028,
+      "offset": 48761,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 49134,
+      "offset": 48867,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/MapboxNavigator.swift",
       "kind": "BooleanLiteral",
-      "offset": 49217,
+      "offset": 48950,
       "length": 5,
       "value": "false"
     },
@@ -90819,155 +90783,113 @@
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "StringLiteral",
-      "offset": 609,
-      "length": 62,
-      "value": "\"Unable to convert primary route to directions route response\""
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "StringLiteral",
-      "offset": 807,
-      "length": 22,
-      "value": "\"Unable to get routes\""
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "IntegerLiteral",
-      "offset": 957,
-      "length": 1,
-      "value": "1"
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "StringLiteral",
-      "offset": 988,
-      "length": 19,
-      "value": "\"Routes mismatched\""
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "StringLiteral",
-      "offset": 1552,
-      "length": 69,
-      "value": "\"Unable to convert alternative route with id: \""
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
-      "kind": "StringLiteral",
-      "offset": 1620,
-      "length": 25,
-      "value": "\"\""
-    },
-    {
-      "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "Array",
-      "offset": 1954,
+      "offset": 990,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "Array",
-      "offset": 2328,
+      "offset": 1423,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "Array",
-      "offset": 3737,
+      "offset": 2832,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "IntegerLiteral",
-      "offset": 4849,
+      "offset": 3944,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "FloatLiteral",
-      "offset": 5236,
+      "offset": 4331,
       "length": 4,
       "value": "0.25"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "IntegerLiteral",
-      "offset": 5297,
+      "offset": 4392,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "IntegerLiteral",
-      "offset": 5379,
+      "offset": 4474,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "BooleanLiteral",
-      "offset": 6720,
+      "offset": 5815,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "Array",
-      "offset": 6771,
+      "offset": 5866,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "BooleanLiteral",
-      "offset": 8286,
+      "offset": 7189,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 9228,
+      "offset": 8131,
       "length": 91,
       "value": "\"Couldn't extract response and request data to parse `RouteInterface` into `RouteResponse`\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 9842,
+      "offset": 8745,
       "length": 75,
       "value": "\"Couldn't parse `RouteInterface` into `RouteResponse` with error: \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 9916,
+      "offset": 8819,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 10246,
+      "offset": 9149,
       "length": 61,
       "value": "\"Parsing `RouteInterface` into `Route` resulted in no routes\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 10999,
+      "offset": 9902,
       "length": 21,
       "value": "\"RouteId(\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/NavigationRoutes.swift",
       "kind": "StringLiteral",
-      "offset": 11019,
+      "offset": 9922,
       "length": 1,
       "value": "\"\""
     },
@@ -91191,266 +91113,266 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 2249,
+      "offset": 2235,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "StringLiteral",
-      "offset": 3132,
+      "offset": 3118,
       "length": 61,
       "value": "\"Ignoring incorrect status update with leg index \""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "StringLiteral",
-      "offset": 3192,
+      "offset": 3178,
       "length": 25,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 5048,
+      "offset": 5497,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 5171,
+      "offset": 5620,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 5335,
+      "offset": 5784,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 5475,
+      "offset": 5924,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "BooleanLiteral",
-      "offset": 6182,
+      "offset": 6631,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 6445,
+      "offset": 6894,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 7549,
+      "offset": 7998,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Dictionary",
-      "offset": 7617,
+      "offset": 8066,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Dictionary",
-      "offset": 7802,
+      "offset": 8251,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 8239,
+      "offset": 8688,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 8388,
+      "offset": 8837,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 8593,
+      "offset": 9042,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 9132,
+      "offset": 9430,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 10489,
+      "offset": 10787,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 10853,
+      "offset": 11151,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "BooleanLiteral",
-      "offset": 11023,
+      "offset": 11321,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 11263,
+      "offset": 11561,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 11289,
+      "offset": 11587,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 11521,
+      "offset": 11819,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 11569,
+      "offset": 11867,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 13156,
+      "offset": 13454,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 13431,
+      "offset": 13729,
       "length": 7,
       "value": "[[[]]]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 13847,
+      "offset": 14145,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 14533,
+      "offset": 14831,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Dictionary",
-      "offset": 14614,
+      "offset": 14912,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 14816,
+      "offset": 15114,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 15195,
+      "offset": 15493,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 15270,
+      "offset": 15568,
       "length": 2,
       "value": "60"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 15820,
+      "offset": 16118,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 15865,
+      "offset": 16163,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Array",
-      "offset": 16111,
+      "offset": 16409,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 16688,
+      "offset": 16986,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "Dictionary",
-      "offset": 17782,
+      "offset": 18080,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 18135,
+      "offset": 18433,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/Navigator\/RouteProgress\/RouteProgress.swift",
       "kind": "IntegerLiteral",
-      "offset": 18599,
+      "offset": 18897,
       "length": 1,
       "value": "3"
     },
@@ -92374,42 +92296,42 @@
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "Dictionary",
-      "offset": 844,
+      "offset": 719,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "Dictionary",
-      "offset": 988,
+      "offset": 863,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "IntegerLiteral",
-      "offset": 1878,
+      "offset": 1753,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "BooleanLiteral",
-      "offset": 2023,
+      "offset": 1888,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "BooleanLiteral",
-      "offset": 2034,
+      "offset": 1899,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/distiller\/code\/projects\/navigation-uxf-ios\/Sources\/MapboxNavigationCore\/VoiceGuidance\/AudioPlayerClient.swift",
       "kind": "StringLiteral",
-      "offset": 2069,
+      "offset": 1934,
       "length": 8,
       "value": "\"MapboxNavigationCore.Delegate\""
     },

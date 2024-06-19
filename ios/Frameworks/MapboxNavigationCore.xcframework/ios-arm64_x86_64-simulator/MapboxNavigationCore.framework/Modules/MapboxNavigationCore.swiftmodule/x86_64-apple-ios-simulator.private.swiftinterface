@@ -1707,7 +1707,7 @@ public struct RouteLegProgress : Swift.Equatable {
   public static func == (a: MapboxNavigationCore.RouteLegProgress, b: MapboxNavigationCore.RouteLegProgress) -> Swift.Bool
 }
 public struct RouteProgress : Swift.Equatable, @unchecked Swift.Sendable {
-  public init(navigationRoutes: MapboxNavigationCore.NavigationRoutes, waypoints: [MapboxNavigationCore.Waypoint], congestionConfiguration: MapboxNavigationCore.CongestionRangesConfiguration)
+  public init(navigationRoute: MapboxNavigationCore.NavigationRoute, waypoints: [MapboxNavigationCore.Waypoint], congestionConfiguration: MapboxNavigationCore.CongestionRangesConfiguration)
   public let waypoints: [MapboxNavigationCore.Waypoint]
   public var distanceTraveled: Swift.Double {
     get
@@ -1730,15 +1730,10 @@ public struct RouteProgress : Swift.Equatable, @unchecked Swift.Sendable {
   public var nearbyShape: Turf.LineString {
     get
   }
-  public var navigationRoutes: MapboxNavigationCore.NavigationRoutes {
-    get
-  }
   public var route: MapboxDirections.Route {
     get
   }
-  public var routeId: MapboxNavigationCore.RouteId {
-    get
-  }
+  public let routeId: MapboxNavigationCore.RouteId
   public var shapeIndex: Swift.Int {
     get
   }
