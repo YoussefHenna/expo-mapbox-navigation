@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const path = require("path");
 
 /**
- * This plugin sdds a post-install step to the Podfile that addresses linking issues between pods and xcframeworks.
+ * This plugin adds a post-install step to the Podfile that addresses linking issues between pods and xcframeworks.
  * In this case, the navigation library is added as an xcframework, and the maps library is added as a pod
  *
  * See https://github.com/CocoaPods/CocoaPods/issues/11079#issuecomment-984670700
@@ -41,4 +41,26 @@ const withIosPostInstallStep = (config) =>
     },
   ]);
 
-module.exports = withIosPostInstallStep;
+const withIosTokenInfoPlist = (config, accessToken) => {
+  if (!config.ios) {
+    config.ios = {};
+  }
+  if (!config.ios.infoPlist) {
+    config.ios.infoPlist = {};
+  }
+
+  config.ios.infoPlist["MBXAccessToken"] = accessToken;
+
+  return config;
+};
+
+const withIosConfig = (config, { accessToken }) => {
+  const configWithPostInstallStep = withIosPostInstallStep(config);
+  const configWithAccessToken = withIosTokenInfoPlist(
+    configWithPostInstallStep,
+    accessToken
+  );
+  return configWithAccessToken;
+};
+
+module.exports = withIosConfig;

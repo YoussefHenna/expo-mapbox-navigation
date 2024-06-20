@@ -13,6 +13,10 @@ class ExpoMapboxNavigationView: ExpoView {
         clipsToBounds = true
         addSubview(controller.view)
     }
+
+    override func layoutSubviews() {
+        controller.view.frame = bounds
+    }
 }
 
 
@@ -23,13 +27,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        if(ExpoMapboxNavigationModule.accessToken == nil){
-            fatalError("Mapbox access token is not configured, make sure you set it by calling 'setAccessToken'")
-        }
-        navigationProvider = MapboxNavigationProvider(coreConfig: .init(
-            credentials: .init(accessToken: ExpoMapboxNavigationModule.accessToken!) ,
-            locationSource: .live
-        ))
+        navigationProvider = MapboxNavigationProvider(coreConfig: .init(locationSource: .live))
         mapboxNavigation = navigationProvider!.mapboxNavigation
         routingProvider = mapboxNavigation!.routingProvider()
     }
@@ -59,6 +57,14 @@ class ExpoMapboxNavigationViewController: UIViewController {
                     navigationOptions: navigationOptions
                 )
 
+                let navigationMapView = navigationViewController.navigationMapView
+                navigationMapView!.puckType = .puck2D(.navigationDefault)
+                navigationMapView!.mapView.mapboxMap.styleURI = .streets
+
+                // Remove cancel button, navigation is not cancellable
+                let cancelButton = navigationViewController.navigationView.bottomBannerContainerView.findViews(subclassOf: CancelButton.self)[0]
+                cancelButton.removeFromSuperview()
+
                 navigationViewController.delegate = self
                 addChild(navigationViewController)
                 view.addSubview(navigationViewController.view)
@@ -70,6 +76,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
                     navigationViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
                 ])
                 didMove(toParent: self)
+                mapboxNavigation!.tripSession().startActiveGuidance(with: navigationRoutes, startLegIndex: 0)
             }
         }
     }
@@ -82,4 +89,14 @@ extension ExpoMapboxNavigationViewController: NavigationViewControllerDelegate {
         _ navigationViewController: NavigationViewController,
         byCanceling canceled: Bool
     ) { }
+}
+
+extension UIView {
+    func findViews<T: UIView>(subclassOf: T.Type) -> [T] {
+        return recursiveSubviews.compactMap { $0 as? T }
+    }
+
+    var recursiveSubviews: [UIView] {
+        return subviews + subviews.flatMap { $0.recursiveSubviews }
+    }
 }

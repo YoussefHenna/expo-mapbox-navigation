@@ -1,1 +1,1 @@
-module.exports = require("./plugin/withIosPostInstallStep.js");
+module.exports = require("./plugin/withIosConfig.js");

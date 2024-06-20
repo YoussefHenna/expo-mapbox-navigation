@@ -1,14 +1,9 @@
 import ExpoModulesCore
 
 public class ExpoMapboxNavigationModule: Module {
-  static var accessToken: String? = nil
 
   public func definition() -> ModuleDefinition {
     Name("ExpoMapboxNavigation")
-
-    Function("setAccessToken") { (token: String) in
-      ExpoMapboxNavigationModule.accessToken = token
-    }
 
     View(ExpoMapboxNavigationView.self) {
       Prop("coordinates") { (view: ExpoMapboxNavigationView, coordinates: Array<Dictionary<String, Any>>) in

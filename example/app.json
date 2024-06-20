@@ -48,7 +48,12 @@
           "RNMapboxMapsVersion": "11.3.0"
         }
       ],
-      ["../app.plugin.js"]
+      [
+        "../app.plugin.js",
+        {
+          "accessToken": "<TOKEN>"
+        }
+      ]
     ]
   }
 }
