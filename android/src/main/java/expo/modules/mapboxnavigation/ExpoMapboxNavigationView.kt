@@ -3,7 +3,12 @@ package expo.modules.mapboxnavigation
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
+import android.graphics.Color
+import android.view.Gravity
 import android.view.View;
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -54,6 +59,7 @@ import com.mapbox.navigation.ui.maps.camera.data.FollowingFrameOptions.FocalPoin
 import com.mapbox.navigation.ui.maps.camera.data.MapboxNavigationViewportDataSource
 import com.mapbox.navigation.ui.maps.camera.lifecycle.NavigationBasicGesturesHandler
 import com.mapbox.navigation.ui.maps.camera.NavigationCamera
+import com.mapbox.navigation.ui.maps.camera.state.NavigationCameraState
 import com.mapbox.navigation.ui.maps.camera.transition.NavigationCameraTransitionOptions
 import com.mapbox.navigation.ui.maps.location.NavigationLocationProvider
 import com.mapbox.navigation.ui.maps.route.arrow.api.MapboxRouteArrowApi
@@ -71,8 +77,7 @@ import com.mapbox.navigation.voice.model.SpeechVolume
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
 import java.util.Locale
-import com.mapbox.navigation.ui.maps.camera.state.NavigationCameraState
-import android.widget.ImageView
+
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private val mapboxNavigation = MapboxNavigationApp.current()
@@ -173,9 +178,32 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
     private val tripProgressViewId = 3
-    private val tripProgressView = MapboxTripProgressView(context).apply {
+    private val tripProgressTimeRemainingTextView = TextView(context).apply {
+        setGravity(Gravity.CENTER)
+    }
+    private val tripProgressDistanceRemainingTextView = TextView(context).apply {
+        setGravity(Gravity.CENTER)
+    }
+    private val tripProgressArrivalTimeTextView = TextView(context).apply {
+        setGravity(Gravity.CENTER)
+    }
+    private val tripProgressView = LinearLayout(context).apply {
         setId(tripProgressViewId)
         parentConstraintLayout.addView(this)
+        setOrientation(LinearLayout.VERTICAL);
+        setBackgroundColor(Color.WHITE)
+        setPadding((5 * pixelDensity).toInt(), (5 * pixelDensity).toInt(), (5 * pixelDensity).toInt(), (5 * pixelDensity).toInt())
+
+        addView(tripProgressTimeRemainingTextView, LayoutParams.MATCH_PARENT, (40 * pixelDensity).toInt())
+
+        val bottomContainer = LinearLayout(context).apply {
+            setOrientation(LinearLayout.HORIZONTAL);
+            setGravity(Gravity.CENTER)
+            addView(tripProgressDistanceRemainingTextView, (60 * pixelDensity).toInt(), (20 * pixelDensity).toInt())
+            addView(tripProgressArrivalTimeTextView, (60 * pixelDensity).toInt(), (20 * pixelDensity).toInt())
+        }
+        
+        addView(bottomContainer, LayoutParams.MATCH_PARENT, (20 * pixelDensity).toInt())
     }
 
     private val soundButtonId = 4
@@ -203,9 +231,9 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val recenterButtonId = 6
     private val recenterButton = MapboxRecenterButton(context).apply {
         setId(recenterButtonId)
-        setVisibility(View.GONE)
         findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_compass)
         parentConstraintLayout.addView(this)
+        setVisibility(View.GONE)
         setOnClickListener {
             navigationCamera.requestNavigationCameraToFollowing()
         }
@@ -228,7 +256,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         connect(tripProgressViewId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
         connect(tripProgressViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
         connect(tripProgressViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
-        constrainHeight(tripProgressViewId, ConstraintSet.WRAP_CONTENT)
+        constrainMinHeight(tripProgressViewId, (80 * pixelDensity).toInt())
         constrainWidth(tripProgressViewId, ConstraintSet.MATCH_CONSTRAINT)
 
         // Add SoundButton constraints
@@ -379,7 +407,10 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
             // Handle trip progress view
             tripProgressApi.getTripProgress(routeProgress).let { update: TripProgressUpdateValue ->
-                tripProgressView.render(update)
+                val formatter = update.formatter
+                tripProgressTimeRemainingTextView.text = formatter.getTimeRemaining(update.totalTimeRemaining) 
+                tripProgressDistanceRemainingTextView.text = formatter.getDistanceRemaining(update.distanceRemaining)
+                tripProgressArrivalTimeTextView.text = formatter.getEstimatedTimeToArrival(update.estimatedTimeToArrival)
             }
 
         }
