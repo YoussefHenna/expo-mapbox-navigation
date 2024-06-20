@@ -19,6 +19,7 @@ import com.mapbox.common.location.Location
 import com.mapbox.geojson.Point
 import com.mapbox.maps.EdgeInsets
 import com.mapbox.maps.ImageHolder
+import com.mapbox.maps.MapboxMap
 import com.mapbox.maps.MapView
 import com.mapbox.maps.plugin.animation.camera
 import com.mapbox.maps.plugin.locationcomponent.location
@@ -79,209 +80,72 @@ import expo.modules.kotlin.views.ExpoView
 import java.util.Locale
 
 
+val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
+
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
+    private var isMuted = false
+
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
     private val navigationLocationProvider = NavigationLocationProvider()
-    private val pixelDensity = Resources.getSystem().displayMetrics.density
     private val voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, Locale.US.toLanguageTag())
-    private var isMuted = false
 
     private val parentConstraintLayout = ConstraintLayout(context).also {
         addView(it, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))   
     }
 
     private val mapViewId = 1
-    private val mapView = MapView(context).apply {
-        setId(mapViewId)
-        parentConstraintLayout.addView(this)
-
-        mapboxMap.loadStyle(Style.MAPBOX_STREETS) { style: Style ->
-            mapboxStyle = style
-        }
-
-        location.apply {
-            locationPuck = LocationPuck2D(
-                bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
-            )
-            setLocationProvider(navigationLocationProvider)
-            puckBearingEnabled = true
-            enabled = true
-        }     
-    }
-
+    private val mapView = createMapView(mapViewId, parentConstraintLayout)
     private val mapboxMap = mapView.mapboxMap   
 
-    private val overviewPadding: EdgeInsets by lazy {
-        EdgeInsets(
-            140.0 * pixelDensity,
-            40.0 * pixelDensity,
-            120.0 * pixelDensity,
-            40.0 * pixelDensity
-        )
-    }
-    private val landscapeOverviewPadding: EdgeInsets by lazy {
-        EdgeInsets(
-            30.0 * pixelDensity,
-            380.0 * pixelDensity,
-            110.0 * pixelDensity,
-            20.0 * pixelDensity
-        )
-    }
-    private val followingPadding: EdgeInsets by lazy {
-        EdgeInsets(
-            180.0 * pixelDensity,
-            40.0 * pixelDensity,
-            150.0 * pixelDensity,
-            40.0 * pixelDensity
-        )
-    }
-    private val landscapeFollowingPadding: EdgeInsets by lazy {
-        EdgeInsets(
-            30.0 * pixelDensity,
-            380.0 * pixelDensity,
-            110.0 * pixelDensity,
-            40.0 * pixelDensity
-        )
-    }
-
-    private val viewportDataSource = MapboxNavigationViewportDataSource(mapboxMap).apply {
-        options.followingFrameOptions.focalPoint = FocalPoint(0.5, 0.9)
-        if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            followingPadding = landscapeFollowingPadding
-            overviewPadding = landscapeOverviewPadding
-        } else {
-            followingPadding = followingPadding
-            overviewPadding = overviewPadding
-        }
-    }
-    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource).also {
+    private val viewportDataSource = createViewportDataSource(mapboxMap)
+    private val navigationCamera = NavigationCamera(mapboxMap, mapView.camera, viewportDataSource).apply{
         mapView.camera.addCameraAnimationsLifecycleListener(
-            NavigationBasicGesturesHandler(it)
+            NavigationBasicGesturesHandler(this)
         )
     }
 
     private val maneuverViewId = 2
-    private val maneuverView = MapboxManeuverView(context).apply {
-        setId(maneuverViewId)
-        parentConstraintLayout.addView(this)
-
-        val maneuverViewOptions = ManeuverViewOptions.Builder()
-            .primaryManeuverOptions(
-                ManeuverPrimaryOptions.Builder()
-                    .textAppearance(R.style.ManeuverTextAppearance)
-                    .build()
-            )
-            .build()
-
-        updateManeuverViewOptions(maneuverViewOptions)
-    }
+    private val maneuverView = createManueverView(maneuverViewId, parentConstraintLayout)
 
     private val tripProgressViewId = 3
-    private val tripProgressTimeRemainingTextView = TextView(context).apply {
-        setGravity(Gravity.CENTER)
-    }
-    private val tripProgressDistanceRemainingTextView = TextView(context).apply {
-        setGravity(Gravity.CENTER)
-    }
-    private val tripProgressArrivalTimeTextView = TextView(context).apply {
-        setGravity(Gravity.CENTER)
-    }
-    private val tripProgressView = LinearLayout(context).apply {
-        setId(tripProgressViewId)
-        parentConstraintLayout.addView(this)
-        setOrientation(LinearLayout.VERTICAL);
-        setBackgroundColor(Color.WHITE)
-        setPadding((5 * pixelDensity).toInt(), (5 * pixelDensity).toInt(), (5 * pixelDensity).toInt(), (5 * pixelDensity).toInt())
-
-        addView(tripProgressTimeRemainingTextView, LayoutParams.MATCH_PARENT, (40 * pixelDensity).toInt())
-
-        val bottomContainer = LinearLayout(context).apply {
-            setOrientation(LinearLayout.HORIZONTAL);
-            setGravity(Gravity.CENTER)
-            addView(tripProgressDistanceRemainingTextView, (60 * pixelDensity).toInt(), (20 * pixelDensity).toInt())
-            addView(tripProgressArrivalTimeTextView, (60 * pixelDensity).toInt(), (20 * pixelDensity).toInt())
-        }
-        
-        addView(bottomContainer, LayoutParams.MATCH_PARENT, (20 * pixelDensity).toInt())
-    }
+    private val tripProgressTimeRemainingTextView = createCenteredTextView()
+    private val tripProgressDistanceRemainingTextView = createCenteredTextView()
+    private val tripProgressArrivalTimeTextView = createCenteredTextView()
+    private val tripProgressView = createTripProgressView(
+        id=tripProgressViewId,
+        parent=parentConstraintLayout,
+        tripProgressTimeRemainingTextView=tripProgressTimeRemainingTextView,
+        tripProgressDistanceRemainingTextView=tripProgressDistanceRemainingTextView,
+        tripProgressArrivalTimeTextView=tripProgressArrivalTimeTextView
+    )
 
     private val soundButtonId = 4
-    private val soundButton = MapboxSoundButton(context).apply {
-        setId(soundButtonId)
-        parentConstraintLayout.addView(this)
-        findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_sound)
-        setOnClickListener {
-            voiceInstructionsPlayer.volume(SpeechVolume(if(isMuted) 1.0f else 0.0f))
-            findViewById<ImageView>(R.id.buttonIcon).setImageResource(if(isMuted) R.drawable.icon_sound else R.drawable.icon_mute)
-            isMuted = !isMuted
-        }
+    private val soundButton = createSoundButton(soundButtonId, parentConstraintLayout){
+        voiceInstructionsPlayer.volume(SpeechVolume(if(isMuted) 1.0f else 0.0f))
+        it.findViewById<ImageView>(R.id.buttonIcon).setImageResource(if(isMuted) R.drawable.icon_sound else R.drawable.icon_mute)
+        isMuted = !isMuted
     }
 
     private val overviewButtonId = 5
-    private val overviewButton = MapboxRouteOverviewButton(context).apply {
-        setId(overviewButtonId)
-        parentConstraintLayout.addView(this)
-        findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_overview)
-        setOnClickListener {
-            navigationCamera.requestNavigationCameraToOverview()
-        }
-    }
+    private val overviewButton = createOverviewButton(overviewButtonId, parentConstraintLayout){
+        navigationCamera.requestNavigationCameraToOverview()
+    } 
     
     private val recenterButtonId = 6
-    private val recenterButton = MapboxRecenterButton(context).apply {
-        setId(recenterButtonId)
-        findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_compass)
-        parentConstraintLayout.addView(this)
-        setVisibility(View.GONE)
-        setOnClickListener {
-            navigationCamera.requestNavigationCameraToFollowing()
-        }
+    private val recenterButton = createRecenterButton(recenterButtonId, parentConstraintLayout){
+        navigationCamera.requestNavigationCameraToFollowing()
     }
 
-    private val parentConstraintSet = ConstraintSet().apply {
-       // Add MapView constraints
-        connect(mapViewId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
-        connect(mapViewId, ConstraintSet.BOTTOM, tripProgressViewId, ConstraintSet.TOP)
-        connect(mapViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
-        connect(mapViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
-
-        // Add ManeuverView constraints
-        connect(maneuverViewId, ConstraintSet.TOP, mapViewId, ConstraintSet.TOP, (4 * pixelDensity).toInt())
-        connect(maneuverViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, (4 * pixelDensity).toInt())
-        connect(maneuverViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (4 * pixelDensity).toInt())
-        constrainHeight(maneuverViewId, ConstraintSet.WRAP_CONTENT)
-
-        // Add TropProgressView constraints
-        connect(tripProgressViewId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
-        connect(tripProgressViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
-        connect(tripProgressViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
-        constrainMinHeight(tripProgressViewId, (80 * pixelDensity).toInt())
-        constrainWidth(tripProgressViewId, ConstraintSet.MATCH_CONSTRAINT)
-
-        // Add SoundButton constraints
-        connect(soundButtonId, ConstraintSet.TOP, maneuverViewId, ConstraintSet.BOTTOM, (8 * pixelDensity).toInt())
-        connect(soundButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * pixelDensity).toInt())
-        constrainWidth(soundButtonId, ConstraintSet.WRAP_CONTENT)
-        constrainHeight(soundButtonId, ConstraintSet.WRAP_CONTENT)
-
-
-        // Add OverviewButton constraints
-        connect(overviewButtonId, ConstraintSet.TOP, soundButtonId, ConstraintSet.BOTTOM, (8 * pixelDensity).toInt())
-        connect(overviewButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * pixelDensity).toInt())
-        constrainWidth(overviewButtonId, ConstraintSet.WRAP_CONTENT)
-        constrainHeight(overviewButtonId, ConstraintSet.WRAP_CONTENT)
-
-        // Add RecenterButton constraints
-        connect(recenterButtonId, ConstraintSet.TOP, overviewButtonId, ConstraintSet.BOTTOM, (8 * pixelDensity).toInt())
-        connect(recenterButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * pixelDensity).toInt())
-        constrainWidth(recenterButtonId, ConstraintSet.WRAP_CONTENT)
-        constrainHeight(recenterButtonId, ConstraintSet.WRAP_CONTENT)
-
-        applyTo(parentConstraintLayout)
-    }
-
-    
+    private val parentConstraintSet = createAndApplyConstraintSet(
+        mapViewId=mapViewId,
+        maneuverViewId=maneuverViewId,
+        tripProgressViewId=tripProgressViewId,
+        soundButtonId=soundButtonId,
+        overviewButtonId=overviewButtonId,
+        recenterButtonId=recenterButtonId,
+        constraintLayout=parentConstraintLayout
+    )
 
     private val routeLineApiOptions = MapboxRouteLineApiOptions.Builder().build()
     private val routeLineApi = MapboxRouteLineApi(routeLineApiOptions)
@@ -311,6 +175,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val voiceInstructionsPlayerCallback = MapboxNavigationConsumer<SpeechAnnouncement> { value ->
         speechApi.clean(value)
     }
+
     private val speechCallback = MapboxNavigationConsumer<Expected<SpeechError, SpeechValue>> { expected ->
         expected.fold(
             { error ->
@@ -439,14 +304,172 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
 
-    fun setCoordinates(coordinates: List<Point>){
-        mapboxNavigation?.requestRoutes(
-            RouteOptions.builder()
-                .applyDefaultNavigationOptions()
-                .coordinatesList(coordinates)
-                .build(),
-            routesRequestCallback
-        )
+    private fun createMapView(id: Int, parent: ViewGroup): MapView {
+        return MapView(context).apply {
+            setId(id)
+            parent.addView(this)
+
+            mapboxMap.loadStyle(Style.MAPBOX_STREETS) { style: Style ->
+                mapboxStyle = style
+            }
+
+            location.apply {
+                locationPuck = LocationPuck2D(
+                    bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
+                )
+                setLocationProvider(navigationLocationProvider)
+                puckBearingEnabled = true
+                enabled = true
+            }    
+        }
+    }
+
+    private fun createManueverView(id: Int, parent: ViewGroup): MapboxManeuverView {
+        return MapboxManeuverView(context).apply {
+            setId(id)
+            parent.addView(this)
+
+            val maneuverViewOptions = ManeuverViewOptions.Builder()
+                .primaryManeuverOptions(
+                    ManeuverPrimaryOptions.Builder()
+                        .textAppearance(R.style.ManeuverTextAppearance)
+                        .build()
+                )
+                .build()
+
+            updateManeuverViewOptions(maneuverViewOptions)
+        }
+    }
+
+    private fun createCenteredTextView(): TextView {
+        return TextView(context).apply {
+            setGravity(Gravity.CENTER)
+        }
+    }
+
+    private fun createTripProgressView(id: Int, parent: ViewGroup, tripProgressTimeRemainingTextView: TextView, tripProgressDistanceRemainingTextView: TextView, tripProgressArrivalTimeTextView: TextView): LinearLayout {
+        return LinearLayout(context).apply {
+            setId(id)
+            parent.addView(this)
+            setOrientation(LinearLayout.VERTICAL);
+            setBackgroundColor(Color.WHITE)
+            setPadding((5 * PIXEL_DENSITY).toInt(), (5 * PIXEL_DENSITY).toInt(), (5 * PIXEL_DENSITY).toInt(), (5 * PIXEL_DENSITY).toInt())
+
+            addView(tripProgressTimeRemainingTextView, LayoutParams.MATCH_PARENT, (40 * PIXEL_DENSITY).toInt())
+
+            val bottomContainer = LinearLayout(context).apply {
+                setOrientation(LinearLayout.HORIZONTAL);
+                setGravity(Gravity.CENTER)
+                addView(tripProgressDistanceRemainingTextView, (60 * PIXEL_DENSITY).toInt(), (20 * PIXEL_DENSITY).toInt())
+                addView(tripProgressArrivalTimeTextView, (60 * PIXEL_DENSITY).toInt(), (20 * PIXEL_DENSITY).toInt())
+            }
+            
+            addView(bottomContainer, LayoutParams.MATCH_PARENT, (20 * PIXEL_DENSITY).toInt())
+        }
+    }
+
+    private fun createSoundButton(id: Int, parent: ViewGroup, onClick: (MapboxSoundButton) -> Unit): MapboxSoundButton {
+        return MapboxSoundButton(context).apply {
+            setId(id)
+            parent.addView(this)
+            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_sound)
+            setOnClickListener {
+                onClick(this)
+            }
+        }
+    }
+
+    private fun createOverviewButton(id: Int, parent: ViewGroup, onClick: () -> Unit): MapboxRouteOverviewButton {
+        return MapboxRouteOverviewButton(context).apply {
+            setId(id)
+            parent.addView(this)
+            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_overview)
+            setOnClickListener {
+                onClick()
+            }
+        }
+    }
+
+    private fun createRecenterButton(id: Int, parent: ViewGroup, onClick: ()->Unit): MapboxRecenterButton {
+        return MapboxRecenterButton(context).apply {
+            setId(id)
+            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_compass)
+            parent.addView(this)
+            setVisibility(View.GONE)
+            setOnClickListener {
+                onClick()
+            }
+        }
+    }
+
+    private fun createAndApplyConstraintSet(
+        mapViewId: Int, 
+        maneuverViewId: Int, 
+        tripProgressViewId: Int,  
+        soundButtonId: Int,
+        overviewButtonId: Int,
+        recenterButtonId: Int,
+        constraintLayout: ConstraintLayout
+    ): ConstraintSet {
+        return ConstraintSet().apply{
+            // Add MapView constraints
+            connect(mapViewId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+            connect(mapViewId, ConstraintSet.BOTTOM, tripProgressViewId, ConstraintSet.TOP)
+            connect(mapViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+            connect(mapViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+
+            // Add ManeuverView constraints
+            connect(maneuverViewId, ConstraintSet.TOP, mapViewId, ConstraintSet.TOP, (4 * PIXEL_DENSITY).toInt())
+            connect(maneuverViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START, (4 * PIXEL_DENSITY).toInt())
+            connect(maneuverViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (4 * PIXEL_DENSITY).toInt())
+            constrainHeight(maneuverViewId, ConstraintSet.WRAP_CONTENT)
+
+            // Add TropProgressView constraints
+            connect(tripProgressViewId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            connect(tripProgressViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
+            connect(tripProgressViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+            constrainMinHeight(tripProgressViewId, (80 * PIXEL_DENSITY).toInt())
+            constrainWidth(tripProgressViewId, ConstraintSet.MATCH_CONSTRAINT)
+
+            // Add SoundButton constraints
+            connect(soundButtonId, ConstraintSet.TOP, maneuverViewId, ConstraintSet.BOTTOM, (8 * PIXEL_DENSITY).toInt())
+            connect(soundButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * PIXEL_DENSITY).toInt())
+            constrainWidth(soundButtonId, ConstraintSet.WRAP_CONTENT)
+            constrainHeight(soundButtonId, ConstraintSet.WRAP_CONTENT)
+
+
+            // Add OverviewButton constraints
+            connect(overviewButtonId, ConstraintSet.TOP, soundButtonId, ConstraintSet.BOTTOM, (8 * PIXEL_DENSITY).toInt())
+            connect(overviewButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * PIXEL_DENSITY).toInt())
+            constrainWidth(overviewButtonId, ConstraintSet.WRAP_CONTENT)
+            constrainHeight(overviewButtonId, ConstraintSet.WRAP_CONTENT)
+
+            // Add RecenterButton constraints
+            connect(recenterButtonId, ConstraintSet.TOP, overviewButtonId, ConstraintSet.BOTTOM, (8 * PIXEL_DENSITY).toInt())
+            connect(recenterButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * PIXEL_DENSITY).toInt())
+            constrainWidth(recenterButtonId, ConstraintSet.WRAP_CONTENT)
+            constrainHeight(recenterButtonId, ConstraintSet.WRAP_CONTENT)
+
+            applyTo(constraintLayout)
+        }
+    }
+
+    private fun createViewportDataSource(mapboxMap: MapboxMap): MapboxNavigationViewportDataSource{
+         val portraitOverviewPadding = EdgeInsets(140.0 * PIXEL_DENSITY, 40.0 * PIXEL_DENSITY, 120.0 * PIXEL_DENSITY, 40.0 * PIXEL_DENSITY)
+         val landscapeOverviewPadding = EdgeInsets(30.0 * PIXEL_DENSITY, 380.0 * PIXEL_DENSITY, 110.0 * PIXEL_DENSITY, 20.0 * PIXEL_DENSITY)
+         val portraitFollowingPadding = EdgeInsets(180.0 * PIXEL_DENSITY, 40.0 * PIXEL_DENSITY, 150.0 * PIXEL_DENSITY, 40.0 * PIXEL_DENSITY)
+         val landscapeFollowingPadding = EdgeInsets(30.0 * PIXEL_DENSITY, 380.0 * PIXEL_DENSITY, 110.0 * PIXEL_DENSITY, 40.0 * PIXEL_DENSITY)
+
+        return MapboxNavigationViewportDataSource(mapboxMap).apply {
+            options.followingFrameOptions.focalPoint = FocalPoint(0.5, 0.9)
+            if (context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                followingPadding = landscapeFollowingPadding
+                overviewPadding = landscapeOverviewPadding
+            } else {
+                followingPadding = portraitFollowingPadding
+                overviewPadding = portraitOverviewPadding
+            }
+        }
     }
 
     override fun onAttachedToWindow() {
@@ -470,5 +493,16 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         routeLineApi.cancel()
         routeLineView.cancel()
         maneuverApi.cancel()
+    }
+
+
+     fun setCoordinates(coordinates: List<Point>){
+        mapboxNavigation?.requestRoutes(
+            RouteOptions.builder()
+                .applyDefaultNavigationOptions()
+                .coordinatesList(coordinates)
+                .build(),
+            routesRequestCallback
+        )
     }
 }
