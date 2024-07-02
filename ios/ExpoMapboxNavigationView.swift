@@ -38,7 +38,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     }
 
 
-    func setCoordinates(points: Array<CLLocationCoordinate2D>) {
+    func setWaypoints(points: Array<CLLocationCoordinate2D>) {
         let waypoints = points.map { Waypoint(coordinate: $0) }
         let routeOptions = NavigationRouteOptions(waypoints: waypoints)
         Task {

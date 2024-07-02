@@ -58,14 +58,14 @@ After getting location permissions you can render the navigation map as follows 
 ```
 <MapboxNavigationView
     style={{ flex: 1 }}
-    coordinates={coordinates} />
+    waypoints={waypoints} />
 ```
 
 ## Props
 
-#### `coordinates`
+#### `waypoints`
 
-An array of `{latitude: number, longitude: number}` objects. This creates a route from the current location to pass through the given coordinates.
+An array of `{latitude: number, longitude: number}` objects. This creates a route from the current location to pass through the given waypoints with a waypoint indicator on each point.
 
 _more customization props and callback props to be added soon_
 

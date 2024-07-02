@@ -32,9 +32,22 @@ class ExpoMapboxNavigationModule : Module() {
     }
 
     View(ExpoMapboxNavigationView::class) {
-      Prop("coordinates") { view: ExpoMapboxNavigationView, coordinates: List<Map<String, Any>> ->
+      Prop("waypoints") { view: ExpoMapboxNavigationView, waypoints: List<Map<String, Any>> ->
         val points = mutableListOf<Point>()
-        for (coordinate in coordinates) {
+        for (waypoint in waypoints) {
+              val longValue = waypoint.get("longitude")
+              val latValue = waypoint.get("latitude")
+              if(longValue is Double && latValue is Double){
+                points.add(Point.fromLngLat(longValue, latValue))
+              }
+            
+        }
+        view.setWaypoints(points)
+      }
+
+      Prop("routeMatchingCoordinates") { view: ExpoMapboxNavigationView, routeMatchingCoordinates: List<Map<String, Any>> ->
+        val points = mutableListOf<Point>()
+        for (coordinate in routeMatchingCoordinates) {
               val longValue = coordinate.get("longitude")
               val latValue = coordinate.get("latitude")
               if(longValue is Double && latValue is Double){
@@ -42,7 +55,7 @@ class ExpoMapboxNavigationModule : Module() {
               }
             
         }
-        view.setCoordinates(points)
+        view.setRouteMatchingCoordinates(points)
       }
 
       Prop("locale") { view: ExpoMapboxNavigationView, localeStr: String ->

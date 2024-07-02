@@ -84,7 +84,8 @@ val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private var isMuted = false
-    private var currentCoordinates = listOf<Point>()
+    private var currentWaypoints = listOf<Point>()
+    private var currentRouteMatchingCoordinates = listOf<Point>()
     private var currentLocale = Locale.getDefault()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
@@ -498,8 +499,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
 
-     fun setCoordinates(coordinates: List<Point>){
-        currentCoordinates = coordinates
+    fun setWaypoints(waypoints: List<Point>){
+        currentWaypoints = waypoints
+        update();
+    }
+
+    fun setRouteMatchingCoordinates(routeMatchingCoordinates: List<Point>){
+        currentRouteMatchingCoordinates = routeMatchingCoordinates
         update();
     }
 
@@ -524,10 +530,12 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 			.build()
         tripProgressApi = MapboxTripProgressApi(tripProgressFormatter)
 
+
         mapboxNavigation?.requestRoutes(
             RouteOptions.builder()
                 .applyDefaultNavigationOptions()
-                .coordinatesList(currentCoordinates)
+                .coordinatesList(currentWaypoints)
+                .waypointTargetsList(currentWaypoints)
                 .steps(true)
                 .voiceInstructions(true)
                 .language(currentLocale.toLanguageTag())
