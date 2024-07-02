@@ -44,6 +44,10 @@ class ExpoMapboxNavigationModule : Module() {
         }
         view.setCoordinates(points)
       }
+
+      Prop("locale") { view: ExpoMapboxNavigationView, localeStr: String ->
+        view.setLocale(localeStr)
+      }
     }
   }
 }

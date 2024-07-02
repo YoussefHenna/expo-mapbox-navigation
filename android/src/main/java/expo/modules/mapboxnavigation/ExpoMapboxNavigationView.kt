@@ -18,6 +18,7 @@ import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.Location
 import com.mapbox.geojson.Point
 import com.mapbox.maps.EdgeInsets
+import com.mapbox.maps.extension.localization.localizeLabels
 import com.mapbox.maps.ImageHolder
 import com.mapbox.maps.MapboxMap
 import com.mapbox.maps.MapView
@@ -79,16 +80,17 @@ import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
 import java.util.Locale
 
-
 val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private var isMuted = false
+    private var currentCoordinates = listOf<Point>()
+    private var currentLocale = Locale.getDefault()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
     private val navigationLocationProvider = NavigationLocationProvider()
-    private val voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, Locale.US.toLanguageTag())
+    private var voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, currentLocale.toLanguageTag())
 
     private val parentConstraintLayout = ConstraintLayout(context).also {
         addView(it, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))   
@@ -162,16 +164,16 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val routeArrowView = MapboxRouteArrowView(routeArrowOptions)
 
     private val distanceFormatter = DistanceFormatterOptions.Builder(context).build()
-    private val maneuverApi = MapboxManeuverApi(MapboxDistanceFormatter(distanceFormatter))
+    private var maneuverApi = MapboxManeuverApi(MapboxDistanceFormatter(distanceFormatter))
 
-    private val tripProgressFormatter = TripProgressUpdateFormatter.Builder(context)
+    private var tripProgressFormatter = TripProgressUpdateFormatter.Builder(context)
 			.distanceRemainingFormatter(DistanceRemainingFormatter(distanceFormatter))
 	      	.timeRemainingFormatter(TimeRemainingFormatter(context))
 			.estimatedTimeToArrivalFormatter(EstimatedTimeToArrivalFormatter(context))
 			.build()
-    private val tripProgressApi = MapboxTripProgressApi(tripProgressFormatter)
+    private var tripProgressApi = MapboxTripProgressApi(tripProgressFormatter)
 
-    private val speechApi = MapboxSpeechApi(context, Locale.US.toLanguageTag())
+    private var speechApi = MapboxSpeechApi(context, currentLocale.toLanguageTag())
     private val voiceInstructionsPlayerCallback = MapboxNavigationConsumer<SpeechAnnouncement> { value ->
         speechApi.clean(value)
     }
@@ -497,10 +499,38 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
 
      fun setCoordinates(coordinates: List<Point>){
+        currentCoordinates = coordinates
+        update();
+    }
+
+    fun setLocale(localeStr: String){
+        currentLocale = if (localeStr == "current") Locale.getDefault() else Locale.Builder().setLanguageTag(localeStr).build()
+        update()
+    }
+
+    private fun update(){
+        voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, currentLocale.toLanguageTag())
+        speechApi = MapboxSpeechApi(context, currentLocale.toLanguageTag())
+        mapboxMap.getStyle { style: Style ->
+            style.localizeLabels(currentLocale)        
+        }
+        val distanceFormatter = DistanceFormatterOptions.Builder(context).locale(currentLocale).build()
+        maneuverApi = MapboxManeuverApi(MapboxDistanceFormatter(distanceFormatter))
+
+        tripProgressFormatter = TripProgressUpdateFormatter.Builder(context)
+			.distanceRemainingFormatter(DistanceRemainingFormatter(distanceFormatter))
+	      	.timeRemainingFormatter(TimeRemainingFormatter(context, currentLocale))
+			.estimatedTimeToArrivalFormatter(EstimatedTimeToArrivalFormatter(context))
+			.build()
+        tripProgressApi = MapboxTripProgressApi(tripProgressFormatter)
+
         mapboxNavigation?.requestRoutes(
             RouteOptions.builder()
                 .applyDefaultNavigationOptions()
-                .coordinatesList(coordinates)
+                .coordinatesList(currentCoordinates)
+                .steps(true)
+                .voiceInstructions(true)
+                .language(currentLocale.toLanguageTag())
                 .build(),
             routesRequestCallback
         )
