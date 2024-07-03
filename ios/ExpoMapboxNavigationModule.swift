@@ -6,16 +6,16 @@ public class ExpoMapboxNavigationModule: Module {
     Name("ExpoMapboxNavigation")
 
     View(ExpoMapboxNavigationView.self) {
-      Prop("waypoints") { (view: ExpoMapboxNavigationView, waypoints: Array<Dictionary<String, Any>>) in
+      Prop("coordinates") { (view: ExpoMapboxNavigationView, coordinates: Array<Dictionary<String, Any>>) in
          var points: Array<CLLocationCoordinate2D> = []
-         for waypoint in waypoints {
-            let longValue = waypoint["longitude"]
-            let latValue = waypoint["latitude"]
+         for coordinate in coordinates {
+            let longValue = coordinate["longitude"]
+            let latValue = coordinate["latitude"]
             if let long = longValue as? Double, let lat = latValue as? Double {
                 points.append(CLLocationCoordinate2D(latitude: lat, longitude: long))
             }
           }
-          view.controller.setWaypoints(points: points) 
+          view.controller.setCoordinates(points: points) 
       }
     }
   }
