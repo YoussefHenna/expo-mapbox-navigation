@@ -140,8 +140,14 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
-        navigationMapView!.mapView.mapboxMap.styleURI = .streets
-        navigationMapView!.localizeLabels(locale: self.currentLocale) 
+
+        navigationMapView!.mapView.mapboxMap.loadStyle(.streets, completion: { _ in
+            navigationMapView!.localizeLabels(locale: self.currentLocale)
+            do{
+                try navigationMapView!.mapView.mapboxMap.localizeLabels(into: self.currentLocale)
+            } catch {}
+        })
+ 
 
         // Remove cancel button, navigation is not cancellable
         let cancelButton = navigationViewController.navigationView.bottomBannerContainerView.findViews(subclassOf: CancelButton.self)[0]
