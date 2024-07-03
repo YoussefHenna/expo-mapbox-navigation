@@ -21,6 +21,14 @@ public class ExpoMapboxNavigationModule: Module {
       Prop("locale") { (view: ExpoMapboxNavigationView, locale: String?) in
           view.controller.setLocale(locale: locale) 
       }
+
+      Prop("useRouteMatchingApi"){ (view: ExpoMapboxNavigationView, useRouteMatchingApi: Bool?) in
+          view.controller.setIsUsingRouteMatchingApi(useRouteMatchingApi: useRouteMatchingApi) 
+      }
+
+      Prop("waypointIndices"){ (view: ExpoMapboxNavigationView, indices: Array<Int>?) in
+          view.controller.setWaypointIndices(waypointIndices: indices) 
+      }
     }
   }
 }
