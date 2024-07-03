@@ -15,7 +15,11 @@ public class ExpoMapboxNavigationModule: Module {
                 points.append(CLLocationCoordinate2D(latitude: lat, longitude: long))
             }
           }
-          view.controller.setCoordinates(points: points) 
+          view.controller.setCoordinates(coordinates: points) 
+      }
+
+      Prop("locale") { (view: ExpoMapboxNavigationView, locale: String?) in
+          view.controller.setLocale(locale: locale) 
       }
     }
   }
