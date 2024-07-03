@@ -65,9 +65,28 @@ After getting location permissions you can render the navigation map as follows 
 
 #### `coordinates`
 
-An array of `{latitude: number, longitude: number}` objects. This creates a route from the current location to pass through the given coordinates.
+An array of `{latitude: number, longitude: number}` objects. This creates a route passing through all the given coordinates. Requires at least 2 points for start and end destinations.
+
+### `waypointIndices`
+
+An array of indices representing which of the coordinates is to be considered a waypoint/destination. By default all coordinates are considered waypoints (and show a waypoint indicator), passing this prop allows choosing which of the coordinates are waypoints. At least the first and last element need to be included in the array for a route to render.
+
+### `useRouteMatchingApi`
+
+When enabled, uses Mapbox's Map Matching API to generate the route instead of the regular navigation route generation APIs. Enable this when you want a more explicit path determined by the coordinates. [Mapbox Map Matching API](https://docs.mapbox.com/api/navigation/map-matching/)
+
+### `locale`
+
+A string representation of a locale/language code that adjusts the Map labels, directions, and voice where possible. By default, uses the devices locale.
 
 _more customization props and callback props to be added soon_
+
+## Running the example app
+
+- Run `yarn` on the root directory
+- `cd example`
+- Run `yarn` on the example app
+- Run the app using `npx expo run:android` / `npx expo run:ios`
 
 ## Note on Mapbox version updates (for collaborators)
 
