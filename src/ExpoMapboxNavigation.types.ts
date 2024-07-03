@@ -1,7 +1,9 @@
 import { ViewStyle, StyleProp } from "react-native/types";
 
 export type ExpoMapboxNavigationViewProps = {
-  waypoints: Array<{ latitude: number; longitude: number }>;
+  coordinates: Array<{ latitude: number; longitude: number }>;
+  waypointIndices?: number[];
+  useRouteMatchingApi?: boolean;
   locale?: string;
   style?: StyleProp<ViewStyle>;
 };

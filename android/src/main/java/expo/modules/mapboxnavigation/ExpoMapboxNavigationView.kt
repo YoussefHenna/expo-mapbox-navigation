@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Color
+import android.util.Log
 import android.view.Gravity
 import android.view.View;
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.mapbox.api.directions.v5.models.DirectionsRoute
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.Location
+import com.mapbox.common.MapboxOptions
 import com.mapbox.geojson.Point
 import com.mapbox.maps.EdgeInsets
 import com.mapbox.maps.extension.localization.localizeLabels
@@ -38,6 +40,10 @@ import com.mapbox.navigation.core.directions.session.RoutesObserver
 import com.mapbox.navigation.core.directions.session.RoutesUpdatedResult
 import com.mapbox.navigation.core.formatter.MapboxDistanceFormatter
 import com.mapbox.navigation.core.lifecycle.MapboxNavigationApp
+import com.mapbox.navigation.core.mapmatching.MapMatchingAPICallback
+import com.mapbox.navigation.core.mapmatching.MapMatchingFailure
+import com.mapbox.navigation.core.mapmatching.MapMatchingOptions
+import com.mapbox.navigation.core.mapmatching.MapMatchingSuccessfulResult
 import com.mapbox.navigation.core.trip.session.LocationMatcherResult
 import com.mapbox.navigation.core.trip.session.LocationObserver
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
@@ -84,9 +90,12 @@ val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoView(context, appContext){
     private var isMuted = false
-    private var currentWaypoints = listOf<Point>()
-    private var currentRouteMatchingCoordinates = listOf<Point>()
+    private var currentCoordinates: List<Point>? = null
     private var currentLocale = Locale.getDefault()
+    private var currentWaypointIndices: List<Int>? = null 
+    private var currentRoutesRequestId: Long? = null
+    private var currentMapMatchingRequestId: Long? = null
+    private var isUsingRouteMatchingApi = false
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -205,16 +214,19 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
     private val routesRequestCallback = object : NavigationRouterCallback {
         override fun onRoutesReady(routes: List<NavigationRoute>, @RouterOrigin routerOrigin: String) {
-            mapboxNavigation?.setNavigationRoutes(routes)
-            mapboxNavigation?.startTripSession()
-            navigationCamera.requestNavigationCameraToFollowing(
-                stateTransitionOptions = NavigationCameraTransitionOptions.Builder()
-                    .maxDuration(0) // instant transition
-                    .build()
-            )
+            onRoutesReady(routes)
         }
         override fun onCanceled(routeOptions: RouteOptions, @RouterOrigin routerOrigin: String) {}
         override fun onFailure(reasons: List<RouterFailure>, routeOptions: RouteOptions) {}
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    private val mapMatchingRequestCallback = object : MapMatchingAPICallback {
+        override fun success(result: MapMatchingSuccessfulResult) {
+            onRoutesReady(result.navigationRoutes)
+        }
+        override fun onCancel() {}
+        override fun failure(failure: MapMatchingFailure) {}
     }
 
     private val routesObserver = object : RoutesObserver {
@@ -498,22 +510,41 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         maneuverApi.cancel()
     }
 
+    private fun onRoutesReady(routes: List<NavigationRoute>){
+        mapboxNavigation?.setNavigationRoutes(routes)
+        mapboxNavigation?.startTripSession()
+        navigationCamera.requestNavigationCameraToFollowing(
+            stateTransitionOptions = NavigationCameraTransitionOptions.Builder()
+                .maxDuration(0) // instant transition
+                .build()
+        )
+    }
 
-    fun setWaypoints(waypoints: List<Point>){
-        currentWaypoints = waypoints
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI 
+    fun setCoordinates(coordinates: List<Point>){
+        currentCoordinates = coordinates
         update();
     }
 
-    fun setRouteMatchingCoordinates(routeMatchingCoordinates: List<Point>){
-        currentRouteMatchingCoordinates = routeMatchingCoordinates
-        update();
-    }
-
-    fun setLocale(localeStr: String){
-        currentLocale = if (localeStr == "current") Locale.getDefault() else Locale.Builder().setLanguageTag(localeStr).build()
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setLocale(localeStr: String?){
+        currentLocale = if (localeStr == null || localeStr == "default") Locale.getDefault() else Locale.Builder().setLanguageTag(localeStr).build()
         update()
     }
 
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setWaypointIndices(indices: List<Int>?){
+        currentWaypointIndices = indices
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setIsUsingRouteMatchingApi(useRouteMatchingApi: Boolean?){
+        isUsingRouteMatchingApi = useRouteMatchingApi ?: false
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
     private fun update(){
         voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, currentLocale.toLanguageTag())
         speechApi = MapboxSpeechApi(context, currentLocale.toLanguageTag())
@@ -530,17 +561,59 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 			.build()
         tripProgressApi = MapboxTripProgressApi(tripProgressFormatter)
 
+        if(currentMapMatchingRequestId != null){
+            mapboxNavigation?.cancelMapMatchingRequest(currentMapMatchingRequestId!!)
+        }
 
-        mapboxNavigation?.requestRoutes(
-            RouteOptions.builder()
-                .applyDefaultNavigationOptions()
-                .coordinatesList(currentWaypoints)
-                .waypointTargetsList(currentWaypoints)
-                .steps(true)
-                .voiceInstructions(true)
-                .language(currentLocale.toLanguageTag())
-                .build(),
-            routesRequestCallback
-        )
+        if(currentRoutesRequestId != null){
+            mapboxNavigation?.cancelRouteRequest(currentRoutesRequestId!!)
+        }
+
+        if(currentCoordinates != null){
+            if(isUsingRouteMatchingApi){
+                requestMapMatchingRoutes()
+            } else {
+                requestRoutes()
+            }
+        }
+        
     }
+
+    private fun requestRoutes(){
+        var optionsBuilder = RouteOptions.builder()
+                                .applyDefaultNavigationOptions()
+                                .coordinatesList(currentCoordinates!!)
+                                .steps(true)
+                                .voiceInstructions(true)
+                                .language(currentLocale.toLanguageTag())
+
+        if(currentWaypointIndices != null){
+            optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)
+        }
+
+        currentRoutesRequestId = mapboxNavigation?.requestRoutes(
+                optionsBuilder.build(),
+                routesRequestCallback
+            )
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    private fun requestMapMatchingRoutes(){
+        var optionsBuilder = MapMatchingOptions.Builder()
+                            .coordinates(currentCoordinates!!)
+                            .bannerInstructions(true)
+                            .voiceInstructions(true)
+                            .language(currentLocale.toLanguageTag())
+
+        if(currentWaypointIndices != null){
+            optionsBuilder = optionsBuilder.waypoints(currentWaypointIndices!!)
+        }
+
+
+        currentMapMatchingRequestId = mapboxNavigation?.requestMapMatching(
+                optionsBuilder.build(),
+                mapMatchingRequestCallback
+            )  
+    }
+
 }

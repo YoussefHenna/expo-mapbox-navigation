@@ -29,7 +29,7 @@ export default function App() {
       {locationAllowed ? (
         <MapboxNavigationView
           style={{ flex: 1 }}
-          waypoints={[
+          coordinates={[
             { latitude: 30.021, longitude: 31.4962 },
             { latitude: 30.0552, longitude: 31.4988 },
           ]}

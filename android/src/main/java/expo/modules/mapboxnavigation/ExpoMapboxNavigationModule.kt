@@ -14,6 +14,7 @@ class ExpoMapboxNavigationModule : Module() {
     get() = requireNotNull(appContext.activityProvider?.currentActivity)
 
 
+  @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
   override fun definition() = ModuleDefinition { 
 
     Name("ExpoMapboxNavigation")
@@ -32,22 +33,9 @@ class ExpoMapboxNavigationModule : Module() {
     }
 
     View(ExpoMapboxNavigationView::class) {
-      Prop("waypoints") { view: ExpoMapboxNavigationView, waypoints: List<Map<String, Any>> ->
+      Prop("coordinates") { view: ExpoMapboxNavigationView, coordinates: List<Map<String, Any>> ->
         val points = mutableListOf<Point>()
-        for (waypoint in waypoints) {
-              val longValue = waypoint.get("longitude")
-              val latValue = waypoint.get("latitude")
-              if(longValue is Double && latValue is Double){
-                points.add(Point.fromLngLat(longValue, latValue))
-              }
-            
-        }
-        view.setWaypoints(points)
-      }
-
-      Prop("routeMatchingCoordinates") { view: ExpoMapboxNavigationView, routeMatchingCoordinates: List<Map<String, Any>> ->
-        val points = mutableListOf<Point>()
-        for (coordinate in routeMatchingCoordinates) {
+        for (coordinate in coordinates) {
               val longValue = coordinate.get("longitude")
               val latValue = coordinate.get("latitude")
               if(longValue is Double && latValue is Double){
@@ -55,11 +43,19 @@ class ExpoMapboxNavigationModule : Module() {
               }
             
         }
-        view.setRouteMatchingCoordinates(points)
+        view.setCoordinates(points)
       }
 
-      Prop("locale") { view: ExpoMapboxNavigationView, localeStr: String ->
+      Prop("waypointIndices") { view: ExpoMapboxNavigationView, indices: List<Int>? ->
+        view.setWaypointIndices(indices)
+      }
+
+      Prop("locale") { view: ExpoMapboxNavigationView, localeStr: String? ->
         view.setLocale(localeStr)
+      }
+
+      Prop("useRouteMatchingApi") { view: ExpoMapboxNavigationView, useRouteMatchingApi: Boolean? ->
+        view.setIsUsingRouteMatchingApi(useRouteMatchingApi)
       }
     }
   }
