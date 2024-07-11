@@ -85,6 +85,7 @@ import com.mapbox.navigation.voice.model.SpeechVolume
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
 import java.util.Locale
+import expo.modules.mapboxnavigation.R
 
 val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
