@@ -7,6 +7,9 @@ import com.mapbox.navigation.core.lifecycle.MapboxNavigationApp
 import com.mapbox.geojson.Point
 import androidx.lifecycle.LifecycleOwner
 import expo.modules.kotlin.jni.JavaScriptValue
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ExpoMapboxNavigationModule : Module() {
@@ -20,16 +23,20 @@ class ExpoMapboxNavigationModule : Module() {
     Name("ExpoMapboxNavigation")
 
     OnActivityEntersForeground {
-      if (!MapboxNavigationApp.isSetup()) {
-            MapboxNavigationApp.setup {
+      (activity as LifecycleOwner).lifecycleScope.launch(Dispatchers.Main){
+        if (!MapboxNavigationApp.isSetup()) {
+              MapboxNavigationApp.setup {
                 NavigationOptions.Builder(activity.applicationContext).build()
-            }
+              } 
         }
-      MapboxNavigationApp.attach(activity as LifecycleOwner)
+        MapboxNavigationApp.attach(activity as LifecycleOwner)
+      }
     }
 
     OnActivityEntersBackground {
-      MapboxNavigationApp.detach(activity as LifecycleOwner)
+      (activity as LifecycleOwner).lifecycleScope.launch(Dispatchers.Main){
+        MapboxNavigationApp.detach(activity as LifecycleOwner)
+      }
     }
 
     View(ExpoMapboxNavigationView::class) {

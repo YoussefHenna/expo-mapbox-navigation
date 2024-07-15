@@ -136,7 +136,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val soundButtonId = 4
     private val soundButton = createSoundButton(soundButtonId, parentConstraintLayout){
         voiceInstructionsPlayer.volume(SpeechVolume(if(isMuted) 1.0f else 0.0f))
-        it.findViewById<ImageView>(R.id.buttonIcon).setImageResource(if(isMuted) R.drawable.icon_sound else R.drawable.icon_mute)
+        it.findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(if(isMuted) R.drawable.icon_sound else R.drawable.icon_mute)
         isMuted = !isMuted
     }
 
@@ -331,7 +331,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
             location.apply {
                 locationPuck = LocationPuck2D(
-                    bearingImage = ImageHolder.from(R.drawable.mapbox_navigation_puck_icon),
+                    bearingImage = ImageHolder.from(com.mapbox.navigation.ui.components.R.drawable.mapbox_navigation_puck_icon),
                 )
                 setLocationProvider(navigationLocationProvider)
                 puckBearingEnabled = true
@@ -388,7 +388,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         return MapboxSoundButton(context).apply {
             setId(id)
             parent.addView(this)
-            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_sound)
+            findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(R.drawable.icon_sound)
             setOnClickListener {
                 onClick(this)
             }
@@ -399,7 +399,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         return MapboxRouteOverviewButton(context).apply {
             setId(id)
             parent.addView(this)
-            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_overview)
+            findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(R.drawable.icon_overview)
             setOnClickListener {
                 onClick()
             }
@@ -409,7 +409,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private fun createRecenterButton(id: Int, parent: ViewGroup, onClick: ()->Unit): MapboxRecenterButton {
         return MapboxRecenterButton(context).apply {
             setId(id)
-            findViewById<ImageView>(R.id.buttonIcon).setImageResource(R.drawable.icon_compass)
+            findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(R.drawable.icon_compass)
             parent.addView(this)
             setVisibility(View.GONE)
             setOnClickListener {
