@@ -22,6 +22,16 @@ public class ExpoMapboxNavigationModule: Module {
           view.controller.setLocale(locale: locale) 
       }
 
+      Prop("routeOptions") { (view: ExpoMapboxNavigationView, routeOptions: Dictionary<String, Any>?) in 
+          // Convert the dictionary to ExpoRouteOptions
+          let rOpts = ExpoRouteOptions()
+          if let routeOptions = routeOptions { // Safely unwrap routeOptions
+              rOpts.maxHeight = routeOptions["maxHeight"] as? Double
+              rOpts.maxWidth = routeOptions["maxWidth"] as? Double 
+          }
+          view.controller.setRouteOptions(routeOptions: rOpts) 
+      }
+
       Prop("useRouteMatchingApi"){ (view: ExpoMapboxNavigationView, useRouteMatchingApi: Bool?) in
           view.controller.setIsUsingRouteMatchingApi(useRouteMatchingApi: useRouteMatchingApi) 
       }

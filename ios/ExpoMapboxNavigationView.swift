@@ -5,6 +5,12 @@ import MapboxNavigationUIKit
 import MapboxDirections
 
 
+class ExpoRouteOptions: Codable {
+    var maxHeight: Double?
+    var maxWidth: Double?
+}
+
+
 class ExpoMapboxNavigationView: ExpoView {
     let controller = ExpoMapboxNavigationViewController()
 
@@ -25,6 +31,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var mapboxNavigation: MapboxNavigation? = nil
     var routingProvider: RoutingProvider? = nil
     var currentCoordinates: Array<CLLocationCoordinate2D>? = nil
+    var currentExpoRouteOptions: ExpoRouteOptions? = nil
     var currentWaypointIndices: Array<Int>? = nil
     var currentLocale: Locale = Locale.current
     var isUsingRouteMatchingApi: Bool = false
@@ -45,6 +52,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
     func setCoordinates(coordinates: Array<CLLocationCoordinate2D>) {
         currentCoordinates = coordinates
+        update()
+    }
+
+    func setRouteOptions(routeOptions: ExpoRouteOptions?) {
+        currentExpoRouteOptions = routeOptions
         update()
     }
 
@@ -88,20 +100,31 @@ class ExpoMapboxNavigationViewController: UIViewController {
     }
 
     func calculateRoutes(waypoints: Array<Waypoint>){
-        let routeOptions = NavigationRouteOptions(
-            waypoints: waypoints, 
-            locale: currentLocale, 
-            distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
-        )
-        calculateRoutesTask = Task {
-            switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let navigationRoutes):
-                onRoutesCalculated(navigationRoutes: navigationRoutes)
+            let routeOptions = RouteOptions(
+                waypoints: waypoints, 
+                profileIdentifier: .automobileAvoidingTraffic
+            )
+            if let maxHeight = currentExpoRouteOptions?.maxHeight {
+                routeOptions.maximumHeight = Measurement(value: maxHeight, unit: UnitLength.meters)
+            } else {
+                routeOptions.maximumWidth = Measurement(value: 0.0, unit: UnitLength.meters)
+            }
+
+            if let maxWidth = currentExpoRouteOptions?.maxWidth {
+                routeOptions.maximumWidth = Measurement(value: maxWidth, unit: UnitLength.meters)
+            } else {
+                routeOptions.maximumWidth = Measurement(value: 0.0, unit: UnitLength.meters)
+            }
+            
+            calculateRoutesTask = Task {
+                switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let navigationRoutes):
+                    onRoutesCalculated(navigationRoutes: navigationRoutes)
+                }
             }
         }
-    }
 
     func calculateMapMatchingRoutes(waypoints: Array<Waypoint>){
         let matchOptions = NavigationMatchOptions(
