@@ -97,6 +97,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private var currentRoutesRequestId: Long? = null
     private var currentMapMatchingRequestId: Long? = null
     private var isUsingRouteMatchingApi = false
+    private var currentExpoRouteOptions: ExpoRouteOptions? = null
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -516,7 +517,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.startTripSession()
         navigationCamera.requestNavigationCameraToFollowing(
             stateTransitionOptions = NavigationCameraTransitionOptions.Builder()
-                .maxDuration(0) // instant transition
+                .maxDuration(4) // No longer instant due to laggy nature of the camera
                 .build()
         )
     }
@@ -524,6 +525,12 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI 
     fun setCoordinates(coordinates: List<Point>){
         currentCoordinates = coordinates
+        update();
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI 
+    fun setExpoRouteOptions(routeOpts: ExpoRouteOptions){
+        currentExpoRouteOptions = routeOpts
         update();
     }
 
@@ -581,12 +588,15 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
     private fun requestRoutes(){
+
         var optionsBuilder = RouteOptions.builder()
                                 .applyDefaultNavigationOptions()
                                 .coordinatesList(currentCoordinates!!)
                                 .steps(true)
                                 .voiceInstructions(true)
                                 .language(currentLocale.toLanguageTag())
+                                .maxHeight(currentExpoRouteOptions?.maxHeight?: null)
+                                .maxWidth(currentExpoRouteOptions?.maxWidth?: null)
 
         if(currentWaypointIndices != null){
             optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)

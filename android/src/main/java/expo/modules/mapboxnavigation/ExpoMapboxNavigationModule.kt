@@ -12,6 +12,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+class ExpoRouteOptions {
+  var maxHeight: Double? = null
+  var maxWidth: Double? = null
+}
+
+
 class ExpoMapboxNavigationModule : Module() {
   private val activity
     get() = requireNotNull(appContext.activityProvider?.currentActivity)
@@ -51,6 +57,17 @@ class ExpoMapboxNavigationModule : Module() {
             
         }
         view.setCoordinates(points)
+      }
+      Prop("routeOptions") { view: ExpoMapboxNavigationView, routeOptions: Map<String, Any> ->
+
+       // build an object from the map
+       val routeObject = ExpoRouteOptions().apply {
+          routeOptions["maxHeight"]?.let { maxHeight = it as Double }
+          routeOptions["maxWidth"]?.let { maxWidth = it as Double }
+        }
+
+        view.setExpoRouteOptions(routeObject)
+
       }
 
       Prop("waypointIndices") { view: ExpoMapboxNavigationView, indices: List<Int>? ->
