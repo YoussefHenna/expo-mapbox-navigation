@@ -100,31 +100,25 @@ class ExpoMapboxNavigationViewController: UIViewController {
     }
 
     func calculateRoutes(waypoints: Array<Waypoint>){
-            let routeOptions = RouteOptions(
-                waypoints: waypoints, 
-                profileIdentifier: .automobileAvoidingTraffic
-            )
-            if let maxHeight = currentExpoRouteOptions?.maxHeight {
-                routeOptions.maximumHeight = Measurement(value: maxHeight, unit: UnitLength.meters)
-            } else {
-                routeOptions.maximumWidth = Measurement(value: 0.0, unit: UnitLength.meters)
-            }
-
-            if let maxWidth = currentExpoRouteOptions?.maxWidth {
-                routeOptions.maximumWidth = Measurement(value: maxWidth, unit: UnitLength.meters)
-            } else {
-                routeOptions.maximumWidth = Measurement(value: 0.0, unit: UnitLength.meters)
-            }
-            
-            calculateRoutesTask = Task {
-                switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
-                case .failure(let error):
-                    print(error.localizedDescription)
-                case .success(let navigationRoutes):
-                    onRoutesCalculated(navigationRoutes: navigationRoutes)
-                }
+        let routeOptions = NavigationRouteOptions(
+            waypoints: waypoints, 
+            queryItems: [
+                URLQueryItem(name: "max_height", value: String(format: "%.1f", currentExpoRouteOptions?.maxHeight ?? 0.0)),
+                URLQueryItem(name: "max_width", value: String(format: "%.1f", currentExpoRouteOptions?.maxWidth ?? 0.0))
+            ],
+            locale: currentLocale, 
+            distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
+        )
+        // Set route options
+        calculateRoutesTask = Task {
+            switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let navigationRoutes):
+                onRoutesCalculated(navigationRoutes: navigationRoutes)
             }
         }
+    }
 
     func calculateMapMatchingRoutes(waypoints: Array<Waypoint>){
         let matchOptions = NavigationMatchOptions(
