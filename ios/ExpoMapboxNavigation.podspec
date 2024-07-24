@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'MapboxMaps', $RNMapboxMapsVersion
+  s.dependency 'Turf', '~> 2.4'
 
   s.source_files = "**/*.{h,m,swift}"
   s.exclude_files = ["Frameworks/*.xcframework/**/*.h"]
@@ -31,7 +32,6 @@ Pod::Spec.new do |s|
     'Frameworks/MapboxDirections.xcframework',
     'Frameworks/MapboxNavigationUIKit.xcframework',
     'Frameworks/_MapboxNavigationUXPrivate.xcframework',
-    'Frameworks/Turf.xcframework',
     'Frameworks/MapboxNavigationNative.xcframework',
   ]
 
@@ -39,7 +39,6 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',
     'SWIFT_COMPILATION_MODE' => 'wholemodule',
-    'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES',
     'OTHER_SWIFT_FLAGS' => '$(inherited)'
   }
 
