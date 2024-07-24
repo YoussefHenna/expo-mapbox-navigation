@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
     'Frameworks/MapboxDirections.xcframework',
     'Frameworks/MapboxNavigationUIKit.xcframework',
     'Frameworks/_MapboxNavigationUXPrivate.xcframework',
+    'Frameworks/Turf.xcframework',
     'Frameworks/MapboxNavigationNative.xcframework',
   ]
 
