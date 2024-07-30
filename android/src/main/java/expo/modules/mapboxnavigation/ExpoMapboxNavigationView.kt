@@ -48,6 +48,7 @@ import com.mapbox.navigation.core.mapmatching.MapMatchingOptions
 import com.mapbox.navigation.core.mapmatching.MapMatchingSuccessfulResult
 import com.mapbox.navigation.core.trip.session.LocationMatcherResult
 import com.mapbox.navigation.core.trip.session.LocationObserver
+import com.mapbox.navigation.core.trip.session.OffRouteObserver
 import com.mapbox.navigation.core.trip.session.RouteProgressObserver
 import com.mapbox.navigation.core.trip.session.VoiceInstructionsObserver
 import com.mapbox.navigation.tripdata.maneuver.api.MapboxManeuverApi
@@ -105,6 +106,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val onCancelNavigation by EventDispatcher()
     private val onWaypointArrival by EventDispatcher()
     private val onFinalDestinationArrival by EventDispatcher()
+    private val onRouteChanged by EventDispatcher()
+    private val onUserOffRoute by EventDispatcher()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -278,6 +281,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
                     NavigationCameraState.IDLE -> recenterButton.visibility = View.VISIBLE
                 }
             }
+
+            this@ExpoMapboxNavigationView.onRouteChanged(mapOf())
         }
     }
 
@@ -347,6 +352,14 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         override fun onNextRouteLegStart(routeLegProgress: RouteLegProgress) {}
         override fun onFinalDestinationArrival(routeProgress: RouteProgress) {
             onFinalDestinationArrival(mapOf())
+        }
+    }
+
+    private val offRouteObserver = object : OffRouteObserver {
+        override fun onOffRouteStateChanged(offRoute: Boolean) {
+            if(offRoute){
+                onUserOffRoute(mapOf())
+            }
         }
     }
 
@@ -550,6 +563,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.registerLocationObserver(locationObserver)
         mapboxNavigation?.registerVoiceInstructionsObserver(voiceInstructionsObserver)
         mapboxNavigation?.registerArrivalObserver(arrivalObserver)
+        mapboxNavigation?.registerOffRouteObserver(offRouteObserver)
         mapView.location.addOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)
     }
 
@@ -560,6 +574,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.unregisterLocationObserver(locationObserver)
         mapboxNavigation?.unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
         mapboxNavigation?.unregisterArrivalObserver(arrivalObserver)
+        mapboxNavigation?.unregisterOffRouteObserver(offRouteObserver)
         speechApi.cancel()
         voiceInstructionsPlayer.shutdown()
         mapView.location.removeOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)
