@@ -35,7 +35,9 @@ import com.mapbox.navigation.base.route.NavigationRoute
 import com.mapbox.navigation.base.route.NavigationRouterCallback
 import com.mapbox.navigation.base.route.RouterFailure
 import com.mapbox.navigation.base.route.RouterOrigin
+import com.mapbox.navigation.base.trip.model.RouteLegProgress
 import com.mapbox.navigation.base.trip.model.RouteProgress
+import com.mapbox.navigation.core.arrival.ArrivalObserver
 import com.mapbox.navigation.core.directions.session.RoutesObserver
 import com.mapbox.navigation.core.directions.session.RoutesUpdatedResult
 import com.mapbox.navigation.core.formatter.MapboxDistanceFormatter
@@ -83,10 +85,10 @@ import com.mapbox.navigation.voice.model.SpeechError
 import com.mapbox.navigation.voice.model.SpeechValue
 import com.mapbox.navigation.voice.model.SpeechVolume
 import expo.modules.kotlin.AppContext
-import expo.modules.kotlin.views.ExpoView
-import java.util.Locale
-import expo.modules.mapboxnavigation.R
 import expo.modules.kotlin.viewevent.EventDispatcher
+import expo.modules.kotlin.views.ExpoView
+import expo.modules.mapboxnavigation.R
+import java.util.Locale
 
 val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
@@ -101,6 +103,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
     private val onRouteProgressChanged by EventDispatcher()
     private val onCancelNavigation by EventDispatcher()
+    private val onWaypointArrival by EventDispatcher()
+    private val onFinalDestinationArrival by EventDispatcher()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -331,6 +335,21 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         override fun onNewRawLocation(rawLocation: com.mapbox.common.location.Location) {}
     }
 
+    private val arrivalObserver = object : ArrivalObserver {
+        override fun onWaypointArrival(routeProgress: RouteProgress) {
+            onWaypointArrival(mapOf(
+                "distanceRemaining" to routeProgress.distanceRemaining,
+                "distanceTraveled" to routeProgress.distanceTraveled,
+                "durationRemaining" to routeProgress.durationRemaining,
+                "fractionTraveled" to routeProgress.fractionTraveled
+            ))
+        }
+        override fun onNextRouteLegStart(routeLegProgress: RouteLegProgress) {}
+        override fun onFinalDestinationArrival(routeProgress: RouteProgress) {
+            onFinalDestinationArrival(mapOf())
+        }
+    }
+
     private val onIndicatorPositionChangedListener = OnIndicatorPositionChangedListener { point ->
         val result = routeLineApi.updateTraveledRouteLine(point)
         mapboxStyle?.let { routeLineView.renderRouteLineUpdate(it, result) }
@@ -530,6 +549,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.registerRouteProgressObserver(routeProgressObserver)
         mapboxNavigation?.registerLocationObserver(locationObserver)
         mapboxNavigation?.registerVoiceInstructionsObserver(voiceInstructionsObserver)
+        mapboxNavigation?.registerArrivalObserver(arrivalObserver)
         mapView.location.addOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)
     }
 
@@ -539,6 +559,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.unregisterRouteProgressObserver(routeProgressObserver)
         mapboxNavigation?.unregisterLocationObserver(locationObserver)
         mapboxNavigation?.unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
+        mapboxNavigation?.unregisterArrivalObserver(arrivalObserver)
         speechApi.cancel()
         voiceInstructionsPlayer.shutdown()
         mapView.location.removeOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)

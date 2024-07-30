@@ -14,5 +14,7 @@ export type ExpoMapboxNavigationViewProps = {
   locale?: string;
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
   onCancelNavigation?: () => void;
+  onWaypointArrival?: (event: { nativeEvent: ProgressEvent }) => void;
+  onFinalDestinationArrival?: () => void;
   style?: StyleProp<ViewStyle>;
 };
