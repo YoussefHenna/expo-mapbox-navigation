@@ -12,6 +12,9 @@ export type ExpoMapboxNavigationViewProps = {
   waypointIndices?: number[];
   useRouteMatchingApi?: boolean;
   locale?: string;
+  routeProfile?: string;
+  routeExcludeList?: string[];
+  mapStyle?: string;
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
   onCancelNavigation?: () => void;
   onWaypointArrival?: (event: { nativeEvent: ProgressEvent }) => void;

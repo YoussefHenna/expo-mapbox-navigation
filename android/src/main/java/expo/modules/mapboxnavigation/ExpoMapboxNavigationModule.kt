@@ -66,6 +66,18 @@ class ExpoMapboxNavigationModule : Module() {
       Prop("useRouteMatchingApi") { view: ExpoMapboxNavigationView, useRouteMatchingApi: Boolean? ->
         view.setIsUsingRouteMatchingApi(useRouteMatchingApi)
       }
+
+      Prop("routeProfile") { view: ExpoMapboxNavigationView, profile: String? ->
+        view.setRouteProfile(profile)
+      }
+
+      Prop("routeExcludeList") { view: ExpoMapboxNavigationView, excludeList: List<String>? ->
+        view.setRouteExcludeList(excludeList)
+      }
+
+      Prop("mapStyle") { view: ExpoMapboxNavigationView, style: String? ->
+        view.setMapStyle(style)
+      }
     }
   }
 }

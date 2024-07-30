@@ -101,6 +101,9 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private var currentRoutesRequestId: Long? = null
     private var currentMapMatchingRequestId: Long? = null
     private var isUsingRouteMatchingApi = false
+    private var currentRouteProfile: String? = null
+    private var currentRouteExcludeList: List<String>? = null
+    private var currentMapStyle: String? = null
 
     private val onRouteProgressChanged by EventDispatcher()
     private val onCancelNavigation by EventDispatcher()
@@ -618,12 +621,39 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setRouteProfile(profile: String?){
+        currentRouteProfile = profile
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setRouteExcludeList(excludeList: List<String>?){
+        currentRouteExcludeList = excludeList
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setMapStyle(style: String?){
+        currentMapStyle = style
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
     private fun update(){
         voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, currentLocale.toLanguageTag())
         speechApi = MapboxSpeechApi(context, currentLocale.toLanguageTag())
-        mapboxMap.getStyle { style: Style ->
-            style.localizeLabels(currentLocale)        
+
+        if(currentMapStyle != null){
+            mapboxMap.loadStyle(currentMapStyle!!) { style: Style ->
+                mapboxStyle = style
+                style.localizeLabels(currentLocale)  
+            }
+        } else {
+            mapboxMap.getStyle { style: Style ->
+                style.localizeLabels(currentLocale)        
+            }
         }
+
         val distanceFormatter = DistanceFormatterOptions.Builder(context).locale(currentLocale).build()
         maneuverApi = MapboxManeuverApi(MapboxDistanceFormatter(distanceFormatter))
 
@@ -664,6 +694,14 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
             optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)
         }
 
+        if(currentRouteProfile != null){
+            optionsBuilder = optionsBuilder.profile(currentRouteProfile!!)
+        }
+
+        if(currentRouteExcludeList != null){
+            optionsBuilder = optionsBuilder.excludeList(currentRouteExcludeList!!)
+        }
+
         currentRoutesRequestId = mapboxNavigation?.requestRoutes(
                 optionsBuilder.build(),
                 routesRequestCallback
@@ -680,6 +718,10 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
         if(currentWaypointIndices != null){
             optionsBuilder = optionsBuilder.waypoints(currentWaypointIndices!!)
+        }
+
+        if(currentRouteProfile != null){
+            optionsBuilder = optionsBuilder.profile(currentRouteProfile!!)
         }
 
 
