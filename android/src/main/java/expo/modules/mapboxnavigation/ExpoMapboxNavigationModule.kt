@@ -40,7 +40,7 @@ class ExpoMapboxNavigationModule : Module() {
     }
 
     View(ExpoMapboxNavigationView::class) {
-      Events("onRouteProgressChanged")
+      Events("onRouteProgressChanged", "onCancelNavigation")
 
       Prop("coordinates") { view: ExpoMapboxNavigationView, coordinates: List<Map<String, Any>> ->
         val points = mutableListOf<Point>()

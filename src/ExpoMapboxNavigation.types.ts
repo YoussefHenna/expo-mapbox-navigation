@@ -13,5 +13,6 @@ export type ExpoMapboxNavigationViewProps = {
   useRouteMatchingApi?: boolean;
   locale?: string;
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
+  onCancelNavigation?: () => void;
   style?: StyleProp<ViewStyle>;
 };

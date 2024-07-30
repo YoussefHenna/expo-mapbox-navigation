@@ -100,6 +100,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private var isUsingRouteMatchingApi = false
 
     private val onRouteProgressChanged by EventDispatcher()
+    private val onCancelNavigation by EventDispatcher()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -153,6 +154,11 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         navigationCamera.requestNavigationCameraToFollowing()
     }
 
+    private val cancelButtonId = 7
+    private val cancelButton = createCancelButton(cancelButtonId, parentConstraintLayout){
+        onCancelNavigation(mapOf())
+    }
+
     private val parentConstraintSet = createAndApplyConstraintSet(
         mapViewId=mapViewId,
         maneuverViewId=maneuverViewId,
@@ -160,6 +166,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         soundButtonId=soundButtonId,
         overviewButtonId=overviewButtonId,
         recenterButtonId=recenterButtonId,
+        cancelButtonId=cancelButtonId,
         constraintLayout=parentConstraintLayout
     )
 
@@ -428,6 +435,17 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         }
     }
 
+    private fun createCancelButton(id: Int, parent: ViewGroup, onClick: (MapboxSoundButton) -> Unit): MapboxSoundButton {
+        return MapboxSoundButton(context).apply {
+            setId(id)
+            parent.addView(this)
+            findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(R.drawable.icon_x)
+            setOnClickListener {
+                onClick(this)
+            }
+        }
+    }
+
     private fun createAndApplyConstraintSet(
         mapViewId: Int, 
         maneuverViewId: Int, 
@@ -435,6 +453,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         soundButtonId: Int,
         overviewButtonId: Int,
         recenterButtonId: Int,
+        cancelButtonId: Int,
         constraintLayout: ConstraintLayout
     ): ConstraintSet {
         return ConstraintSet().apply{
@@ -450,7 +469,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
             connect(maneuverViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (4 * PIXEL_DENSITY).toInt())
             constrainHeight(maneuverViewId, ConstraintSet.WRAP_CONTENT)
 
-            // Add TropProgressView constraints
+            // Add TripProgressView constraints
             connect(tripProgressViewId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
             connect(tripProgressViewId, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
             connect(tripProgressViewId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
@@ -475,6 +494,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
             connect(recenterButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * PIXEL_DENSITY).toInt())
             constrainWidth(recenterButtonId, ConstraintSet.WRAP_CONTENT)
             constrainHeight(recenterButtonId, ConstraintSet.WRAP_CONTENT)
+
+            // Add CancelButton constraints
+            connect(cancelButtonId, ConstraintSet.BOTTOM, tripProgressViewId, ConstraintSet.BOTTOM)
+            connect(cancelButtonId, ConstraintSet.TOP, tripProgressViewId, ConstraintSet.TOP)
+            connect(cancelButtonId, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END, (16 * PIXEL_DENSITY).toInt())
+            constrainWidth(cancelButtonId, ConstraintSet.WRAP_CONTENT)
+            constrainHeight(cancelButtonId, ConstraintSet.WRAP_CONTENT)
 
             applyTo(constraintLayout)
         }
