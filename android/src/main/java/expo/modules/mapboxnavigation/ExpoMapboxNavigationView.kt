@@ -86,6 +86,7 @@ import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
 import java.util.Locale
 import expo.modules.mapboxnavigation.R
+import expo.modules.kotlin.viewevent.EventDispatcher
 
 val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
@@ -97,6 +98,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private var currentRoutesRequestId: Long? = null
     private var currentMapMatchingRequestId: Long? = null
     private var isUsingRouteMatchingApi = false
+
+    private val onRouteProgressChanged by EventDispatcher()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -294,6 +297,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
                 tripProgressArrivalTimeTextView.text = formatter.getEstimatedTimeToArrival(update.estimatedTimeToArrival)
             }
 
+            // Send progress event
+            this@ExpoMapboxNavigationView.onRouteProgressChanged(mapOf(
+                "distanceRemaining" to routeProgress.distanceRemaining,
+                "distanceTraveled" to routeProgress.distanceTraveled,
+                "durationRemaining" to routeProgress.durationRemaining,
+                "fractionTraveled" to routeProgress.fractionTraveled
+            ))
         }
     }
 
