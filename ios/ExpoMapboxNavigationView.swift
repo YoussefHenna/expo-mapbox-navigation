@@ -41,11 +41,14 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var routingProvider: RoutingProvider? = nil
     var navigation: NavigationController? = nil
     var tripSession: SessionController? = nil
+
     var currentCoordinates: Array<CLLocationCoordinate2D>? = nil
     var currentWaypointIndices: Array<Int>? = nil
     var currentLocale: Locale = Locale.current
+    var currentRouteProfile: String? = nil
+    var currentRouteExcludeList: Array<String>? = nil
+    var currentMapStyle: String? = nil
     var isUsingRouteMatchingApi: Bool = false
-    var calculateRoutesTask: Task<Void, Error>? = nil
 
     var onRouteProgressChanged: EventDispatcher? = nil
     var onCancelNavigation: EventDispatcher? = nil
@@ -54,6 +57,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var onRouteChanged: EventDispatcher? = nil
     var onUserOffRoute: EventDispatcher? = nil
 
+    var calculateRoutesTask: Task<Void, Error>? = nil
     private var routeProgressCancellable: AnyCancellable? = nil
     private var waypointArrivalCancellable: AnyCancellable? = nil
     private var reroutingCancellable: AnyCancellable? = nil
@@ -143,6 +147,21 @@ class ExpoMapboxNavigationViewController: UIViewController {
         update()
     }
 
+    func setRouteProfile(profile: String?){
+        currentRouteProfile = profile
+        update()
+    }
+
+    func setRouteExcludeList(excludeList: Array<String>?){
+        currentRouteExcludeList = excludeList
+        update()
+    }
+
+    func setMapStyle(style: String?){
+        currentMapStyle = style
+        update()
+    }
+
     func update(){
         calculateRoutesTask?.cancel()
 
@@ -166,9 +185,12 @@ class ExpoMapboxNavigationViewController: UIViewController {
     func calculateRoutes(waypoints: Array<Waypoint>){
         let routeOptions = NavigationRouteOptions(
             waypoints: waypoints, 
+            profileIdentifier: currentRouteProfile != nil ? ProfileIdentifier(rawValue: currentRouteProfile!) : nil,
+            queryItems: [URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ","))],
             locale: currentLocale, 
             distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
         )
+
         calculateRoutesTask = Task {
             switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
             case .failure(let error):
@@ -182,8 +204,12 @@ class ExpoMapboxNavigationViewController: UIViewController {
     func calculateMapMatchingRoutes(waypoints: Array<Waypoint>){
         let matchOptions = NavigationMatchOptions(
             waypoints: waypoints, 
+            profileIdentifier: currentRouteProfile != nil ? ProfileIdentifier(rawValue: currentRouteProfile!) : nil,
+            queryItems: [URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ","))],
             distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
         )
+
+
         calculateRoutesTask = Task {
             switch await self.routingProvider!.calculateRoutes(options: matchOptions).result {
             case .failure(let error):
@@ -221,7 +247,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
 
-        navigationMapView!.mapView.mapboxMap.loadStyle(.streets, completion: { _ in
+        let style = currentMapStyle != nil ? StyleURI(rawValue: currentMapStyle!) : StyleURI.streets
+        navigationMapView!.mapView.mapboxMap.loadStyle(style!, completion: { _ in
             navigationMapView!.localizeLabels(locale: self.currentLocale)
             do{
                 try navigationMapView!.mapView.mapboxMap.localizeLabels(into: self.currentLocale)

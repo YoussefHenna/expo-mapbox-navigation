@@ -31,6 +31,18 @@ public class ExpoMapboxNavigationModule: Module {
       Prop("waypointIndices"){ (view: ExpoMapboxNavigationView, indices: Array<Int>?) in
           view.controller.setWaypointIndices(waypointIndices: indices) 
       }
+
+      Prop("routeProfile"){ (view: ExpoMapboxNavigationView, profile: String?) in
+          view.controller.setRouteProfile(profile: profile) 
+      }
+
+      Prop("routeExcludeList"){ (view: ExpoMapboxNavigationView, excludeList: Array<String>?) in
+          view.controller.setRouteExcludeList(excludeList: excludeList) 
+      }
+
+      Prop("mapStyle"){ (view: ExpoMapboxNavigationView, style: String?) in
+          view.controller.setMapStyle(style: style) 
+      }
     }
   }
 }
