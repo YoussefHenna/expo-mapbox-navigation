@@ -3,15 +3,30 @@ import MapboxNavigationCore
 import MapboxMaps
 import MapboxNavigationUIKit
 import MapboxDirections
+import Combine
 
 
 class ExpoMapboxNavigationView: ExpoView {
+    private let onRouteProgressChanged = EventDispatcher()
+    private let onCancelNavigation = EventDispatcher()
+    private let onWaypointArrival = EventDispatcher()
+    private let onFinalDestinationArrival = EventDispatcher()
+    private let onRouteChanged = EventDispatcher()
+    private let onUserOffRoute = EventDispatcher()
+
     let controller = ExpoMapboxNavigationViewController()
 
     required init(appContext: AppContext? = nil) {
         super.init(appContext: appContext)
         clipsToBounds = true
         addSubview(controller.view)
+
+        controller.onRouteProgressChanged = onRouteProgressChanged
+        controller.onCancelNavigation = onCancelNavigation
+        controller.onWaypointArrival = onWaypointArrival
+        controller.onFinalDestinationArrival = onFinalDestinationArrival
+        controller.onRouteChanged = onRouteChanged
+        controller.onUserOffRoute = onUserOffRoute
     }
 
     override func layoutSubviews() {
@@ -24,17 +39,78 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var navigationProvider: MapboxNavigationProvider? = nil
     var mapboxNavigation: MapboxNavigation? = nil
     var routingProvider: RoutingProvider? = nil
+    var navigation: NavigationController? = nil
+    var tripSession: SessionController? = nil
     var currentCoordinates: Array<CLLocationCoordinate2D>? = nil
     var currentWaypointIndices: Array<Int>? = nil
     var currentLocale: Locale = Locale.current
     var isUsingRouteMatchingApi: Bool = false
     var calculateRoutesTask: Task<Void, Error>? = nil
 
+    var onRouteProgressChanged: EventDispatcher? = nil
+    var onCancelNavigation: EventDispatcher? = nil
+    var onWaypointArrival: EventDispatcher? = nil
+    var onFinalDestinationArrival: EventDispatcher? = nil
+    var onRouteChanged: EventDispatcher? = nil
+    var onUserOffRoute: EventDispatcher? = nil
+
+    private var routeProgressCancellable: AnyCancellable? = nil
+    private var waypointArrivalCancellable: AnyCancellable? = nil
+    private var reroutingCancellable: AnyCancellable? = nil
+    private var sessionCancellable: AnyCancellable? = nil
+
     init() {
         super.init(nibName: nil, bundle: nil)
         navigationProvider = MapboxNavigationProvider(coreConfig: .init(locationSource: .live))
         mapboxNavigation = navigationProvider!.mapboxNavigation
         routingProvider = mapboxNavigation!.routingProvider()
+        navigation = mapboxNavigation!.navigation()
+        tripSession = mapboxNavigation!.tripSession()
+
+        routeProgressCancellable = navigation!.routeProgress.sink { progressState in
+            if(progressState != nil){
+               self.onRouteProgressChanged?([
+                    "distanceRemaining": progressState!.routeProgress.distanceRemaining,
+                    "distanceTraveled": progressState!.routeProgress.distanceTraveled,
+                    "durationRemaining": progressState!.routeProgress.durationRemaining,
+                    "fractionTraveled": progressState!.routeProgress.fractionTraveled,
+                ])
+            }
+        }
+
+        waypointArrivalCancellable = navigation!.waypointsArrival.sink { arrivalStatus in
+            let event = arrivalStatus.event
+            if event is WaypointArrivalStatus.Events.ToFinalDestination {
+                self.onFinalDestinationArrival?()
+            } else if event is WaypointArrivalStatus.Events.ToWaypoint {
+                self.onWaypointArrival?()
+            }
+        }
+
+        reroutingCancellable = navigation!.rerouting.sink { rerouteStatus in
+            self.onRouteChanged?()            
+        }
+
+        sessionCancellable = tripSession!.session.sink { session in 
+            let state = session.state
+            switch state {
+                case .activeGuidance(let activeGuidanceState):
+                    switch(activeGuidanceState){
+                        case .offRoute:
+                            self.onUserOffRoute?()
+                        default: break
+                    }
+                default: break
+            }
+        }
+
+    }
+
+    deinit {
+        routeProgressCancellable?.cancel()
+        waypointArrivalCancellable?.cancel()
+        reroutingCancellable?.cancel()
+        sessionCancellable?.cancel()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -118,6 +194,10 @@ class ExpoMapboxNavigationViewController: UIViewController {
         }
     }
 
+    @objc func cancelButtonClicked(_ sender: AnyObject?) {
+        onCancelNavigation?()
+    }
+
     func onRoutesCalculated(navigationRoutes: NavigationRoutes){
         let topBanner = TopBannerViewController()
         topBanner.instructionsBannerView.distanceFormatter.locale = currentLocale
@@ -149,9 +229,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
         })
  
 
-        // Remove cancel button, navigation is not cancellable
         let cancelButton = navigationViewController.navigationView.bottomBannerContainerView.findViews(subclassOf: CancelButton.self)[0]
-        cancelButton.removeFromSuperview()
+        cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
 
         navigationViewController.delegate = self
         addChild(navigationViewController)

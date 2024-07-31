@@ -6,6 +6,8 @@ public class ExpoMapboxNavigationModule: Module {
     Name("ExpoMapboxNavigation")
 
     View(ExpoMapboxNavigationView.self) {
+      Events("onRouteProgressChanged", "onCancelNavigation", "onWaypointArrival", "onFinalDestinationArrival", "onRouteChanged", "onUserOffRoute")
+
       Prop("coordinates") { (view: ExpoMapboxNavigationView, coordinates: Array<Dictionary<String, Any>>) in
          var points: Array<CLLocationCoordinate2D> = []
          for coordinate in coordinates {
