@@ -79,7 +79,61 @@ When enabled, uses Mapbox's Map Matching API to generate the route instead of th
 
 A string representation of a locale/language code that adjusts the Map labels, directions, and voice where possible. By default, uses the devices locale.
 
-_more customization props and callback props to be added soon_
+#### `routeProfile`
+
+The profile to use for route generation. `mapbox/driving-traffic` by default. See [here](https://docs.mapbox.com/api/navigation/directions/#routing-profiles) for details
+
+#### `routeExcludeList`
+
+An array of road types and locations to exclude from the route. See the `exclude` param [here](https://docs.mapbox.com/api/navigation/directions/#optional-parameters) for details.
+
+#### `mapStyle`
+
+The style of the Mapbox map. See [here](https://docs.mapbox.com/api/maps/styles/) for details.
+
+#### `onRouteProgressChanged`
+
+Called when the user's progress on the route changes.
+Provides an object in the `nativeEvent` of type:
+
+```ts
+{
+  distanceRemaining: number;
+  distanceTraveled: number;
+  durationRemaining: number;
+  fractionTraveled: number;
+}
+```
+
+#### `onCancelNavigation`
+
+Called when the cancel navigation button is clicked. The library does not handle cancellation automatically, use this callback to handle the cancellation behaviour.
+
+#### `onWaypointArrival`
+
+Called when arrived at one of the given waypoints.
+On **Android ONLY** provides an object in the `nativeEvent` of type:
+
+```ts
+{
+  distanceRemaining: number;
+  distanceTraveled: number;
+  durationRemaining: number;
+  fractionTraveled: number;
+}
+```
+
+#### `onFinalDestinationArrival`
+
+Called when arrived at the final destination
+
+#### `onRouteChanged`
+
+Called when the route changes or reroutes
+
+#### `onUserOffRoute`
+
+Called when the user goes off route
 
 ## Running the example app
 
