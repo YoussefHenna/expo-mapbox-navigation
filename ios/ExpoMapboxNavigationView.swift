@@ -36,7 +36,7 @@ class ExpoMapboxNavigationView: ExpoView {
 
 
 class ExpoMapboxNavigationViewController: UIViewController {
-    var navigationProvider: MapboxNavigationProvider? = nil
+    static let navigationProvider: MapboxNavigationProvider = MapboxNavigationProvider(coreConfig: .init(locationSource: .live))
     var mapboxNavigation: MapboxNavigation? = nil
     var routingProvider: RoutingProvider? = nil
     var navigation: NavigationController? = nil
@@ -65,8 +65,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
     init() {
         super.init(nibName: nil, bundle: nil)
-        navigationProvider = MapboxNavigationProvider(coreConfig: .init(locationSource: .live))
-        mapboxNavigation = navigationProvider!.mapboxNavigation
+        mapboxNavigation = ExpoMapboxNavigationViewController.navigationProvider.mapboxNavigation
         routingProvider = mapboxNavigation!.routingProvider()
         navigation = mapboxNavigation!.navigation()
         tripSession = mapboxNavigation!.tripSession()
@@ -233,8 +232,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
         let navigationOptions = NavigationOptions(
             mapboxNavigation: self.mapboxNavigation!,
-            voiceController: self.navigationProvider!.routeVoiceController,
-            eventsManager: self.navigationProvider!.eventsManager(),
+            voiceController: ExpoMapboxNavigationViewController.navigationProvider.routeVoiceController,
+            eventsManager: ExpoMapboxNavigationViewController.navigationProvider.eventsManager(),
             topBanner: topBanner,
             bottomBanner: bottomBanner
         )
