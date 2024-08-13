@@ -207,6 +207,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
             queryItems: [URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ","))],
             distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
         )
+        matchOptions.locale = currentLocale
 
 
         calculateRoutesTask = Task {
