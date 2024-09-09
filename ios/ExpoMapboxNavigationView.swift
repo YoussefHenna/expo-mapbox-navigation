@@ -116,6 +116,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
         sessionCancellable?.cancel()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        Task { @MainActor in tripSession?.setToIdle() } // Stops navigation
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fatalError("This controller should not be loaded through a story board")
