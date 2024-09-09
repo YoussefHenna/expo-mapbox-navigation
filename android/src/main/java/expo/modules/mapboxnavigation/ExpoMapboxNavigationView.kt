@@ -578,6 +578,9 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         mapboxNavigation?.unregisterVoiceInstructionsObserver(voiceInstructionsObserver)
         mapboxNavigation?.unregisterArrivalObserver(arrivalObserver)
         mapboxNavigation?.unregisterOffRouteObserver(offRouteObserver)
+        if(mapboxNavigation?.isDestroyed != true){
+            mapboxNavigation?.stopTripSession()
+        }
         speechApi.cancel()
         voiceInstructionsPlayer.shutdown()
         mapView.location.removeOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener)
@@ -588,7 +591,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
 
     private fun onRoutesReady(routes: List<NavigationRoute>){
         mapboxNavigation?.setNavigationRoutes(routes)
-        mapboxNavigation?.startTripSession()
+        mapboxNavigation?.startTripSession(withForegroundService=false)
         navigationCamera.requestNavigationCameraToFollowing(
             stateTransitionOptions = NavigationCameraTransitionOptions.Builder()
                 .maxDuration(0) // instant transition
