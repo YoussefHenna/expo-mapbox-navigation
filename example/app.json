@@ -51,8 +51,7 @@
       [
         "../app.plugin.js",
         {
-          "accessToken": "<TOKEN>",
-          "mapboxMapsVersion": "11.3.0"
+          "accessToken": "<TOKEN>"
         }
       ]
     ]

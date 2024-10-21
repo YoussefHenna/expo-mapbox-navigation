@@ -21,7 +21,7 @@ npx expo install @youssefhenna/expo-mapbox-navigation
 
 ### Configure package
 
-In your `app.json` or `app.js`, you'll need to add a plugin for the package under the `plugins` entry with a valid mapbox access token (The one that starts with `pk.`). For the mapbox maps version, you have to use the same version set in the setup steps of `@rnmapbox/maps`.
+In your `app.json` or `app.js`, you'll need to add a plugin for the package under the `plugins` entry with a valid mapbox access token (The one that starts with `pk.`).
 
 ```json
 "plugins": [
@@ -29,8 +29,7 @@ In your `app.json` or `app.js`, you'll need to add a plugin for the package unde
      [
         "@youssefhenna/expo-mapbox-navigation",
         {
-          "accessToken": "<YOUR_TOKEN>",
-          "mapboxMapsVersion": "<MAPBOX_MAPS_VERSION>"
+          "accessToken": "<YOUR_TOKEN>"
         }
       ]
 ]

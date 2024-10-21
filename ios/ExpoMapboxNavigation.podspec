@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
-  s.dependency 'MapboxMaps', ENV['ExpoNavigationMapboxMapsVersion']
+  s.dependency 'MapboxMaps', $RNMapboxMapsVersion
   s.dependency 'Turf', '~> 2.4'
 
   s.source_files = "**/*.{h,m,swift}"

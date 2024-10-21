@@ -9,12 +9,10 @@ const path = require("path");
  * See https://github.com/CocoaPods/CocoaPods/issues/11079#issuecomment-984670700
  */
 
-const applyPodfilePostInstallModifications = (src, mapboxMapsVersion) => {
-  return (
-    `ENV['ExpoNavigationMapboxMapsVersion'] = '${mapboxMapsVersion}'\n` +
-    src.replace(
-      "post_install do |installer|",
-      `post_install do |installer|
+const applyPodfilePostInstallModifications = (src) => {
+  return src.replace(
+    "post_install do |installer|",
+    `post_install do |installer|
       installer.pods_project.targets.each do |target|
           if (target.name.include? 'MapboxMaps' or target.name.include? 'Turf')
             target.build_configurations.each do |config|
@@ -22,11 +20,10 @@ const applyPodfilePostInstallModifications = (src, mapboxMapsVersion) => {
             end
           end
         end`
-    )
   );
 };
 
-const withIosPostInstallStep = (config, mapboxMapsVersion) =>
+const withIosPostInstallStep = (config) =>
   withDangerousMod(config, [
     "ios",
     async (exportedConfig) => {
@@ -38,7 +35,7 @@ const withIosPostInstallStep = (config, mapboxMapsVersion) =>
       const contents = await fs.readFile(file, "utf8");
       await fs.writeFile(
         file,
-        applyPodfilePostInstallModifications(contents, mapboxMapsVersion),
+        applyPodfilePostInstallModifications(contents),
         "utf-8"
       );
 
@@ -59,11 +56,8 @@ const withIosTokenInfoPlist = (config, accessToken) => {
   return config;
 };
 
-const withIosConfig = (config, { accessToken, mapboxMapsVersion }) => {
-  const configWithPostInstallStep = withIosPostInstallStep(
-    config,
-    mapboxMapsVersion
-  );
+const withIosConfig = (config, { accessToken }) => {
+  const configWithPostInstallStep = withIosPostInstallStep(config);
   const configWithAccessToken = withIosTokenInfoPlist(
     configWithPostInstallStep,
     accessToken
