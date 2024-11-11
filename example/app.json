@@ -45,14 +45,14 @@
         "@rnmapbox/maps",
         {
           "RNMapboxMapsDownloadToken": "<DOWNLOAD_TOKEN>",
-          "RNMapboxMapsVersion": "11.3.0"
+          "RNMapboxMapsVersion": "11.5.0"
         }
       ],
       [
         "../app.plugin.js",
         {
           "accessToken": "<TOKEN>",
-          "mapboxMapsVersion": "11.3.0"
+          "mapboxMapsVersion": "11.5.0"
         }
       ]
     ]
