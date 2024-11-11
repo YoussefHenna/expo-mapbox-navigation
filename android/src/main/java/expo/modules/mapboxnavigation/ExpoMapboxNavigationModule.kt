@@ -78,6 +78,10 @@ class ExpoMapboxNavigationModule : Module() {
       Prop("mapStyle") { view: ExpoMapboxNavigationView, style: String? ->
         view.setMapStyle(style)
       }
+
+      Prop("mute") { view: ExpoMapboxNavigationView, isMuted: Boolean? ->
+        view.setIsMuted(isMuted)
+      }
     }
   }
 }

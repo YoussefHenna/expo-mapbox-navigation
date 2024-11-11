@@ -15,6 +15,7 @@ export type ExpoMapboxNavigationViewProps = {
   routeProfile?: string;
   routeExcludeList?: string[];
   mapStyle?: string;
+  mute?: boolean;
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
   onCancelNavigation?: () => void;
   onWaypointArrival?: (event: {

@@ -643,9 +643,18 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         update()
     }
 
+    fun setIsMuted(isMutedProp: Boolean?){
+        if(isMutedProp != null){
+            isMuted = isMutedProp
+            voiceInstructionsPlayer.volume(SpeechVolume(if(isMuted) 0.0f else 1.0f))
+            soundButton.findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon).setImageResource(if(isMuted) R.drawable.icon_mute else R.drawable.icon_sound)
+        }
+    }
+
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
     private fun update(){
         voiceInstructionsPlayer = MapboxVoiceInstructionsPlayer(context, currentLocale.toLanguageTag())
+        voiceInstructionsPlayer.volume(SpeechVolume(if(isMuted) 0.0f else 1.0f)) // Initial volume based on current isMuted state
         speechApi = MapboxSpeechApi(context, currentLocale.toLanguageTag())
 
         if(currentMapStyle != null){
