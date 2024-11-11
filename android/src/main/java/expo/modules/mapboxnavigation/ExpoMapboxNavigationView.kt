@@ -111,6 +111,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private val onFinalDestinationArrival by EventDispatcher()
     private val onRouteChanged by EventDispatcher()
     private val onUserOffRoute by EventDispatcher()
+    private val onRoutesLoaded by EventDispatcher()
 
     private val mapboxNavigation = MapboxNavigationApp.current()
     private var mapboxStyle: Style? = null
@@ -590,6 +591,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     }
 
     private fun onRoutesReady(routes: List<NavigationRoute>){
+        onRoutesLoaded(mapOf())
         mapboxNavigation?.setNavigationRoutes(routes)
         mapboxNavigation?.startTripSession(withForegroundService=false)
         navigationCamera.requestNavigationCameraToFollowing(
