@@ -2031,10 +2031,10 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@rnmapbox/maps@^10.1.24":
-  version "10.1.24"
-  resolved "https://registry.yarnpkg.com/@rnmapbox/maps/-/maps-10.1.24.tgz#9f9c2d9df96a900d5eb4de012509084135d13574"
-  integrity sha512-3l3WV8rnK28InMl5rVjtO4XxK/x2aHV4qDp3BGlNU8a+lCIF0fR3Dw3ChukgV2dszxjS7pX6OHtmkng6yoc0Tw==
+"@rnmapbox/maps@^10.1.31":
+  version "10.1.33"
+  resolved "https://registry.yarnpkg.com/@rnmapbox/maps/-/maps-10.1.33.tgz#ef2bbe4b4d7af8c1822d1d5840b8b9b4ffa4ba57"
+  integrity sha512-+J1aJnZ6q0N3044doCb6To/Eftpsn3Eq78AYPMa/Ig9x/u1eWpmbt5WbXJCehkOltGsjvTCenn+/gZKsXMZfww==
   dependencies:
     "@turf/along" "6.5.0"
     "@turf/distance" "6.5.0"
