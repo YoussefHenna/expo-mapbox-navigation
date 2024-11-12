@@ -15,11 +15,10 @@ typedef NS_ENUM(NSInteger, MBNNRouterErrorType)
     MBNNRouterErrorTypeNetworkError,
     /** Authentication error, check the access token / account */
     MBNNRouterErrorTypeAuthenticationError,
-    /**
-     * Critical errors from Router. Fallback to onboard router unsupported.
-     * (NoRoute, NoSegment, NoChargersNearby)
-     */
-    MBNNRouterErrorTypeRouteCreationError
+    /** Critical errors from Router. (NoRoute, NoSegment, NoChargersNearby) */
+    MBNNRouterErrorTypeRouteCreationError,
+    /** Critical errors from MapMatchingApi. (NoMatch, NoSegment, TooManyCoordinates) */
+    MBNNRouterErrorTypeMapMatchingCreationError
 } NS_SWIFT_NAME(RouterErrorType);
 
 NSString* MBNNRouterErrorTypeToString(MBNNRouterErrorType router_error_type);

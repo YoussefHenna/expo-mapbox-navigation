@@ -6,6 +6,7 @@
 @class MBNNIncidentsOptions;
 @class MBNNPollingConfig;
 
+/** NavigatorConfig describes initialization parameters for for Navigator. */
 NS_SWIFT_NAME(NavigatorConfig)
 __attribute__((visibility ("default")))
 @interface MBNNNavigatorConfig : NSObject
@@ -21,7 +22,6 @@ __attribute__((visibility ("default")))
                                                   polling:(nullable MBNNPollingConfig *)polling
                                          incidentsOptions:(nullable MBNNIncidentsOptions *)incidentsOptions
                                 noSignalSimulationEnabled:(nullable NSNumber *)noSignalSimulationEnabled
-                                     avoidManeuverSeconds:(nullable NSNumber *)avoidManeuverSeconds
                                                useSensors:(nullable NSNumber *)useSensors;
 
 /**
@@ -42,15 +42,6 @@ __attribute__((visibility ("default")))
  * default: `false` for automotive profile, `true` for mobile profile
  */
 @property (nonatomic, readwrite, nullable) NSNumber *noSignalSimulationEnabled;
-
-/**
- * Number of seconds that should pass for safety reasons before any new proposed maneuver.
- * This value is used to calcalate safe distance at the moment of request, hence actual timing may
- * differ due to e.g. significant current speed change during specified period. See Directions API
- * avoid_maneuver_radius parameter for details.
- * If unset or set to 0 then new maneuvers are not filtered out on proximity basis.
- */
-@property (nonatomic, readwrite, nullable) NSNumber *avoidManeuverSeconds;
 
 /**
  * Set to `true` to enable features relying on various sensors(accelerometer, gyroscope etc)

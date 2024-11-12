@@ -11,4 +11,3 @@
 #import "MBNNUserFeedback.h"
 #import "MBNNUserFeedbackHandle.h"
 #import "MBNNEventsMetadataInterface.h"
-#import "MBNNScreenshotCallback.h"

@@ -27,8 +27,9 @@ __attribute__((visibility ("default")))
  * If history recording is already started - does nothing.
  * The new history recording session will contain "history context" - some events which occurred before the `startRecording()` was called.
  * These "history context" events will be separated with a special `separator` event from the actual session events.
+ * @return  A list of file paths in which the history recording session will be written
  */
-- (void)startRecording;
+- (nonnull NSArray<NSString *> *)startRecording __attribute((ns_returns_retained));
 /**
  * Store history to the `historyFile` and run callback (asynchronous, non-blocking IO call).
  * If history recording was not started before - `DumpHistoryCallback()` will be called with `null` filepath.

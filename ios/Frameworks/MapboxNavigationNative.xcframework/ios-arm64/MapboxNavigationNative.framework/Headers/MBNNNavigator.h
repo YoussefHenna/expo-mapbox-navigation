@@ -4,6 +4,7 @@
 #import <MapboxNavigationNative/MBNNADASISv2MessageCallback.h>
 #import <MapboxNavigationNative/MBNNChangeLegCallback.h>
 #import <MapboxNavigationNative/MBNNResetCallback.h>
+#import <MapboxNavigationNative/MBNNRouterType.h>
 #import <MapboxNavigationNative/MBNNSetRoutesReason.h>
 #import <MapboxNavigationNative/MBNNUpdateExternalSensorDataCallback.h>
 #import <MapboxNavigationNative/MBNNUpdateLocationCallback.h>
@@ -14,6 +15,7 @@
 @class MBNNElectronicHorizonOptions;
 @class MBNNFixLocation;
 @class MBNNHistoryRecorderHandle;
+@class MBNNInputsServiceHandle;
 @class MBNNNavigationSessionState;
 @class MBNNPredictiveCacheController;
 @class MBNNPredictiveCacheControllerOptions;
@@ -49,6 +51,37 @@ __attribute__((visibility ("default")))
 // This class provides custom init which should be called
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
+/**
+ * Constructs navigator object with given dependencies
+ *
+ * @param config           config handle created with `ConfigFactory`
+ * @param cache            cache handle created with `CacheFactory`
+ * @param routerTypeRestriction restrict Navigator internal route requests to Online / Onboard in case of passing an appropriate router type.
+ * Hybrid means no restriction and used by default.
+ * @param historyRecorder  history recorder created with `HistoryRecorderHandle.build` method
+ * @param inputsService    inputs service created with 'InputsServiceHandle.build' method
+ * @param offlineCache     offline cache handle created with `CacheFactory`, will be used by Hybrid router as a fallback in case of routing
+ * on current tiles failed
+ */
+- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
+                                 cache:(nonnull MBNNCacheHandle *)cache
+                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder;
+
+- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
+                                 cache:(nonnull MBNNCacheHandle *)cache
+                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
+                 routerTypeRestriction:(MBNNRouterType)routerTypeRestriction;
+- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
+                                 cache:(nonnull MBNNCacheHandle *)cache
+                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
+                 routerTypeRestriction:(MBNNRouterType)routerTypeRestriction
+                         inputsService:(nullable MBNNInputsServiceHandle *)inputsService;
+- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
+                                 cache:(nonnull MBNNCacheHandle *)cache
+                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
+                 routerTypeRestriction:(MBNNRouterType)routerTypeRestriction
+                         inputsService:(nullable MBNNInputsServiceHandle *)inputsService
+                          offlineCache:(nullable MBNNCacheHandle *)offlineCache;
 /** Obtain config object that was used for Navigator construction */
 - (nonnull MBNNConfigHandle *)config __attribute((ns_returns_retained));
 /** Provides navigator version */
@@ -193,6 +226,8 @@ __attribute__((visibility ("default")))
  * @param  observer  object that was added by addRouteRefreshObserver
  */
 - (void)removeRouteRefreshObserverForObserver:(nonnull id<MBNNRouteRefreshObserver>)observer;
+/** Get RouteAlternativesController */
+- (nonnull id<MBNNRouteAlternativesControllerInterface>)getRouteAlternativesController __attribute((ns_returns_retained));
 /**
  * Caution: Beta feature for ADAS / ADASIS SDK. Method interface may change soon.
  *
@@ -240,7 +275,7 @@ __attribute__((visibility ("default")))
  * This method should be called once at start.
  * Returned `LaneGraphAccessor` could be used anytime, even when HD data is not available
  * (in that case it would return empty data for each request).
- * Note: all HD data is provided in `NavigationStatus.laneMatchingResult`
+ * Note: all HD data is provided in `NavigationStatus.hdMatchingResult`
  */
 - (nullable id<MBNNLaneGraphAccessor>)getLaneGraphAccessor __attribute((ns_returns_retained));
 

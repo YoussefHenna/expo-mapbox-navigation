@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 
 @class MBNNLaneInstanceData;
+@class MBNNRoadEdge;
 @class MBNNRoadMarking;
 
 /** Lane information coming from the camera and other sensors */
@@ -21,6 +22,7 @@ __attribute__((visibility ("default")))
                                currentLaneOffset:(nullable NSNumber *)currentLaneOffset
                                     roadMarkings:(nonnull NSArray<MBNNRoadMarking *> *)roadMarkings
                                            lanes:(nonnull NSArray<MBNNLaneInstanceData *> *)lanes
+                                       roadEdges:(nonnull NSArray<MBNNRoadEdge *> *)roadEdges
                                        timestamp:(nonnull NSDate *)timestamp;
 
 /** Index of the lane that vehicle is on (from inner to outer). The index is zero based */
@@ -40,6 +42,12 @@ __attribute__((visibility ("default")))
 
 /** Lane objects */
 @property (nonatomic, readonly, nonnull, copy) NSArray<MBNNLaneInstanceData *> *lanes;
+
+/**
+ * All road edges detected by the camera system. The detection system doesn't provide guarantees
+ * that it will always overlap with `lanes`
+ */
+@property (nonatomic, readonly, nonnull, copy) NSArray<MBNNRoadEdge *> *roadEdges;
 
 /** Time when the data was created */
 @property (nonatomic, readonly, nonnull) NSDate *timestamp;

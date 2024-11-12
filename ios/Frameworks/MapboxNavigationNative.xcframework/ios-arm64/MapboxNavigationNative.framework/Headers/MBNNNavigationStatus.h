@@ -8,7 +8,7 @@
 @class MBNNBannerInstruction;
 @class MBNNCorrectedLocationData;
 @class MBNNFixLocation;
-@class MBNNLaneMatchingResult;
+@class MBNNHdMatchingResult;
 @class MBNNMapMatcherOutput;
 @class MBNNRoadName;
 @class MBNNRouteIndices;
@@ -37,6 +37,7 @@ __attribute__((visibility ("default")))
                                 isFallback:(BOOL)isFallback
                                   inTunnel:(BOOL)inTunnel
                             inParkingAisle:(BOOL)inParkingAisle
+                              inRoundabout:(BOOL)inRoundabout
                                  predicted:(NSTimeInterval)predicted
                              geometryIndex:(uint32_t)geometryIndex
                                 shapeIndex:(uint32_t)shapeIndex
@@ -56,7 +57,7 @@ __attribute__((visibility ("default")))
                                      layer:(nullable NSNumber *)layer
                        isSyntheticLocation:(BOOL)isSyntheticLocation
                      correctedLocationData:(nullable MBNNCorrectedLocationData *)correctedLocationData
-                        laneMatchingResult:(nullable MBNNLaneMatchingResult *)laneMatchingResult
+                          hdMatchingResult:(nullable MBNNHdMatchingResult *)hdMatchingResult
                       mapMatchedSystemTime:(nonnull NSDate *)mapMatchedSystemTime;
 
 @property (nonatomic, readonly) MBNNRouteState routeState;
@@ -98,6 +99,9 @@ __attribute__((visibility ("default")))
 
 /** is current location belongs to parking aisle */
 @property (nonatomic, readonly) BOOL inParkingAisle;
+
+/** current position is in roundabout */
+@property (nonatomic, readonly) BOOL inRoundabout;
 
 /** "prediction" time, i.e. duration between this status and the latest location update */
 @property (nonatomic, readonly) NSTimeInterval predicted;
@@ -164,7 +168,7 @@ __attribute__((visibility ("default")))
  */
 @property (nonatomic, readonly) MBNNOffRoadStateProvider offRoadStateProvider;
 
-/** Will be empty if we are in free-drive now(i.e. routeState == invalid) */
+/** Will be empty if we are in free-drive now (i.e. routeState == invalid) */
 @property (nonatomic, readonly, nullable) MBNNActiveGuidanceInfo *activeGuidanceInfo;
 
 /**
@@ -193,7 +197,7 @@ __attribute__((visibility ("default")))
  * HD MapMatcher output.
  * Empty if HD is disabled, or if HD data (i.e. HD graph) is not available in current location.
  */
-@property (nonatomic, readonly, nullable) MBNNLaneMatchingResult *laneMatchingResult;
+@property (nonatomic, readonly, nullable) MBNNHdMatchingResult *hdMatchingResult;
 
 /** Local system time of the map matched get status */
 @property (nonatomic, readonly, nonnull) NSDate *mapMatchedSystemTime;

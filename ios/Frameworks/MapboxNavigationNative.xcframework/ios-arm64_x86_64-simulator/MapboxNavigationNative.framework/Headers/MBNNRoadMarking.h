@@ -19,7 +19,9 @@ __attribute__((visibility ("default")))
 
 - (nonnull instancetype)initWithType:(MBNNRoadMarkingType)type
                                color:(nullable NSNumber *)color
-                              offset:(nullable MBXCoordinate2D *)offset;
+                              offset:(nullable MBXCoordinate2D *)offset
+                         probability:(nullable NSNumber *)probability
+                            accuracy:(nullable NSNumber *)accuracy;
 
 /** Type of the road marking */
 @property (nonatomic, readonly) MBNNRoadMarkingType type;
@@ -29,6 +31,21 @@ __attribute__((visibility ("default")))
 
 /** Offset of the road marking in meters, relative to the car */
 @property (nonatomic, readonly, nullable) MBXCoordinate2D *offset;
+
+/** Detection probability in [0.0, 1.0] range */
+@property (nonatomic, readonly, nullable) NSNumber *probability;
+
+/**
+ * Accuracy of the measurement used to produce the road marking. The value must be non-negative.
+ * The higher the value, the worse the accuracy is (similar to GPS's horizontal accuracy).
+ *
+ * For example, given the standard deviation `S` of the camera's road marking detection, one could
+ * calculate the accuracy as 1 / S. But since we expect the value to increase with lower accuracy,
+ * we could just use `S` as the value itself.
+ *   Note: strictly speaking the resulted value would be called "precision", but the term "accuracy"
+ *   is more generic, allowing a broader set of inputs.
+ */
+@property (nonatomic, readonly, nullable) NSNumber *accuracy;
 
 
 @end

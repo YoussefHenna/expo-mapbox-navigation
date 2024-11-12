@@ -24,7 +24,9 @@ typedef NS_ENUM(NSInteger, MBNNSetRoutesReason)
     /** Navigator used offline route and new route is available from the server */
     MBNNSetRoutesReasonSwitchToOnline,
     /** Fastest Route available (and should be switched) */
-    MBNNSetRoutesReasonFastestRoute
+    MBNNSetRoutesReasonFastestRoute,
+    /** Routing parameters have changed, e.g. language, state of change, costing, etc. */
+    MBNNSetRoutesReasonRoutingParametersChange
 } NS_SWIFT_NAME(SetRoutesReason);
 
 NSString* MBNNSetRoutesReasonToString(MBNNSetRoutesReason set_routes_reason);

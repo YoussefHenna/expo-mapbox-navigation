@@ -2,8 +2,13 @@
 // swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
 // swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MapboxDirections
 // swift-module-flags-ignorable: -enable-bare-slash-regex
-import CarPlay
 import CoreGraphics
+import CoreLocation
+import CoreLocation
+import CoreLocation
+import CoreLocation
+import CoreLocation
+import CoreLocation
 import CoreLocation
 import CoreLocation
 import Foundation
@@ -351,7 +356,7 @@ extension MapboxDirections.CustomValueOptionSet {
     }
 }
 public let MBDirectionsErrorDomain: Swift.String
-open class Directions : @unchecked Swift.Sendable {
+@_documentation(visibility: internal) open class Directions : @unchecked Swift.Sendable {
   #if compiler(>=5.3) && $Sendable
   public typealias RouteCompletionHandler = @Sendable (_ result: Swift.Result<MapboxDirections.RouteResponse, MapboxDirections.DirectionsError>) -> Swift.Void
   #endif
@@ -388,6 +393,8 @@ open class Directions : @unchecked Swift.Sendable {
   open func urlRequest(forRefreshing responseIdentifier: Swift.String, routeIndex: Swift.Int, fromLegAtIndex startLegIndex: Swift.Int, currentRouteShapeIndex: Swift.Int) -> Foundation.URLRequest
   open func url(forCalculating options: MapboxDirections.DirectionsOptions) -> Foundation.URL
   open func url(forCalculating options: MapboxDirections.DirectionsOptions, httpMethod: Swift.String) -> Foundation.URL
+  public static func url(forCalculating options: MapboxDirections.DirectionsOptions, credentials: MapboxDirections.Credentials) -> Foundation.URL
+  public static func url(forCalculating options: MapboxDirections.DirectionsOptions, credentials: MapboxDirections.Credentials, httpMethod: Swift.String) -> Foundation.URL
   open func urlRequest(forCalculating options: MapboxDirections.DirectionsOptions) -> Foundation.URLRequest
   @objc deinit
 }
@@ -470,9 +477,12 @@ public typealias MBDirectionsPriority = MapboxDirections.DirectionsPriority
 public struct DirectionsPriority : Swift.Hashable, Swift.RawRepresentable, Swift.Codable, Swift.Equatable, Swift.Sendable {
   public init(rawValue: Swift.Double)
   public var rawValue: Swift.Double
+  public static let low: MapboxDirections.DirectionsPriority
+  public static let medium: MapboxDirections.DirectionsPriority
+  public static let high: MapboxDirections.DirectionsPriority
   public typealias RawValue = Swift.Double
 }
-open class DirectionsOptions : Swift.Codable {
+open class DirectionsOptions : Swift.Codable, @unchecked Swift.Sendable {
   required public init(waypoints: [MapboxDirections.Waypoint], profileIdentifier: MapboxDirections.ProfileIdentifier? = nil, queryItems: [Foundation.URLQueryItem]? = nil)
   convenience public init?(url: Foundation.URL)
   public func encode(to encoder: any Swift.Encoder) throws
@@ -588,16 +598,6 @@ public enum GeometryError : Foundation.LocalizedError {
   public var recoverySuggestion: Swift.String? {
     get
   }
-}
-extension Turf.JSONValue : @unchecked Swift.Sendable {
-}
-extension Turf.LineString : @unchecked Swift.Sendable {
-}
-extension CarPlay.CPSearchTemplate : @unchecked Swift.Sendable {
-}
-extension CarPlay.CPListItem : @unchecked Swift.Sendable {
-}
-extension CarPlay.CPTemplate : @unchecked Swift.Sendable {
 }
 public struct Incident : Swift.Codable, Swift.Equatable, Turf.ForeignMemberContainer, Swift.Sendable {
   public var foreignMembers: Turf.JSONObject
@@ -819,9 +819,6 @@ extension MapboxDirections.MapMatchingResponse : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
-@available(*, unavailable)
-extension MapboxDirections.MapMatchingResponse : @unchecked Swift.Sendable {
-}
 public enum Weight : Swift.Equatable, Swift.Sendable {
   case routability(value: Swift.Float)
   case other(value: Swift.Float, metric: Swift.String)
@@ -902,7 +899,7 @@ extension MapboxDirections.Match {
     public var countOfAlternatives: Swift.Int
     public var name: Swift.String?
     public var matchingIndex: Swift.Int
-    public var waypointIndex: Swift.Int
+    public var waypointIndex: Swift.Int?
     public init(from decoder: any Swift.Decoder) throws
     public func encode(to encoder: any Swift.Encoder) throws
     public init(coordinate: MapboxDirections.LocationCoordinate2D, countOfAlternatives: Swift.Int, name: Swift.String? = nil, matchingIndex: Swift.Int = 0, waypointIndex: Swift.Int = 0)
@@ -1296,7 +1293,7 @@ extension MapboxDirections.RouteLeg.Attributes : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
-@_inheritsConvenienceInitializers open class RouteOptions : MapboxDirections.DirectionsOptions {
+@_inheritsConvenienceInitializers open class RouteOptions : MapboxDirections.DirectionsOptions, @unchecked Swift.Sendable {
   required public init(waypoints: [MapboxDirections.Waypoint], profileIdentifier: MapboxDirections.ProfileIdentifier? = nil, queryItems: [Foundation.URLQueryItem]? = nil)
   convenience public init(locations: [CoreLocation.CLLocation], profileIdentifier: MapboxDirections.ProfileIdentifier? = nil, queryItems: [Foundation.URLQueryItem]? = nil)
   convenience public init(coordinates: [MapboxDirections.LocationCoordinate2D], profileIdentifier: MapboxDirections.ProfileIdentifier? = nil, queryItems: [Foundation.URLQueryItem]? = nil)
@@ -1344,35 +1341,6 @@ public struct RouteRefreshResponse : Turf.ForeignMemberContainer, Swift.Equatabl
 extension MapboxDirections.RouteRefreshResponse : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
-}
-extension MapboxDirections.Route {
-  public struct RefreshParameters : Swift.Sendable {
-    public struct PropertiesToMerge : Swift.OptionSet, Swift.Sendable {
-      public var rawValue: Swift.Int
-      public init(rawValue: Swift.Int)
-      public static let annotations: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public static let incidents: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public static let closures: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public static let everything: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public typealias ArrayLiteralElement = MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public typealias Element = MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-      public typealias RawValue = Swift.Int
-    }
-    public struct StartingIndex : Swift.Sendable {
-      public let legIndex: Swift.Int
-      public let legShapeIndex: Swift.Int
-      public init(legIndex: Swift.Int, legShapeIndex: Swift.Int)
-    }
-    public var propertiesToMerge: MapboxDirections.Route.RefreshParameters.PropertiesToMerge
-    public var startingIndex: MapboxDirections.Route.RefreshParameters.StartingIndex?
-    public init(propertiesToMerge: MapboxDirections.Route.RefreshParameters.PropertiesToMerge = .everything, startingIndex: MapboxDirections.Route.RefreshParameters.StartingIndex? = nil)
-  }
-  public mutating func refresh(from refreshedRoute: any MapboxDirections.RouteRefreshSource, refreshParameters: MapboxDirections.Route.RefreshParameters = RefreshParameters())
-  public mutating func refreshLegAttributes(from refreshedRoute: any MapboxDirections.RouteRefreshSource)
-  public mutating func refreshLegAttributes(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int, legShapeIndex: Swift.Int)
-  public mutating func refreshLegIncidents(from refreshedRoute: any MapboxDirections.RouteRefreshSource)
-  public mutating func refreshLegIncidents(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int, legShapeIndex: Swift.Int)
-  public mutating func refreshLegClosures(from refreshedRoute: any MapboxDirections.RouteRefreshSource, legIndex: Swift.Int = 0, legShapeIndex: Swift.Int = 0)
 }
 public protocol RouteRefreshSource {
   var refreshedLegs: [any MapboxDirections.RouteLegRefreshSource] { get }
@@ -1422,7 +1390,7 @@ extension MapboxDirections.RefreshedRouteLeg : MapboxDirections.RouteLegRefreshS
     get
   }
 }
-public enum ResponseOptions {
+public enum ResponseOptions : Swift.Sendable {
   case route(MapboxDirections.RouteOptions)
   case match(MapboxDirections.MatchOptions)
 }
@@ -1441,15 +1409,16 @@ public struct RouteResponse : Turf.ForeignMemberContainer {
   public let options: MapboxDirections.ResponseOptions
   public let credentials: MapboxDirections.Credentials
   public var created: Foundation.Date
+  public let refreshTTL: Foundation.TimeInterval?
+  public var refreshInvalidationDate: Foundation.Date? {
+    get
+  }
   public var roadClassExclusionViolations: [MapboxDirections.RoadClassExclusionViolation]? {
     get
   }
 }
-@available(*, unavailable)
-extension MapboxDirections.RouteResponse : @unchecked Swift.Sendable {
-}
 extension MapboxDirections.RouteResponse : Swift.Codable {
-  public init(httpResponse: Foundation.HTTPURLResponse?, identifier: Swift.String? = nil, routes: [MapboxDirections.Route]? = nil, waypoints: [MapboxDirections.Waypoint]? = nil, options: MapboxDirections.ResponseOptions, credentials: MapboxDirections.Credentials)
+  public init(httpResponse: Foundation.HTTPURLResponse?, identifier: Swift.String? = nil, routes: [MapboxDirections.Route]? = nil, waypoints: [MapboxDirections.Waypoint]? = nil, options: MapboxDirections.ResponseOptions, credentials: MapboxDirections.Credentials, refreshTTL: Foundation.TimeInterval? = nil)
   public init(matching response: MapboxDirections.MapMatchingResponse, options: MapboxDirections.MatchOptions, credentials: MapboxDirections.Credentials) throws
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws

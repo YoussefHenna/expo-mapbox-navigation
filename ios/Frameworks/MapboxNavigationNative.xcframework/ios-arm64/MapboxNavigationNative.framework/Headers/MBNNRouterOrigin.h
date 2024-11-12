@@ -2,16 +2,21 @@
 
 #import <Foundation/Foundation.h>
 
-/** Describes which kind of router presents response */
+/**
+ * Describes a kind of a route response.
+ * Defines the origin of a route, not router itself.
+ */
 // NOLINTNEXTLINE(modernize-use-using)
 typedef NS_ENUM(NSInteger, MBNNRouterOrigin)
 {
-    /** Router based on Directions API. */
+    /** Route received from Directions API. */
     MBNNRouterOriginOnline,
-    /** Router based on offline library. */
+    /** Route received from the onboard. */
     MBNNRouterOriginOnboard,
-    /** Router presented by customer. */
-    MBNNRouterOriginCustom
+    /** Route presented by customer, the origin is unknown, but it's still built with Directions API or local on-board router */
+    MBNNRouterOriginCustom,
+    /** Customer's route, that obtained from third-party routing engine. */
+    MBNNRouterOriginCustomExternal
 } NS_SWIFT_NAME(RouterOrigin);
 
 NSString* MBNNRouterOriginToString(MBNNRouterOrigin router_origin);

@@ -27,4 +27,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) double bearing;
 
 
+- (BOOL)isEqualToFixDirectedCoordinate:(nonnull MBNNFixDirectedCoordinate *)other;
+
 @end

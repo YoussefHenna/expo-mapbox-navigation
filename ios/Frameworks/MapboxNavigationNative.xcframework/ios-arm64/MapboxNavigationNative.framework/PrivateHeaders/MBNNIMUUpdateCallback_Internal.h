@@ -5,4 +5,5 @@
 @class MBNNMotionData;
 
 NS_SWIFT_NAME(IMUUpdateCallback)
+__attribute__((deprecated))
 typedef void (^MBNNIMUUpdateCallback)(MBNNMotionData * _Nonnull result); // NOLINT(modernize-use-using)

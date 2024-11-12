@@ -12,11 +12,11 @@ __attribute__((visibility ("default")))
 // This class provides custom init which should be called
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
-- (nonnull instancetype)initWithRequestIntervalSeconds:(double)requestIntervalSeconds
-                          minTimeBeforeManeuverSeconds:(double)minTimeBeforeManeuverSeconds;
+- (nonnull instancetype)initWithRequestIntervalSeconds:(uint16_t)requestIntervalSeconds
+                          minTimeBeforeManeuverSeconds:(float)minTimeBeforeManeuverSeconds;
 
 /** Re-request alternative routes interval. 3 minutes by default. Minimum 30 seconds. */
-@property (nonatomic, readonly) double requestIntervalSeconds;
+@property (nonatomic, readonly) uint16_t requestIntervalSeconds;
 
 /**
  * Allowable travel time to the closest significant maneuvers.
@@ -24,7 +24,7 @@ __attribute__((visibility ("default")))
  *  corresponding to this parameter and the current speed.
  *  0 by default.
  */
-@property (nonatomic, readonly) double minTimeBeforeManeuverSeconds;
+@property (nonatomic, readonly) float minTimeBeforeManeuverSeconds;
 
 
 - (BOOL)isEqualToRouteAlternativesOptions:(nonnull MBNNRouteAlternativesOptions *)other;

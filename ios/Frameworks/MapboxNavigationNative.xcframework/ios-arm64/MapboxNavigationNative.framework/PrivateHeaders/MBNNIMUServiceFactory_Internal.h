@@ -6,6 +6,7 @@
 
 NS_SWIFT_NAME(IMUServiceFactory)
 __attribute__((visibility ("default")))
+__attribute__((deprecated))
 @interface MBNNIMUServiceFactory : NSObject
 
 // This class provides custom init which should be called

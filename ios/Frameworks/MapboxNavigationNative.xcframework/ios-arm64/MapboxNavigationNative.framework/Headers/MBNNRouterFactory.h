@@ -9,7 +9,8 @@
 @protocol MBNNRouterInterface;
 
 /**
- * Constructs router object with given dependencies
+ * Constructs a new router object with given dependencies
+ * To utilize navigator's hybrid router use Navigator.getRoute() method
  * @param `type` indicate which kind of router should be created
  * @param `cache` cache created with `CacheFactory`
  * @param `config` config created with `ConfigFactory`

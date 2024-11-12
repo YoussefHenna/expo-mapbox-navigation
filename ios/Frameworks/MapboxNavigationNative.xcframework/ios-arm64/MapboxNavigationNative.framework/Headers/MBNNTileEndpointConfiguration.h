@@ -54,4 +54,6 @@ minDiffInDaysToConsiderServerVersion:(nullable NSNumber *)minDiffInDaysToConside
 @property (nonatomic, readonly, nullable) NSNumber *minDiffInDaysToConsiderServerVersion;
 
 
+- (BOOL)isEqualToTileEndpointConfiguration:(nonnull MBNNTileEndpointConfiguration *)other;
+
 @end

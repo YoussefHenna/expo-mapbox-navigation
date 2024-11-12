@@ -19,7 +19,8 @@ __attribute__((visibility ("default")))
                                 tileStore:(nullable MBXTileStore *)tileStore
                         inMemoryTileCache:(nullable NSNumber *)inMemoryTileCache
                           onDiskTileCache:(nullable NSNumber *)onDiskTileCache
-                           endpointConfig:(nullable MBNNTileEndpointConfiguration *)endpointConfig;
+                           endpointConfig:(nullable MBNNTileEndpointConfiguration *)endpointConfig
+                         hdEndpointConfig:(nullable MBNNTileEndpointConfiguration *)hdEndpointConfig;
 
 /** Local directory with routing tiles for a cache. If empty, no tiles on disk will be read/written */
 @property (nonatomic, readonly, nonnull, copy) NSString *tilesPath;
@@ -35,6 +36,9 @@ __attribute__((visibility ("default")))
 
 /** API routing tiles configuration. If not set, no network requests will be made to ART */
 @property (nonatomic, readonly, nullable) MBNNTileEndpointConfiguration *endpointConfig;
+
+/** HD tiles configuration. If not set, no network requests will be made */
+@property (nonatomic, readonly, nullable) MBNNTileEndpointConfiguration *hdEndpointConfig;
 
 
 @end

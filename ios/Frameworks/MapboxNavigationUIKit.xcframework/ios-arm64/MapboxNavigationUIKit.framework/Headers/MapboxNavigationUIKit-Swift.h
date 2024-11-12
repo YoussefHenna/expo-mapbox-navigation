@@ -336,7 +336,6 @@ SWIFT_CLASS_NAMED("StylableButton")
 @end
 
 
-/// :nodoc:
 /// <code>Button</code> sets the tintColor according to the style.
 SWIFT_CLASS_NAMED("Button")
 @interface MBButton : MBStylableButton
@@ -354,7 +353,7 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit10BackButton")
 
 SWIFT_CLASS_NAMED("BannerContainerView")
 @interface MBBannerContainerView : UIView
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 - (void)didMoveToSuperview;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end
@@ -373,8 +372,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit29BannerDismissalViewController")
 
 @class UITraitCollection;
 
-/// A banner view that contains the current step instruction along a route and responds to tap and
-/// swipe gestures, as the base of <code>InstructionsCardView</code> and <code>InstructionsBannerView</code>.
+/// A banner view that contains the current step instruction along a route and responds to tap and swipe gestures, as
+/// the base of <code>InstructionsCardView</code> and <code>InstructionsBannerView</code>.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit26BaseInstructionsBannerView")
 @interface BaseInstructionsBannerView : UIControl
 /// A <code>Boolean</code> value controls whether the banner view reponds to swipe gestures. Defaults to <code>false</code>.
@@ -396,6 +395,7 @@ SWIFT_PROTOCOL_NAMED("BimodalCache")
 @end
 
 
+/// The container for the bottom UI components.
 SWIFT_CLASS_NAMED("BottomBannerView")
 @interface MBBottomBannerView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -403,18 +403,19 @@ SWIFT_CLASS_NAMED("BottomBannerView")
 @end
 
 
-/// A user interface element designed to display the estimated arrival time, distance, and time remaining, as well as give the user a control the cancel the navigation session.
+/// A user interface element designed to display the estimated arrival time, distance, and time remaining, as well as
+/// give the user a control the cancel the navigation session.
 IB_DESIGNABLE
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit26BottomBannerViewController")
 @interface BottomBannerViewController : UIViewController
 /// Initializes a <code>BottomBannerViewController</code> that provides ETA, Distance to arrival, and Time to arrival.
-/// \param nibNameOrNil Ignored.
+/// \param nibNameOrNil Ignored
 ///
-/// \param nibBundleOrNil Ignored.
+/// \param nibBundleOrNil Ignored
 ///
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
 /// Initializes a <code>BottomBannerViewController</code> that provides ETA, Distance to arrival, and Time to arrival.
-/// \param aDecoder Ignored.
+/// \param aDecoder <code>NSCoder</code>.
 ///
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)viewWillDisappear:(BOOL)animated;
@@ -433,6 +434,9 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit17BottomPaddingView")
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
+
+
+
 
 
 
@@ -470,11 +474,16 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit18CarPlayCompassView")
 
 
 /// <code>CarPlayManager</code> is the main object responsible for orchestrating interactions with a Mapbox map on CarPlay.
-/// Messages declared in the <code>CPApplicationDelegate</code> protocol should be sent to this object in the containing application’s application delegate. Implement <code>CarPlayManagerDelegate</code> in the containing application and assign an instance to the <code>delegate</code> property of your <code>CarPlayManager</code> instance.
+/// Messages declared in the <code>CPTemplateApplicationSceneDelegate</code> protocol should be sent to this object in the
+/// containing
+/// application’s application delegate. Implement <code>CarPlayManagerDelegate</code> in the containing application and assign an
+/// instance to the <code>delegate</code> property of your <code>CarPlayManager</code> instance.
 /// note:
 /// It is very important you have a single <code>CarPlayManager</code> instance at any given time.
 /// important:
-/// <code>CarPlayManager</code> view will start a Free Drive session by default when CarPlay interface is connected. You can change default behavior using <code>CarPlayManager.startFreeDriveAutomatically</code> property. For more information, see the “<a href="https://docs.mapbox.com/ios/beta/navigation/guides/pricing/">Pricing</a>” guide.
+/// <code>CarPlayManager</code> view will start a Free Drive session by default when CarPlay interface is
+/// connected. You can change default behavior using <code>CarPlayManager/startFreeDriveAutomatically</code> property. For more
+/// information, see the “<a href="https://docs.mapbox.com/ios/navigation/guides/pricing/">Pricing</a>” guide.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit14CarPlayManager")
 @interface CarPlayManager : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -483,6 +492,23 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit14CarPlayManager")
 
 
 
+
+@class UIApplication;
+@class CPInterfaceController;
+@class CPWindow;
+
+SWIFT_DEPRECATED_MSG("Use CPTemplateApplicationSceneDelegate methods instead")
+@interface CarPlayManager (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPApplicationDelegate>
+- (void)application:(UIApplication * _Nonnull)application didConnectCarInterfaceController:(CPInterfaceController * _Nonnull)interfaceController toWindow:(CPWindow * _Nonnull)window;
+- (void)application:(UIApplication * _Nonnull)application didDisconnectCarInterfaceController:(CPInterfaceController * _Nonnull)interfaceController fromWindow:(CPWindow * _Nonnull)window;
+@end
+
+@class CPTemplateApplicationScene;
+
+@interface CarPlayManager (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPTemplateApplicationSceneDelegate>
+- (void)templateApplicationScene:(CPTemplateApplicationScene * _Nonnull)templateApplicationScene didConnectInterfaceController:(CPInterfaceController * _Nonnull)interfaceController toWindow:(CPWindow * _Nonnull)window;
+- (void)templateApplicationScene:(CPTemplateApplicationScene * _Nonnull)templateApplicationScene didDisconnectInterfaceController:(CPInterfaceController * _Nonnull)interfaceController fromWindow:(CPWindow * _Nonnull)window;
+@end
 
 @class CPTemplate;
 
@@ -493,14 +519,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit14CarPlayManager")
 - (void)templateDidDisappear:(CPTemplate * _Nonnull)template_ animated:(BOOL)animated;
 @end
 
-@class UIApplication;
-@class CPInterfaceController;
-@class CPWindow;
-
-@interface CarPlayManager (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPApplicationDelegate>
-- (void)application:(UIApplication * _Nonnull)application didConnectCarInterfaceController:(CPInterfaceController * _Nonnull)interfaceController toWindow:(CPWindow * _Nonnull)window;
-- (void)application:(UIApplication * _Nonnull)application didDisconnectCarInterfaceController:(CPInterfaceController * _Nonnull)interfaceController fromWindow:(CPWindow * _Nonnull)window;
-@end
 
 
 
@@ -530,13 +548,18 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit14CarPlayManager")
 @end
 
 
-/// <code>CarPlayMapViewController</code> is responsible for administering the Mapbox map, the interface styles and the map template buttons to display on CarPlay.
+/// <code>CarPlayMapViewController</code> is responsible for administering the Mapbox map, the interface styles and the map
+/// template buttons to display on CarPlay.
 /// important:
-/// Loading <code>CarPlayMapViewController</code> view will start a Free Drive session by default. You can change default behavior using <code>CarPlayMapViewController.startFreeDriveAutomatically</code> property. For more information, see the “<a href="https://docs.mapbox.com/ios/beta/navigation/guides/pricing/">Pricing</a>” guide.
+/// Loading <code>CarPlayMapViewController</code> view will start a Free Drive session by default. You can change
+/// default behavior using <code>CarPlayMapViewController/startFreeDriveAutomatically</code> property. For more information, see
+/// the “<a href="https://docs.mapbox.com/ios/navigation/guides/pricing/">Pricing</a>” guide.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit24CarPlayMapViewController")
 @interface CarPlayMapViewController : UIViewController
-/// Returns a <code>CarPlayMapViewController</code> object initialized from data in a given unarchiver.
-/// \param coder An unarchiver object.
+/// Returns nil.
+/// important:
+/// The `CarPlayMapViewController`` creation with the decoder is not supported.
+/// \param decoder An unarchiver object.
 ///
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder OBJC_DESIGNATED_INITIALIZER;
 - (void)loadView;
@@ -548,12 +571,12 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit24CarPlayMapViewController")
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil SWIFT_UNAVAILABLE;
 @end
 
-
 @class CPSessionConfiguration;
 
 @interface CarPlayMapViewController (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPSessionConfigurationDelegate>
-- (void)sessionConfiguration:(CPSessionConfiguration * _Nonnull)sessionConfiguration contentStyleChanged:(CPContentStyle)contentStyle SWIFT_AVAILABILITY(ios,introduced=13.0);
+- (void)sessionConfiguration:(CPSessionConfiguration * _Nonnull)sessionConfiguration contentStyleChanged:(CPContentStyle)contentStyle;
 @end
+
 
 
 
@@ -562,7 +585,7 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit24CarPlayMapViewController")
 /// <code>NavigationViewController</code>
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit31CarPlayNavigationViewController")
 @interface CarPlayNavigationViewController : UIViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewWillDisappear:(BOOL)animated;
@@ -575,20 +598,17 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit31CarPlayNavigationViewController")
 
 
 @interface CarPlayNavigationViewController (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPSessionConfigurationDelegate>
-- (void)sessionConfiguration:(CPSessionConfiguration * _Nonnull)sessionConfiguration contentStyleChanged:(CPContentStyle)contentStyle SWIFT_AVAILABILITY(ios,introduced=13.0);
+- (void)sessionConfiguration:(CPSessionConfiguration * _Nonnull)sessionConfiguration contentStyleChanged:(CPContentStyle)contentStyle;
 @end
 
-@class CPListTemplate;
-@class CPListItem;
-
-@interface CarPlayNavigationViewController (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPListTemplateDelegate>
-- (void)listTemplate:(CPListTemplate * _Nonnull)listTemplate didSelectListItem:(CPListItem * _Nonnull)item completionHandler:(void (^ _Nonnull)(void))completionHandler;
-@end
 
 
 
 /// <code>CarPlaySearchController</code> is the main object responsible for managing the search feature on CarPlay.
-/// Messages declared in the <code>CPApplicationDelegate</code> protocol should be sent to this object in the containing application’s application delegate. Implement <code>CarPlaySearchControllerDelegate</code> in the containing application and assign an instance to the <code>delegate</code> property of your <code>CarPlaySearchController</code> instance.
+/// Messages declared in the <code>CPTemplateApplicationSceneDelegate</code> protocol should be sent to this object in the
+/// containing
+/// application’s application delegate. Implement <code>CarPlaySearchControllerDelegate</code> in the containing application and
+/// assign an instance to the <code>delegate</code> property of your <code>CarPlaySearchController</code> instance.
 /// note:
 /// It is very important you have a single <code>CarPlaySearchController</code> instance at any given time.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit23CarPlaySearchController")
@@ -597,8 +617,12 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit23CarPlaySearchController")
 @end
 
 
+@class CPListTemplate;
+@class CPListItem;
+
+SWIFT_DEPRECATED_MSG("CPListItem.handler is used instead")
 @interface CarPlaySearchController (SWIFT_EXTENSION(MapboxNavigationUIKit)) <CPListTemplateDelegate>
-- (void)listTemplate:(CPListTemplate * _Nonnull)listTemplate didSelectListItem:(CPListItem * _Nonnull)item completionHandler:(void (^ _Nonnull)(void))completionHandler;
+- (void)listTemplate:(CPListTemplate * _Nonnull)listTemplate didSelectListItem:(CPListItem * _Nonnull)item completionHandler:(void (^ _Nonnull)(void))completionHandler SWIFT_DEPRECATED_MSG("CPListItem.handler is used instead");
 @end
 
 @class CPSearchTemplate;
@@ -614,20 +638,24 @@ enum StyleType : NSInteger;
 @class NSURL;
 @class NavigationMapView;
 
-/// <code>Style</code> is a convenient wrapper for styling the appearance of various interface components throughout the Navigation UI.
-/// Styles are applied globally using <code>UIAppearance</code>. You should call <code>Style.apply()</code> to apply the style to the <code>NavigationViewController</code>.
+/// <code>Style</code> is a convenient wrapper for styling the appearance of various interface components throughout the
+/// Navigation UI.
+/// Styles are applied globally using <code>UIAppearance</code>. You should call <code>Style/apply()</code> to apply the style to the
+/// <code>NavigationViewController</code>.
 SWIFT_CLASS_NAMED("Style")
 @interface MBStyle : NSObject
 /// Sets the tint color for guidance arrow, highlighted text, progress bar and more.
 @property (nonatomic, strong) UIColor * _Nullable tintColor;
 /// Sets the font family for all labels.
 @property (nonatomic, copy) NSString * _Nullable fontFamily;
-/// Describes the situations in which the style should be used. By default, the style will be used during the daytime.
+/// Describes the situations in which the style should be used. By default, the style will be used during the
+/// daytime.
 @property (nonatomic) enum StyleType styleType;
 /// URL of the style to display on the map during turn-by-turn navigation.
 @property (nonatomic, copy) NSURL * _Nonnull mapStyleURL;
-/// URL of the style to display on the map when previewing a route, for example on CarPlay or your own route preview map.
-/// Defaults to same style as <code>mapStyleURL</code>.
+/// URL of the style to display on the map when previewing a route, for example on CarPlay or your own route preview
+/// map.
+/// Defaults to same style as <code>Style/mapStyleURL</code>.
 @property (nonatomic, copy) NSURL * _Nonnull previewMapStyleURL;
 /// Applies the style for all changed properties.
 - (void)apply;
@@ -673,7 +701,9 @@ SWIFT_CLASS_NAMED("DismissButton")
 @class NSAttributedString;
 
 /// A formatter that provides localized representations of distance units and measurements.
-/// This class is limited to <code>UnitLength</code> and its behavior is more specific to distances than <code>MeasurementFormatter</code>. By default, the class automatically localizes and rounds the measurement using <code>Measurement.localized(into:)</code> and <code>Locale.nationalizedCurrent</code>. Measurements can be formatted into either strings or attributed strings.
+/// This class is limited to <code>UnitLength</code> and its behavior is more specific to distances than <code>MeasurementFormatter</code>. By
+/// default, the class automatically localizes and rounds the measurement using <code>Measurement.localized(into:)</code> and
+/// <code>Locale.nationalizedCurrent</code>. Measurements can be formatted into either strings or attributed strings.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit17DistanceFormatter")
 @interface DistanceFormatter : NSFormatter <NSSecureCoding>
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL supportsSecureCoding;)
@@ -686,7 +716,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL supportsSecureCoding;)
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS_NAMED("DistanceLabel")
 @interface MBDistanceLabel : MBStylableLabel
 @property (nonatomic, strong) UIColor * _Nonnull valueTextColor;
@@ -707,7 +736,6 @@ SWIFT_CLASS_NAMED("DistanceRemainingLabel")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit16EndOfRouteButton")
 @interface EndOfRouteButton : MBStylableButton
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -724,7 +752,6 @@ SWIFT_CLASS_NAMED("StylableTextView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteCommentView")
 @interface EndOfRouteCommentView : MBStylableTextView
 - (nonnull instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer * _Nullable)textContainer OBJC_DESIGNATED_INITIALIZER SWIFT_AVAILABILITY(ios,introduced=7.0);
@@ -732,7 +759,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteCommentView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteContentView")
 @interface EndOfRouteContentView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -740,7 +766,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteContentView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteStaticLabel")
 @interface EndOfRouteStaticLabel : MBStylableLabel
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -748,7 +773,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit21EndOfRouteStaticLabel")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit20EndOfRouteTitleLabel")
 @interface EndOfRouteTitleLabel : MBStylableLabel
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -768,10 +792,11 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit8ExitView")
 @class UIGestureRecognizer;
 @class UITouch;
 
-/// A view controller containing a grid of buttons the user can use to denote an issue their current navigation experience.
+/// A view controller containing a grid of buttons the user can use to denote an issue their current navigation
+/// experience.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit22FeedbackViewController")
 @interface FeedbackViewController : UIViewController <UIGestureRecognizerDelegate>
-/// Instantly dismisses the FeedbackViewController if it is currently presented.
+/// Instantly dismisses the <code>FeedbackViewController</code> if it is currently presented.
 - (void)dismissFeedback;
 - (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
@@ -821,7 +846,7 @@ SWIFT_CLASS_NAMED("FloatingButton")
 @end
 
 
-/// <code>GenericRouteShield</code> is a class to render routes that do not have route-shields.
+/// GenericRouteShield` is a class to render routes that do not have route-shields.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit18GenericRouteShield")
 @interface GenericRouteShield : MBStylableView
 @property (nonatomic, strong) UIColor * _Nullable foregroundColor;
@@ -831,7 +856,7 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit18GenericRouteShield")
 @end
 
 
-/// :nodoc:
+/// The label to display navigation instructions.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit16InstructionLabel")
 @interface InstructionLabel : MBStylableLabel
 - (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection;
@@ -841,8 +866,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit16InstructionLabel")
 
 
 /// A banner view that contains the current step instruction and responds to tap and swipe gestures.
-/// This class responds and gets updated as the user progresses along a route according to the
-/// <code>NavigationComponent</code> and <code>BaseInstructionsBannerView</code> protocol.
+/// This class responds and gets updated as the user progresses along a route according to the <code>NavigationComponent</code>
+/// and <code>BaseInstructionsBannerView</code> protocol.
 IB_DESIGNABLE
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit22InstructionsBannerView")
 @interface InstructionsBannerView : BaseInstructionsBannerView
@@ -851,7 +876,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit22InstructionsBannerView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit20InstructionsCardCell")
 @interface InstructionsCardCell : UICollectionViewCell
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -862,17 +886,16 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit20InstructionsCardCell")
 /// A container view for the information currently displayed in <code>InstructionsCardViewController</code>.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit29InstructionsCardContainerView")
 @interface InstructionsCardContainerView : MBStylableView
-/// Color of the background that will be used in case if distance to the next maneuver is higher
-/// than threshold distance, defined in <code>InstructionCardHighlightDistance</code>.
+/// Color of the background that will be used in case if distance to the next maneuver is higher than threshold
+/// distance.
 @property (nonatomic, strong) UIColor * _Nonnull customBackgroundColor;
-/// Color of the background that will be used when remaining distance to the next maneuver is below
-/// threshold distance, defined in <code>InstructionCardHighlightDistance</code>.
+/// Color of the background that will be used when remaining distance to the next maneuver is below threshold
+/// distance.
 @property (nonatomic, strong) UIColor * _Nonnull highlightedBackgroundColor;
 /// Color of the separator between <code>InstructionsCardView</code> or <code>LanesView</code>/<code>NextBannerView</code>.
 @property (nonatomic, strong) UIColor * _Nonnull separatorColor;
-/// Color of the separator between <code>InstructionsCardView</code> or <code>LanesView</code>/<code>NextBannerView</code> that will
-/// be used when remaining distance to the next maneuver is below threshold distance, defined in
-/// <code>InstructionCardHighlightDistance</code>.
+/// Color of the separator between <code>InstructionsCardView</code> or <code>LanesView</code>/<code>NextBannerView</code> that will be used
+/// when remaining distance to the next maneuver is below threshold distance.
 @property (nonatomic, strong) UIColor * _Nonnull highlightedSeparatorColor;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder SWIFT_UNAVAILABLE;
@@ -880,7 +903,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit29InstructionsCardContainerView")
 @end
 
 
-/// :nodoc:
+/// A view that displays the current maneuver instruction as a “card” resembling a user notification.
+/// A subsequent maneuver is always partially visible on one side of the view.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit20InstructionsCardView")
 @interface InstructionsCardView : BaseInstructionsBannerView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -890,7 +914,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit20InstructionsCardView")
 @class UIImage;
 
 /// A junction view shows an image depicting the layout of a highway junction.
-/// As the user approaches certain junctions, an enlarged illustration of the junction appears in this view to help the user understand a complex maneuver. A junction view only appears when the relevant data is available.
+/// As the user approaches certain junctions, an enlarged illustration of the junction appears in this view to help the
+/// user understand a complex maneuver. A junction view only appears when the relevant data is available.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit12JunctionView")
 @interface JunctionView : UIImageView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -900,23 +925,21 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit12JunctionView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit8LaneView")
 @interface LaneView : UIView
 @property (nonatomic, readonly) CGSize intrinsicContentSize;
-/// Color of the maneuver direction (applied only when <code>LaneView.isUsable</code> is set to <code>true</code>). In case if
-/// <code>LaneView.showHighlightedColors</code> is set to <code>true</code> this value is not used, <code>LaneView.primaryColorHighlighted</code>
-/// is used instead.
+/// Color of the maneuver direction. In case if <code>LaneView/showHighlightedColors</code> is set to <code>true</code> this value is
+/// not used, <code>LaneView/primaryColorHighlighted</code> is used instead.
 @property (nonatomic, strong) UIColor * _Nonnull primaryColor;
-/// Color of the directions that the lane is reserved for (except the one that is applicable to the
-/// current route). In case if <code>LaneView.showHighlightedColors</code> is set to <code>true</code> this value is not used,
-/// <code>LaneView.secondaryColorHighlighted</code> is used instead.
+/// Color of the directions that the lane is reserved for (except the one that is applicable to the current route).
+/// In case if <code>LaneView/showHighlightedColors</code> is set to <code>true</code> this value is not used,
+/// <code>LaneView/secondaryColorHighlighted</code> is used instead.
 @property (nonatomic, strong) UIColor * _Nonnull secondaryColor;
-/// Highlighted color of the directions that the lane is reserved for (except the one that is
-/// applicable to the current route).
+/// Highlighted color of the directions that the lane is reserved for (except the one that is applicable to the
+/// current route).
 @property (nonatomic, strong) UIColor * _Nonnull primaryColorHighlighted;
-/// Highlighted color of the directions that the lane is reserved for (except the one that is applicable
-/// to the current route).
+/// Highlighted color of the directions that the lane is reserved for (except the one that is applicable to the
+/// current route).
 @property (nonatomic, strong) UIColor * _Nonnull secondaryColorHighlighted;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder OBJC_DESIGNATED_INITIALIZER;
@@ -1008,7 +1031,7 @@ typedef SWIFT_ENUM_NAMED(NSInteger, LanesStyleKitResizingBehavior, "ResizingBeha
 
 
 
-/// :nodoc:
+/// A view that is used to show a lanes’ guidance info.
 IB_DESIGNABLE
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit9LanesView")
 @interface LanesView : UIView
@@ -1034,7 +1057,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit12ManeuverView")
 
 enum MBManeuversStyleKitResizingBehavior : NSInteger;
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit17ManeuversStyleKit")
 @interface ManeuversStyleKit : NSObject
 + (void)drawArrow180rightWithFrame:(CGRect)targetFrame resizing:(enum MBManeuversStyleKitResizingBehavior)resizing primaryColor:(UIColor * _Nonnull)primaryColor size:(CGSize)size;
@@ -1070,48 +1092,48 @@ typedef SWIFT_ENUM_NAMED(NSInteger, MBManeuversStyleKitResizingBehavior, "Resizi
 /// <h2>Components</h2>
 /// <ol>
 ///   <li>
-///     InstructionsBannerView
+///     <code>InstructionsBannerView</code>
 ///   </li>
 ///   <li>
-///     InformationStackView
+///     <code>InformationStackView</code>
 ///   </li>
 ///   <li>
-///     BottomBannerView
+///     <code>BottomBannerView</code>
 ///   </li>
 ///   <li>
-///     ResumeButton
+///     <code>ResumeButton</code>
 ///   </li>
 ///   <li>
-///     WayNameLabel
+///     <code>WayNameLabel</code>
 ///   </li>
 ///   <li>
-///     FloatingStackView
+///     <code>FloatingStackView</code>
 ///   </li>
 ///   <li>
-///     NavigationMapView
+///     <code>NavigationMapView</code>
 ///   </li>
 ///   <li>
-///     SpeedLimitView
+///     <code>SpeedLimitView</code>
 ///   </li>
 /// </ol>
 /// \code
-/// +--------------------+
-/// |         1          |
-/// +--------------------+
-/// |         2          |
-/// +---+------------+---+
-/// | 8 |            |   |
-/// +---+            | 6 |
-/// |                |   |
-/// |         7      +---+
-/// |                    |
-/// |                    |
-/// |                    |
-/// +------------+       |
-/// |  4  ||  5  |       |
-/// +------------+-------+
-/// |         3          |
-/// +--------------------+
+///  +--------------------+
+///  |         1          |
+///  +--------------------+
+///  |         2          |
+///  +---+------------+---+
+///  | 8 |            |   |
+///  +---+            | 6 |
+///  |                |   |
+///  |         7      +---+
+///  |                    |
+///  |                    |
+///  |                    |
+///  +------------+       |
+///  |  4  ||  5  |       |
+///  +------------+-------+
+///  |         3          |
+///  +--------------------+
 ///
 /// \endcode
 IB_DESIGNABLE
@@ -1124,22 +1146,35 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit14NavigationView")
 
 
 
+@interface NavigationView (SWIFT_EXTENSION(MapboxNavigationUIKit))
+- (void)traitCollectionDidChange:(UITraitCollection * _Nullable)previousTraitCollection;
+@end
+
 @protocol UIContentContainer;
 
-/// <code>NavigationViewController</code> is a fully-featured user interface for turn-by-turn navigation. Do not confuse it with the <code>NavigationController</code> class in UIKit.
-/// You initialize a navigation view controller based on a predefined <code>NavigationRoutes</code> and <code>NavigationOptions</code>. As the user progresses along the route, the navigation view controller shows their surroundings and the route line on a map. Banners above and below the map display key information pertaining to the route. A list of steps and a feedback mechanism are accessible via the navigation view controller.
-/// Route initialization should be configured before view controller’s <code>view</code> is loaded. Usually, that is automatically done during any of the <code>init</code>s, but you may also change this settings via <code>prepareViewLoading(navigationRoutes:, navigationOptions:)</code> methods. For example that could be handy while configuring a ViewController for a <code>UIStoryboardSegue</code>.
-/// To be informed of significant events and decision points as the user progresses along the route, set the <code>delegate</code> property to the <code>NavigationViewControllerDelegate</code>.
+/// <code>NavigationViewController</code> is a fully-featured user interface for turn-by-turn navigation. Do not confuse it with
+/// the <code>NavigationController</code> class in UIKit.
+/// You initialize a navigation view controller based on a predefined <code>NavigationRoutes</code> and <code>NavigationOptions</code>. As
+/// the user progresses along the route, the navigation view controller shows their surroundings and the route line on a
+/// map. Banners above and below the map display key information pertaining to the route. A list of steps and a feedback
+/// mechanism are accessible via the navigation view controller.
+/// Route initialization should be configured before view controller’s <code>view</code> is loaded. Usually, that is automatically
+/// done during any of the <code>init</code>s, but you may also change this settings via
+/// <code>prepareViewLoading(navigationRoutes:navigationOptions:)</code> methods. For example that could be handy while
+/// configuring a ViewController for a <code>UIStoryboardSegue</code>.
+/// To be informed of significant events and decision points as the user progresses along the route, set the
+/// <code>delegate</code> property to the <code>NavigationViewControllerDelegate</code>.
 /// <code>CarPlayNavigationViewController</code> manages the corresponding user interface on a CarPlay screen.
 /// important:
-/// Creating an instance of this type with will start an Active
-/// Guidance session. The trip session is stopped when the instance is deallocated. For more info read the
-/// <a href="https://docs.mapbox.com/ios/beta/navigation/guides/pricing/">Pricing Guide</a>.
+/// Creating an instance of this type with will start an Active Guidance session. The trip session is
+/// stopped when the instance is deallocated. For more info read the
+/// <a href="https://docs.mapbox.com/ios/navigation/guides/pricing/">Pricing Guide</a>.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit24NavigationViewController")
 @interface NavigationViewController : UIViewController
 /// The <code>NavigationMapView</code> displayed inside the view controller.
 /// note:
-/// Do not change <code>NavigationMapView.delegate</code> property; instead, implement the corresponding methods on <code>NavigationViewControllerDelegate</code>.
+/// Do not change <code>NavigationMapView.delegate</code> property; instead, implement the corresponding methods on
+/// <code>NavigationViewControllerDelegate</code>.
 @property (nonatomic, strong) NavigationMapView * _Nullable navigationMapView;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)loadView;
@@ -1164,7 +1199,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit24NavigationViewController")
 
 
 
-/// :nodoc:
 IB_DESIGNABLE
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit14NextBannerView")
 @interface NextBannerView : UIView
@@ -1175,7 +1209,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit14NextBannerView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit20NextInstructionLabel")
 @interface NextInstructionLabel : InstructionLabel
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -1183,7 +1216,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit20NextInstructionLabel")
 @end
 
 
-/// The dark style for Mapbox Navigation SDK. Only will be applied when necessary and if <code>automaticallyAdjustStyleForSunPosition</code>.
+/// The dark style for Mapbox Navigation SDK. Only will be applied when necessary and if
+/// <code>StyleManager/automaticallyAdjustsStyleForTimeOfDay</code> is <code>true</code>.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit10NightStyle")
 @interface NightStyle : DayStyle
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1225,14 +1259,14 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit13PreviewButton")
 ///   </li>
 ///   <li>
 ///     <code>NavigationView</code> - wraps <code>NavigationMapView</code> and provides the ability to show drop-in related UI
-///     components like <code>SpeedLimitView</code>, <code>WayNameView</code>, top and bottom <code>BannerContainerView</code>s etc
+///     components like <code>SpeedLimitView</code>, <code>WayNameView</code>, top and bottom <code>BannerContainerView</code>s etc.
 ///   </li>
 /// </ul>
 /// <code>PreviewViewController</code> works as an initial step before switching to the active navigation.
 /// Use <code>NavigationViewController</code> for turn-by-turn navigation experience.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit21PreviewViewController")
 @interface PreviewViewController : UIViewController
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER SWIFT_UNAVAILABLE;
 - (void)loadView;
 - (void)viewWillAppear:(BOOL)animated;
 - (void)viewDidAppear:(BOOL)animated;
@@ -1245,7 +1279,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit21PreviewViewController")
 
 
 
-/// :nodoc:
 SWIFT_CLASS_NAMED("PrimaryLabel")
 @interface MBPrimaryLabel : InstructionLabel
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -1253,7 +1286,7 @@ SWIFT_CLASS_NAMED("PrimaryLabel")
 @end
 
 
-/// :nodoc:
+/// The button to return to the following navigation camera.
 IB_DESIGNABLE
 SWIFT_CLASS_NAMED("ResumeButton")
 @interface MBResumeButton : UIControl
@@ -1281,7 +1314,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit26RoutePreviewViewController")
 
 
 
-/// :nodoc:
 SWIFT_CLASS_NAMED("SecondaryLabel")
 @interface MBSecondaryLabel : InstructionLabel
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -1340,7 +1372,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit16StandardDayStyle")
 @end
 
 
-/// <code>StandardNightStyle</code> is the default night style for Mapbox Navigation SDK. Only will be applied when necessary and if <code>automaticallyAdjustStyleForSunPosition</code>.
+/// <code>StandardNightStyle</code> is the default night style for Mapbox Navigation SDK. Only will be applied when necessary and
+/// if <code>StyleManager/automaticallyAdjustsStyleForTimeOfDay</code> is <code>true</code> .
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit18StandardNightStyle")
 @interface StandardNightStyle : NightStyle
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1355,8 +1388,8 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit11StartButton")
 @end
 
 
-/// :nodoc:
-/// A translucent bar that responds to tap and swipe gestures, similar to a scrubber or stepper control, and expands and collapses to maximize screen real estate.
+/// A translucent bar that responds to tap and swipe gestures, similar to a scrubber or stepper control, and expands and
+/// collapses to maximize screen real estate.
 IB_DESIGNABLE
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit10StatusView")
 @interface StatusView : UIControl
@@ -1373,7 +1406,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit20StepInstructionsView")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS_NAMED("StepListIndicatorView")
 @interface MBDraggableView : UIView
 @property (nonatomic, copy) NSArray<UIColor *> * _Nonnull gradientColors;
@@ -1392,7 +1424,6 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit17StepTableViewCell")
 @end
 
 
-/// :nodoc:
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit19StepsBackgroundView")
 @interface StepsBackgroundView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -1400,7 +1431,7 @@ SWIFT_CLASS("_TtC21MapboxNavigationUIKit19StepsBackgroundView")
 @end
 
 
-/// :nodoc:
+/// The UI component for displaying a whole list of the step instructions.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit19StepsViewController")
 @interface StepsViewController : UIViewController
 - (void)viewDidLoad;
@@ -1453,6 +1484,7 @@ SWIFT_CLASS_NAMED("TimeRemainingLabel")
 @end
 
 
+/// The container for the top UI components.
 SWIFT_CLASS_NAMED("TopBannerView")
 @interface MBTopBannerView : UIView
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -1460,8 +1492,9 @@ SWIFT_CLASS_NAMED("TopBannerView")
 @end
 
 
-/// A view controller that displays the current maneuver instruction as a “banner” flush with the edges of the containing view. The user swipes to one side to preview a subsequent maneuver.
-/// This class is the default top banner view controller used by <code>NavigationOptions</code> and <code>NavigationViewController</code>. <code>InstructionsCardViewController</code> provides an alternative, user notification–like interface.
+/// A view controller that displays the current maneuver instruction as a “banner” flush with the edges of the
+/// containing view. The user swipes to one side to preview a subsequent maneuver.
+/// This class is the default top banner view controller used by <code>NavigationOptions</code> and <code>NavigationViewController</code>.
 SWIFT_CLASS("_TtC21MapboxNavigationUIKit23TopBannerViewController")
 @interface TopBannerViewController : UIViewController
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
@@ -1514,9 +1547,9 @@ SWIFT_CLASS_NAMED("WayNameLabel")
 @class CALayer;
 
 /// A host view for <code>WayNameLabel</code> that shows a road name and a shield icon.
-/// <code>WayNameView</code> is hidden or shown depending on the road name information availability. In case if
-/// such information is not present, <code>WayNameView</code> is automatically hidden. If you’d like to completely
-/// hide <code>WayNameView</code> set <code>WayNameView.isHidden</code> property to <code>true</code>.
+/// <code>WayNameView</code> is hidden or shown depending on the road name information availability. In case if such information
+/// is not present, <code>WayNameView</code> is automatically hidden. If you’d like to completely hide <code>WayNameView</code> set
+/// <code>WayNameView.isHidden</code> property to <code>true</code>.
 SWIFT_CLASS_NAMED("WayNameView")
 @interface MBWayNameView : UIView
 @property (nonatomic, readonly, strong) CALayer * _Nonnull layer;
@@ -1526,8 +1559,7 @@ SWIFT_CLASS_NAMED("WayNameView")
 @property (nonatomic, strong) UIColor * _Nullable borderColor;
 /// The width of the <code>WayNameView</code>’s border.
 @property (nonatomic) CGFloat borderWidth;
-/// The radius of the <code>WayNameView</code>’s corner. By default corner radius is set to half of
-/// <code>WayNameView</code>’s height.
+/// The radius of the <code>WayNameView</code>’s corner. By default corner radius is set to half of <code>WayNameView</code>’s height.
 @property (nonatomic) CGFloat cornerRadius;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)decoder OBJC_DESIGNATED_INITIALIZER;

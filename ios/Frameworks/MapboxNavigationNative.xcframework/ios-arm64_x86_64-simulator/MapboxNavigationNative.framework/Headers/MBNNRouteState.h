@@ -11,8 +11,9 @@ typedef NS_ENUM(NSInteger, MBNNRouteState)
      */
     MBNNRouteStateInvalid,
     /**
-     * We have initialized route, but haven't started route tracking yet: all route-related fields are valid
-     * All route-related fields(`remainingLegDistance`, `remainingLegDuration`, `stepIndex` etc) are VALID.
+     * We have initialized route, but haven't started route tracking yet.
+     * Progress route-related fields(`remainingLegDistance`, `remainingLegDuration`, `stepIndex` etc) are valid,
+     * but if there were no location updates before, navigator uses the route's starting point as the current position.
      */
     MBNNRouteStateInitialized,
     /**

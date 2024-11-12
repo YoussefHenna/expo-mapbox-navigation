@@ -19,6 +19,14 @@ __attribute__((visibility ("default")))
                              shapeIndex:(uint32_t)shapeIndex
                       intersectionIndex:(uint32_t)intersectionIndex;
 
+- (nonnull instancetype)initWithRouteId:(nonnull NSString *)routeId
+                               legIndex:(uint32_t)legIndex
+                              stepIndex:(uint32_t)stepIndex
+                          geometryIndex:(uint32_t)geometryIndex
+                             shapeIndex:(uint32_t)shapeIndex
+                      intersectionIndex:(uint32_t)intersectionIndex
+                      isForkPointPassed:(BOOL)isForkPointPassed;
+
 /**
  * Unique route id.
  * For routes, whose directions response contains uuid: UUID + "#" + routeIndex
@@ -42,6 +50,12 @@ __attribute__((visibility ("default")))
 
 /** index in step bounds(i.e. on each new step we start indexing from 0) */
 @property (nonatomic, readonly) uint32_t intersectionIndex;
+
+/**
+ *  True if the alternative is passed and probably will soon be removed.
+ *  SDK should hide this route from UI, but keep it in the list of alternatives, as due to map matching error it may become a main route.
+ */
+@property (nonatomic, readonly) BOOL isForkPointPassed;
 
 
 - (BOOL)isEqualToRouteIndices:(nonnull MBNNRouteIndices *)other;

@@ -6,11 +6,6 @@
 #import <MapboxNavigationNative/MBNNSetRouteCallback_Internal.h>
 
 @interface MBNNNavigator ()
-- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
-                                 cache:(nonnull MBNNCacheHandle *)cache
-                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
-                                router:(nullable id<MBNNRouterInterface>)router;
-
 - (void)setRoutesForParams:(nullable MBNNSetRoutesParams *)params
                     reason:(MBNNSetRoutesReason)reason
                   callback:(nonnull MBNNSetRouteCallback)callback;
@@ -31,6 +26,6 @@
 - (void)setRerouteControllerForController:(nonnull id<MBNNRerouteControllerInterface>)controller;
 - (nonnull id<MBNNRerouteControllerInterface>)getRerouteController __attribute((ns_returns_retained));
 - (nonnull id<MBNNRerouteDetectorInterface>)getRerouteDetector __attribute((ns_returns_retained));
-- (nonnull id<MBNNRouteAlternativesControllerInterface>)getRouteAlternativesController __attribute((ns_returns_retained));
 - (nonnull id<MBNNTelemetry>)getTelemetryForEventsMetadataProvider:(nonnull id<MBNNEventsMetadataInterface>)eventsMetadataProvider __attribute((ns_returns_retained));
+- (nonnull id<MBNNRouterInterface>)getRouter __attribute((ns_returns_retained));
 @end

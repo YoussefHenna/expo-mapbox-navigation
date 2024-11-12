@@ -23,7 +23,7 @@ __attribute__((visibility ("default")))
 /** The name of the road. May be '/' if used for separation of road names. */
 @property (nonatomic, readonly, nonnull, copy) NSString *text;
 
-/** 2 letters language code or "Unspecified" or empty string */
+/** IETF BCP 47 language tag or "Unspecified" or empty string */
 @property (nonatomic, readonly, nonnull, copy) NSString *language;
 
 /** The base url for a shield image (legacy). */

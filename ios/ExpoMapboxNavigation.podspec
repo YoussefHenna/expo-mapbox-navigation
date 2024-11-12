@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'MapboxMaps', ENV['ExpoNavigationMapboxMapsVersion']
-  s.dependency 'Turf', '~> 2.4'
+  s.dependency 'Turf', '~> 3.0'
 
   s.source_files = "**/*.{h,m,swift}"
   s.exclude_files = ["Frameworks/*.xcframework/**/*.h"]
@@ -28,12 +28,12 @@ Pod::Spec.new do |s|
   ]
 
   s.vendored_frameworks=[
-    'Frameworks/MapboxNavigationCore.xcframework',
+    'Frameworks/_MapboxNavigationHelpers.xcframework',
     'Frameworks/MapboxDirections.xcframework',
-    'Frameworks/MapboxNavigationUIKit.xcframework',
-    'Frameworks/_MapboxNavigationUXPrivate.xcframework',
-    'Frameworks/Turf.xcframework',
+    'Frameworks/MapboxNavigationCore.xcframework',
     'Frameworks/MapboxNavigationNative.xcframework',
+    'Frameworks/MapboxNavigationUIKit.xcframework',
+    'Frameworks/Turf.xcframework',
   ]
 
   # Swift/Objective-C compatibility

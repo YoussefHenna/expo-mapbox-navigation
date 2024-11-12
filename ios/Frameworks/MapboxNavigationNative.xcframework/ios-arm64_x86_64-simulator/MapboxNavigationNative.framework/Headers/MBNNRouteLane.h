@@ -16,7 +16,8 @@ __attribute__((visibility ("default")))
 
 - (nonnull instancetype)initWithLaneId:(uint64_t)laneId
                        distanceFromEgo:(nullable NSNumber *)distanceFromEgo
-                            divergency:(nullable MBNNRouteLaneDivergency *)divergency;
+                            divergency:(nullable MBNNRouteLaneDivergency *)divergency
+            connectedLaneSequenceIndex:(uint32_t)connectedLaneSequenceIndex;
 
 /** Lane id in HD graph */
 @property (nonatomic, readonly) uint64_t laneId;
@@ -35,6 +36,9 @@ __attribute__((visibility ("default")))
  * in the future.
  */
 @property (nonatomic, readonly, nullable) MBNNRouteLaneDivergency *divergency;
+
+/** Index of a connected lane sequence in `connectedLaneSequences` to which the current lane belongs */
+@property (nonatomic, readonly) uint32_t connectedLaneSequenceIndex;
 
 
 - (BOOL)isEqualToRouteLane:(nonnull MBNNRouteLane *)other;

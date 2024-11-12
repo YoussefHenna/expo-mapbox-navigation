@@ -29,4 +29,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly, nonnull) MBNNMatchedLaneInfo *laneInfo;
 
 
+- (BOOL)isEqualToMatchedDetectedObject:(nonnull MBNNMatchedDetectedObject *)other;
+
 @end

@@ -25,4 +25,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) double percentAlong;
 
 
+- (BOOL)isEqualToLanePosition:(nonnull MBNNLanePosition *)other;
+
 @end

@@ -25,7 +25,7 @@ NS_SWIFT_NAME(Experimental)
  * @see https://www.hanshin-exp.co.jp/english/drive/first-time/etc.html
  * @param etcGateInfo Information about ETC gate which was just passed by vehicle
  */
-- (void)updateETCGateInfoForEtcGateInfo:(nonnull MBNNETCGateInfo *)etcGateInfo;
+- (void)updateETCGateInfoForEtcGateInfo:(nonnull MBNNETCGateInfo *)etcGateInfo __attribute__((deprecated));
 /**
  * Caution: Beta feature that cat be changed soon.
  *

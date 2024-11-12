@@ -16,6 +16,9 @@ NS_SWIFT_NAME(RouterInterface)
                      callbackDataRef:(nonnull MBNNRouterDataRefCallback)callbackDataRef;
 - (uint64_t)getRouteRefreshForOptions:(nonnull MBNNRouteRefreshOptions *)options
                              callback:(nonnull MBNNRouterRefreshCallback)callback;
+- (uint64_t)getRouteMapMatchedForMatchingUri:(nonnull NSString *)matchingUri
+                                     options:(nonnull MBNNGetRouteOptions *)options
+                             callbackDataRef:(nonnull MBNNRouterDataRefCallback)callbackDataRef;
 /**
  * Cancels the `getRoute` request using token.
  *
@@ -28,6 +31,12 @@ NS_SWIFT_NAME(RouterInterface)
  * @see `getRouteRefresh`. Cancels router request.
  */
 - (void)cancelRouteRefreshRequestForToken:(uint64_t)token;
+/**
+ * Cancels the `getRouteMapMatched` request using token.
+ *
+ * @see `getRouteMapMatched`. Cancels router request.
+ */
+- (void)cancelRouteMapMatchedRequestForToken:(uint64_t)token;
 /** Interrupts all in-progress requests. */
 - (void)cancelAll;
 @end

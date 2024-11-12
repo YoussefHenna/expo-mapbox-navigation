@@ -1,6 +1,7 @@
 // This file is generated and will be overwritten automatically.
 
 #import <Foundation/Foundation.h>
+#import <MapboxNavigationNative/MBNNMapboxAPI.h>
 #import <MapboxNavigationNative/MBNNRouterOrigin.h>
 #import <MapboxNavigationNative/MBNNSetRoutesReason.h>
 
@@ -19,6 +20,7 @@ __attribute__((visibility ("default")))
                                      legIndex:(uint32_t)legIndex
                                  routeRequest:(nullable NSString *)routeRequest
                                        origin:(MBNNRouterOrigin)origin
+                                    mapboxApi:(MBNNMapboxAPI)mapboxApi
                                        reason:(MBNNSetRoutesReason)reason
                                       routeId:(nullable NSString *)routeId;
 
@@ -29,6 +31,7 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) uint32_t legIndex;
 @property (nonatomic, readonly, nullable, copy) NSString *routeRequest;
 @property (nonatomic, readonly) MBNNRouterOrigin origin;
+@property (nonatomic, readonly) MBNNMapboxAPI mapboxApi;
 @property (nonatomic, readonly) MBNNSetRoutesReason reason;
 @property (nonatomic, readonly, nullable, copy) NSString *routeId;
 

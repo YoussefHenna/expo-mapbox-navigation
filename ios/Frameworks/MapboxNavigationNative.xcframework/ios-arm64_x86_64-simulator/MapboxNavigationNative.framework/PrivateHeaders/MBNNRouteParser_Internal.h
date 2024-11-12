@@ -25,4 +25,18 @@
                                  request:(nonnull NSString *)request
                              routeOrigin:(MBNNRouterOrigin)routeOrigin
                                 callback:(nonnull MBNNRouteParserCallback)callback;
++ (void)parseMapMatchingResponseForResponse:(nonnull NSString *)response
+                                    request:(nonnull NSString *)request
+                               routerOrigin:(MBNNRouterOrigin)routerOrigin
+                                   callback:(nonnull MBNNRouteParserCallback)callback __attribute__((deprecated));
++ (void)parseMapMatchingResponseForResponseDataRef:(nonnull MBXDataRef *)responseDataRef
+                                           request:(nonnull NSString *)request
+                                      routerOrigin:(MBNNRouterOrigin)routerOrigin
+                                          callback:(nonnull MBNNRouteParserCallback)callback;
++ (nonnull MBXExpected<NSArray<id<MBNNRouteInterface>> *, NSString *> *)parseMapMatchingResponseForResponse:(nonnull NSString *)response
+                                                                                                    request:(nonnull NSString *)request
+                                                                                               routerOrigin:(MBNNRouterOrigin)routerOrigin __attribute((ns_returns_retained)) __attribute__((deprecated));
++ (nonnull MBXExpected<NSArray<id<MBNNRouteInterface>> *, NSString *> *)parseMapMatchingResponseForResponseDataRef:(nonnull MBXDataRef *)responseDataRef
+                                                                                                           request:(nonnull NSString *)request
+                                                                                                      routerOrigin:(MBNNRouterOrigin)routerOrigin __attribute((ns_returns_retained));
 @end

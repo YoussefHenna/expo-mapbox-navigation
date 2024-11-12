@@ -7,6 +7,7 @@
 #import <MapboxNavigationNative/MBNNIMUUpdateCallback_Internal.h>
 
 NS_SWIFT_NAME(IMUService)
+__attribute__((deprecated))
 @protocol MBNNIMUService
 - (int32_t)registerCompassUpdateCallbackForCallback:(nonnull MBNNCompassUpdateCallback)callback;
 - (int32_t)registerIMUUpdateCallbackForCallback:(nonnull MBNNIMUUpdateCallback)callback;

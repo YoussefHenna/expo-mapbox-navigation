@@ -12,7 +12,7 @@
 #import "MBNNShield.h"
 #import "MBNNRoadName.h"
 #import "MBNNSensorData.h"
+#import "MBNNPoint3d.h"
 #import "MBNNCacheHandle.h"
-#import "MBNNConfigHandle.h"
 #import "MBNNRoadGraphUpdateAvailabilityCallback.h"
 #import "MBNNRoadGraphVersionInfoCallback.h"

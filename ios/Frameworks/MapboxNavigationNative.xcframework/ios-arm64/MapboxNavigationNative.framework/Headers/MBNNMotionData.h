@@ -25,22 +25,22 @@ __attribute__((visibility ("default")))
            monotonicTimestampNanoseconds:(int64_t)monotonicTimestampNanoseconds;
 
 /** the attitude of device */
-@property (nonatomic, readonly, nonnull) MBNNAttitudeData *attitude;
+@property (nonatomic, readonly, nonnull) MBNNAttitudeData *attitude __attribute__((deprecated));
 
 /** the rotation rate of device (in rad/s) */
-@property (nonatomic, readonly, nonnull) MBNNPoint3d *rotationRate;
+@property (nonatomic, readonly, nonnull) MBNNPoint3d *rotationRate __attribute__((deprecated));
 
 /** the gravity acceleration vector expressed in the device's reference frame (in gravitational forces) */
-@property (nonatomic, readonly, nonnull) MBNNPoint3d *gravityAcceleration;
+@property (nonatomic, readonly, nonnull) MBNNPoint3d *gravityAcceleration __attribute__((deprecated));
 
 /** the acceleration that the user is giving to the device (in gravitational forces). */
-@property (nonatomic, readonly, nonnull) MBNNPoint3d *userAcceleration;
+@property (nonatomic, readonly, nonnull) MBNNPoint3d *userAcceleration __attribute__((deprecated));
 
 /** the magnetic field vector with respect to the device (in microteslas) */
-@property (nonatomic, readonly, nonnull) MBNNPoint3d *magneticField;
+@property (nonatomic, readonly, nonnull) MBNNPoint3d *magneticField __attribute__((deprecated));
 
 /** The heading angle (measured in degrees) relative to the current reference frame. */
-@property (nonatomic, readonly) float heading;
+@property (nonatomic, readonly) float heading __attribute__((deprecated));
 
 /** monotonic timestamp in nanoseconds */
 @property (nonatomic, readonly) int64_t monotonicTimestampNanoseconds;

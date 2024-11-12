@@ -34,4 +34,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly, nullable) NSNumber *currentLaneOffset;
 
 
+- (BOOL)isEqualToMatchedLaneInfo:(nonnull MBNNMatchedLaneInfo *)other;
+
 @end
