@@ -6,7 +6,7 @@ A simple Expo wrapper for Mapbox's navigation SDK's on Android and iOS
 
 ### `@rnmapbox/maps`
 
-This package relies on the installtion of `@rnmapbox/maps`, so you'll have to install and setup as explained in their [installtion instructions](https://rnmapbox.github.io/docs/install). The current version of **Expo Mapbox Navigation** package was developed and tested for Mapbox Maps version `11.5.0`, so that is the recommended version when setting up the maps package. It is possible that everything will work with a later version, but unlikely with a lower version. **However, make sure you explcitly set the version with `RNMapboxMapsVersion` because this package relies on this being set to work**
+This package relies on the installtion of `@rnmapbox/maps`, so you'll have to install and setup as explained in their [installtion instructions](https://rnmapbox.github.io/docs/install). The current version of **Expo Mapbox Navigation** package was developed and tested for Mapbox Maps version `11.7.0`, so that is the recommended version when setting up the maps package. It is possible that everything will work with a later version, but unlikely with a lower version. **However, make sure you explcitly set the version with `RNMapboxMapsVersion` because this package relies on this being set to work**
 
 > [!NOTE]  
 > Make sure to follow the instructions carefully and include the proper token in the config plugin and to call the `Mapbox.setAccessToken` function. You can be sure everything is good when you're able to render a map.
