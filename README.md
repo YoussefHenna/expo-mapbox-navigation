@@ -154,30 +154,102 @@ iOS, however, bundles the Mapbox Navigation SDK into the expo module to be used.
 
 ### Getting the `.xcframework` files
 
-To get the `.xcframework` files, I needed to use the mapbox api authenticated with my download token.
+First make sure .netrc is configured with your mapbox credentials.
 
-The API follows this format:
-`https://api.mapbox.com/downloads/v2/<PATH>/releases/ios/packages/<VERSION>/<BINARY_NAME>.xcframework.zip`
+Clone https://github.com/mapbox/mapbox-navigation-ios from the desired version branch.
 
-- `PATH`: Different parts of the sdk are stored under different categories/folders in which this path determines
-- `VERSION`: The version of the package to download
-- `BINARY_NAME`: The name of the specfic binary to download
+Use this modified `Package.swift` and update the versions according to the cloned branch. Checksum for `navNativeChecksum` will be incorrect. Run `swift build -c release` which will fail and give you the correct checksum to update with. After updating, proceed with steps, do not re-run.
 
-Specficially for navigation we need the binaries for:
+```swift
+// swift-tools-version:5.7
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 
-- MapboxDirections
-- MapboxMaps
-- Turf
-- MapboxNavigationCore
-- \_MapboxNavigationUXPrivate
-- MapboxNavigationUIKit
+import PackageDescription
 
-These all live under the `navsdk-v3-ios` as the `PATH`. For example:
-https://api.mapbox.com/downloads/v2/navsdk-v3-ios/releases/ios/packages/3.1.1/MapboxDirections.xcframework.zip
-downloads the MapboxDirections binary for the version `3.1.1`
+let (navNativeVersion, navNativeChecksum) = ("314.0.0", "1494d2fb0c522b8279f4486c43d123b9a51417259979c54d00b42c9c03485eec")
 
-To complete the api request, Basic authentication is required with the username `mapbox` and the password as the download token.
+let mapsVersion: Version = "11.5.0"
+let commonVersion: Version = "24.5.0"
 
-All this is based on the `Package.swift` file here: https://github.com/mapbox/mapbox-navigation-ios/blob/v3.1.1/Package.swift
+let mapboxApiDownloads = "https://api.mapbox.com/downloads/v2"
 
-Binary locations can change between each version on the next, so a slightly different set of steps might be needed
+let package = Package(
+    name: "MapboxNavigation",
+    defaultLocalization: "en",
+    platforms: [.iOS(.v14)],
+    products: [
+        .library(
+            name: "MapboxNavigationUIKit",
+            targets: ["MapboxNavigationUIKit"]
+        ),
+        .library(
+            name: "MapboxNavigationCore",
+            targets: ["MapboxNavigationCore"]
+        )
+    ],
+    dependencies: [
+        .package(url: "https://github.com/mapbox/mapbox-maps-ios.git", exact: mapsVersion),
+        .package(url: "https://github.com/mapbox/mapbox-common-ios.git", exact: commonVersion),
+        .package(url: "https://github.com/mapbox/turf-swift.git", exact: "2.8.0")
+    ],
+    targets: [
+        .target(
+            name: "MapboxNavigationUIKit",
+            dependencies: [
+                "MapboxNavigationCore",
+            ],
+            exclude: ["Info.plist"],
+            resources: [
+                .copy("Resources/MBXInfo.plist"),
+                .copy("Resources/PrivacyInfo.xcprivacy")
+            ]
+        ),
+        .target(name: "_MapboxNavigationHelpers"),
+        .target(
+            name: "MapboxNavigationCore",
+            dependencies: [
+                .product(name: "MapboxCommon", package: "mapbox-common-ios"),
+                "MapboxNavigationNative",
+                "MapboxDirections",
+                "_MapboxNavigationHelpers",
+                .product(name: "MapboxMaps", package: "mapbox-maps-ios"),
+            ],
+            resources: [
+                .process("Resources")
+            ]
+        ),
+        .target(
+            name: "MapboxDirections",
+            dependencies: [
+                .product(name: "Turf", package: "turf-swift"),
+            ]
+        ),
+        navNativeBinaryTarget(
+            name: "MapboxNavigationNative",
+            version: navNativeVersion,
+            checksum: navNativeChecksum
+        ),
+    ]
+)
+
+private func navNativeBinaryTarget(name: String, version: String, checksum: String) -> Target {
+    let url = "\(mapboxApiDownloads)/dash-native/releases/ios/packages/\(version)/MapboxNavigationNative.xcframework.zip"
+    return .binaryTarget(name: name, url: url, checksum: checksum)
+}
+```
+
+Clone https://github.com/giginet/Scipio/ **inside** the cloned mapbox-navigation-ios repo. `cd` inside that repo and run `swift build -c release`.
+
+While still in the Scipio repo run
+
+```
+swift run -c release scipio create ../ -f \
+    --platforms iOS  \
+    --only-use-versions-from-resolved-file \
+    --enable-library-evolution \
+    --support-simulators \
+    --embed-debug-symbols \
+    --verbose
+```
+
+Based on https://github.com/mapbox/mapbox-navigation-ios/issues/4703#issuecomment-2297452009
