@@ -6,7 +6,7 @@ public class ExpoMapboxNavigationModule: Module {
     Name("ExpoMapboxNavigation")
 
     View(ExpoMapboxNavigationView.self) {
-      Events("onRouteProgressChanged", "onCancelNavigation", "onWaypointArrival", "onFinalDestinationArrival", "onRouteChanged", "onUserOffRoute")
+      Events("onRouteProgressChanged", "onCancelNavigation", "onWaypointArrival", "onFinalDestinationArrival", "onRouteChanged", "onUserOffRoute", "onRoutesLoaded")
 
       Prop("coordinates") { (view: ExpoMapboxNavigationView, coordinates: Array<Dictionary<String, Any>>) in
          var points: Array<CLLocationCoordinate2D> = []
@@ -42,6 +42,10 @@ public class ExpoMapboxNavigationModule: Module {
 
       Prop("mapStyle"){ (view: ExpoMapboxNavigationView, style: String?) in
           view.controller.setMapStyle(style: style) 
+      }
+
+      Prop("mute"){ (view: ExpoMapboxNavigationView, isMuted: Bool?) in
+          view.controller.setIsMuted(isMuted: isMuted) 
       }
     }
   }

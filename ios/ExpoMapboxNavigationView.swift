@@ -13,6 +13,7 @@ class ExpoMapboxNavigationView: ExpoView {
     private let onFinalDestinationArrival = EventDispatcher()
     private let onRouteChanged = EventDispatcher()
     private let onUserOffRoute = EventDispatcher()
+    private let onRoutesLoaded = EventDispatcher()
 
     let controller = ExpoMapboxNavigationViewController()
 
@@ -27,6 +28,7 @@ class ExpoMapboxNavigationView: ExpoView {
         controller.onFinalDestinationArrival = onFinalDestinationArrival
         controller.onRouteChanged = onRouteChanged
         controller.onUserOffRoute = onUserOffRoute
+        controller.onRoutesLoaded = onRoutesLoaded
     }
 
     override func layoutSubviews() {
@@ -56,6 +58,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var onFinalDestinationArrival: EventDispatcher? = nil
     var onRouteChanged: EventDispatcher? = nil
     var onUserOffRoute: EventDispatcher? = nil
+    var onRoutesLoaded: EventDispatcher? = nil
 
     var calculateRoutesTask: Task<Void, Error>? = nil
     private var routeProgressCancellable: AnyCancellable? = nil
@@ -166,6 +169,12 @@ class ExpoMapboxNavigationViewController: UIViewController {
         update()
     }
 
+     func setIsMuted(isMuted: Bool?){
+        if(isMuted != nil){
+            ExpoMapboxNavigationViewController.navigationProvider.routeVoiceController.speechSynthesizer.muted = isMuted!
+        }
+    }
+
     func update(){
         calculateRoutesTask?.cancel()
 
@@ -230,6 +239,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
     }
 
     func onRoutesCalculated(navigationRoutes: NavigationRoutes){
+        onRoutesLoaded?()
+
         let topBanner = TopBannerViewController()
         topBanner.instructionsBannerView.distanceFormatter.locale = currentLocale
         let bottomBanner = BottomBannerViewController()
