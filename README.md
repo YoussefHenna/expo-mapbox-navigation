@@ -92,6 +92,10 @@ An array of road types and locations to exclude from the route. See the `exclude
 
 The style of the Mapbox map. See [here](https://docs.mapbox.com/api/maps/styles/) for details.
 
+#### `muted`
+
+Whether the navigation audio is initially muted.
+
 #### `onRouteProgressChanged`
 
 Called when the user's progress on the route changes.
@@ -135,6 +139,10 @@ Called when the route changes or reroutes
 #### `onUserOffRoute`
 
 Called when the user goes off route
+
+#### `onRoutesLoaded`
+
+Called when routes are finished loading.
 
 ## Running the example app
 
