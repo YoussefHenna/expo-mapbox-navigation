@@ -20,6 +20,16 @@ public class ExpoMapboxNavigationModule: Module {
           view.controller.setCoordinates(coordinates: points) 
       }
 
+       Prop("routeOptions") { (view: ExpoMapboxNavigationView, routeOptions: Dictionary<String, Any>?) in 
+          // Convert the dictionary to ExpoRouteOptions
+          let rOpts = ExpoRouteOptions()
+          if let routeOptions = routeOptions { // Safely unwrap routeOptions
+              rOpts.maxHeight = routeOptions["maxHeight"] as? Double
+              rOpts.maxWidth = routeOptions["maxWidth"] as? Double 
+          }
+          view.controller.setRouteOptions(routeOptions: rOpts) 
+      }
+
       Prop("locale") { (view: ExpoMapboxNavigationView, locale: String?) in
           view.controller.setLocale(locale: locale) 
       }

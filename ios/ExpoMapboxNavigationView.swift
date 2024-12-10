@@ -6,6 +6,11 @@ import MapboxDirections
 import Combine
 
 
+class ExpoRouteOptions: Codable {
+    var maxHeight: Double?
+    var maxWidth: Double?
+}
+
 class ExpoMapboxNavigationView: ExpoView {
     private let onRouteProgressChanged = EventDispatcher()
     private let onCancelNavigation = EventDispatcher()
@@ -14,6 +19,8 @@ class ExpoMapboxNavigationView: ExpoView {
     private let onRouteChanged = EventDispatcher()
     private let onUserOffRoute = EventDispatcher()
     private let onRoutesLoaded = EventDispatcher()
+    var currentExpoRouteOptions: ExpoRouteOptions? = nil
+
 
     let controller = ExpoMapboxNavigationViewController()
 
@@ -135,6 +142,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
         update()
     }
 
+     func setRouteOptions(routeOptions: ExpoRouteOptions?) {
+        currentExpoRouteOptions = routeOptions
+        update()
+    }
+
     func setLocale(locale: String?) {
         if(locale != nil){
             currentLocale = Locale(identifier: locale!)
@@ -199,7 +211,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
         let routeOptions = NavigationRouteOptions(
             waypoints: waypoints, 
             profileIdentifier: currentRouteProfile != nil ? ProfileIdentifier(rawValue: currentRouteProfile!) : nil,
-            queryItems: [URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ","))],
+            queryItems: [
+                URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ",")),
+                URLQueryItem(name: "max_height", value: String(format: "%.1f", currentExpoRouteOptions?.maxHeight ?? 0.0)),
+                URLQueryItem(name: "max_width", value: String(format: "%.1f", currentExpoRouteOptions?.maxWidth ?? 0.0))
+            ],
             locale: currentLocale, 
             distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
         )
