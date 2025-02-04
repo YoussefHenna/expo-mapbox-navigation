@@ -11,11 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ExpoRouteOptions {
-  var maxHeight: Double? = null
-  var maxWidth: Double? = null
-}
-
 class ExpoMapboxNavigationModule : Module() {
   private val activity
     get() = requireNotNull(appContext.activityProvider?.currentActivity)
