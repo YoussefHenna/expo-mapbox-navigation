@@ -59,16 +59,12 @@ class ExpoMapboxNavigationModule : Module() {
         view.setCoordinates(points)
       }
 
-       Prop("routeOptions") { view: ExpoMapboxNavigationView, routeOptions: Map<String, Any> ->
+      Prop("vehicleMaxHeight") { view: ExpoMapboxNavigationView, maxHeight: Double? ->
+        view.setVehicleMaxHeight(maxHeight)
+      }
 
-       // build an object from the map
-       val routeObject = ExpoRouteOptions().apply {
-          routeOptions["maxHeight"]?.let { maxHeight = it as Double }
-          routeOptions["maxWidth"]?.let { maxWidth = it as Double }
-        }
-
-        view.setExpoRouteOptions(routeObject)
-
+      Prop("vehicleMaxWidth") { view: ExpoMapboxNavigationView, maxWidth: Double? ->
+        view.setVehicleMaxWidth(maxWidth)
       }
 
       Prop("waypointIndices") { view: ExpoMapboxNavigationView, indices: List<Int>? ->
