@@ -104,6 +104,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
     private var currentRouteProfile: String? = null
     private var currentRouteExcludeList: List<String>? = null
     private var currentMapStyle: String? = null
+    private var vehicleMaxHeight: Double? = null
+    private var vehicleMaxWidth: Double? = null
 
     private val onRouteProgressChanged by EventDispatcher()
     private val onCancelNavigation by EventDispatcher()
@@ -607,6 +609,18 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
         update();
     }
 
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI 
+    fun setVehicleMaxHeight(maxHeight: Double?){
+        vehicleMaxHeight = maxHeight
+        update();
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI 
+    fun setVehicleMaxWidth(maxWidth: Double?){
+        vehicleMaxWidth = maxWidth
+        update();
+    }
+
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
     fun setLocale(localeStr: String?){
         currentLocale = if (localeStr == null || localeStr == "default") Locale.getDefault() else Locale.Builder().setLanguageTag(localeStr).build()
@@ -703,6 +717,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) : ExpoV
                                 .steps(true)
                                 .voiceInstructions(true)
                                 .language(currentLocale.toLanguageTag())
+                                .maxHeight(vehicleMaxHeight ?: null)
+                                .maxWidth(vehicleMaxWidth ?: null)
 
         if(currentWaypointIndices != null){
             optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)

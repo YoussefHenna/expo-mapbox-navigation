@@ -20,6 +20,14 @@ public class ExpoMapboxNavigationModule: Module {
           view.controller.setCoordinates(coordinates: points) 
       }
 
+      Prop("vehicleMaxHeight") { (view: ExpoMapboxNavigationView, maxHeight: Double?) in
+          view.controller.setVehicleMaxHeight(maxHeight: maxHeight)
+      }
+
+      Prop("vehicleMaxWidth") { (view: ExpoMapboxNavigationView, maxWidth: Double?) in
+          view.controller.setVehicleMaxWidth(maxWidth: maxWidth)
+      }
+
       Prop("locale") { (view: ExpoMapboxNavigationView, locale: String?) in
           view.controller.setLocale(locale: locale) 
       }

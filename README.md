@@ -96,6 +96,14 @@ The style of the Mapbox map. See [here](https://docs.mapbox.com/api/maps/styles/
 
 Whether the navigation audio is initially muted.
 
+#### `vehicleMaxHeight`
+
+The maximum height of the vehicle in meters. This is used to avoid routes with height restrictions.
+
+#### `vehicleMaxWidth`
+
+The maximum width of the vehicle in meters. This is used to avoid routes with width restrictions.
+
 #### `onRouteProgressChanged`
 
 Called when the user's progress on the route changes.

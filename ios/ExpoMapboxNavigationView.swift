@@ -51,6 +51,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var currentRouteExcludeList: Array<String>? = nil
     var currentMapStyle: String? = nil
     var isUsingRouteMatchingApi: Bool = false
+    var vehicleMaxHeight: Double? = nil
+    var vehicleMaxWidth: Double? = nil
 
     var onRouteProgressChanged: EventDispatcher? = nil
     var onCancelNavigation: EventDispatcher? = nil
@@ -135,6 +137,16 @@ class ExpoMapboxNavigationViewController: UIViewController {
         update()
     }
 
+    func setVehicleMaxHeight(maxHeight: Double?) {
+        vehicleMaxHeight = maxHeight
+        update()
+    }
+
+    func setVehicleMaxWidth(maxWidth: Double?) {
+        vehicleMaxWidth = maxWidth
+        update()
+    }
+
     func setLocale(locale: String?) {
         if(locale != nil){
             currentLocale = Locale(identifier: locale!)
@@ -199,7 +211,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
         let routeOptions = NavigationRouteOptions(
             waypoints: waypoints, 
             profileIdentifier: currentRouteProfile != nil ? ProfileIdentifier(rawValue: currentRouteProfile!) : nil,
-            queryItems: [URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ","))],
+            queryItems: [
+                URLQueryItem(name: "exclude", value: currentRouteExcludeList?.joined(separator: ",")),
+                URLQueryItem(name: "max_height", value: String(format: "%.1f", vehicleMaxHeight ?? 0.0)),
+                URLQueryItem(name: "max_width", value: String(format: "%.1f", vehicleMaxWidth ?? 0.0))
+            ],
             locale: currentLocale, 
             distanceUnit: currentLocale.usesMetricSystem ? LengthFormatter.Unit.meter : LengthFormatter.Unit.mile
         )

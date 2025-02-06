@@ -11,7 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class ExpoMapboxNavigationModule : Module() {
   private val activity
     get() = requireNotNull(appContext.activityProvider?.currentActivity)
@@ -53,6 +52,14 @@ class ExpoMapboxNavigationModule : Module() {
             
         }
         view.setCoordinates(points)
+      }
+
+      Prop("vehicleMaxHeight") { view: ExpoMapboxNavigationView, maxHeight: Double? ->
+        view.setVehicleMaxHeight(maxHeight)
+      }
+
+      Prop("vehicleMaxWidth") { view: ExpoMapboxNavigationView, maxWidth: Double? ->
+        view.setVehicleMaxWidth(maxWidth)
       }
 
       Prop("waypointIndices") { view: ExpoMapboxNavigationView, indices: List<Int>? ->

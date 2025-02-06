@@ -33,6 +33,8 @@ export default function App() {
             { latitude: 30.021, longitude: 31.4962 },
             { latitude: 30.0552, longitude: 31.4988 },
           ]}
+          vehicleMaxHeight={5.0}
+          vehicleMaxWidth={2.5}
         />
       ) : (
         <Text style={styles.text}>Location required for mapbox navigation</Text>
