@@ -5,6 +5,8 @@
 #import <MapboxNavigationNative/MBNNWaypointType.h>
 @class MBXCoordinate2D;
 
+@class MBNNTimeZone;
+
 /**
  *  Waypoint object from Directions API route response.
  *  https://docs.mapbox.com/api/navigation/directions/#waypoint-object
@@ -24,7 +26,8 @@ __attribute__((visibility ("default")))
                             distance:(nullable NSNumber *)distance
                             metadata:(nullable NSString *)metadata
                               target:(nullable MBXCoordinate2D *)target
-                                type:(MBNNWaypointType)type;
+                                type:(MBNNWaypointType)type
+                            timeZone:(nullable MBNNTimeZone *)timeZone;
 
 /**
  *  Field name as is from direction's response.
@@ -50,6 +53,9 @@ __attribute__((visibility ("default")))
  *  EvChargingServer and EvChangingUser types're calculated based on `metadata` field.
  */
 @property (nonatomic, readonly) MBNNWaypointType type;
+
+/** Time zone info */
+@property (nonatomic, readonly, nullable) MBNNTimeZone *timeZone;
 
 
 - (BOOL)isEqualToWaypoint:(nonnull MBNNWaypoint *)other;

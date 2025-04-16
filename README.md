@@ -6,7 +6,7 @@ A simple Expo wrapper for Mapbox's navigation SDK's on Android and iOS
 
 ### `@rnmapbox/maps`
 
-This package relies on the installtion of `@rnmapbox/maps`, so you'll have to install and setup as explained in their [installtion instructions](https://rnmapbox.github.io/docs/install). The current version of **Expo Mapbox Navigation** package was developed and tested for Mapbox Maps version `11.7.0`, so that is the recommended version when setting up the maps package. It is possible that everything will work with a later version, but unlikely with a lower version. **However, make sure you explcitly set the version with `RNMapboxMapsVersion` because this package relies on this being set to work**
+This package relies on the installtion of `@rnmapbox/maps`, so you'll have to install and setup as explained in their [installtion instructions](https://rnmapbox.github.io/docs/install). The current version of **Expo Mapbox Navigation** package was developed and tested for Mapbox Maps version `11.11.0`, so that is the recommended version when setting up the maps package. It is possible that everything will work with a later version, but unlikely with a lower version. **However, make sure you explcitly set the version with `RNMapboxMapsVersion` because this package relies on this being set to work**
 
 > [!NOTE]  
 > Make sure to follow the instructions carefully and include the proper token in the config plugin and to call the `Mapbox.setAccessToken` function. You can be sure everything is good when you're able to render a map.
@@ -182,10 +182,10 @@ Use this modified `Package.swift` and update the versions according to the clone
 
 import PackageDescription
 
-let (navNativeVersion, navNativeChecksum) = ("314.0.0", "1494d2fb0c522b8279f4486c43d123b9a51417259979c54d00b42c9c03485eec")
+let (navNativeVersion, navNativeChecksum) = ("324.0.0", "f7c0b81c2092faf60eea32538e630e5b67bb7d032251548a2b38054d0ede90f6")
 
-let mapsVersion: Version = "11.5.0"
-let commonVersion: Version = "24.5.0"
+let mapsVersion: Version = "11.11.0"
+let commonVersion: Version = "24.11.0"
 
 let mapboxApiDownloads = "https://api.mapbox.com/downloads/v2"
 
@@ -206,7 +206,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/mapbox/mapbox-maps-ios.git", exact: mapsVersion),
         .package(url: "https://github.com/mapbox/mapbox-common-ios.git", exact: commonVersion),
-        .package(url: "https://github.com/mapbox/turf-swift.git", exact: "2.8.0")
+        .package(url: "https://github.com/mapbox/turf-swift.git", exact: "4.0.0")
     ],
     targets: [
         .target(

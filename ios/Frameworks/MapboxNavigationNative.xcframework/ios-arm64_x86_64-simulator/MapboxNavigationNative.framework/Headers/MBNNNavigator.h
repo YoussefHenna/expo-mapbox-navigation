@@ -1,7 +1,6 @@
 // This file is generated and will be overwritten automatically.
 
 #import <Foundation/Foundation.h>
-#import <MapboxNavigationNative/MBNNADASISv2MessageCallback.h>
 #import <MapboxNavigationNative/MBNNChangeLegCallback.h>
 #import <MapboxNavigationNative/MBNNResetCallback.h>
 #import <MapboxNavigationNative/MBNNRouterType.h>
@@ -9,18 +8,21 @@
 #import <MapboxNavigationNative/MBNNUpdateExternalSensorDataCallback.h>
 #import <MapboxNavigationNative/MBNNUpdateLocationCallback.h>
 
-@class MBNNAdasisConfig;
+@class MBNNAdasisFacadeHandle;
 @class MBNNCacheHandle;
 @class MBNNConfigHandle;
 @class MBNNElectronicHorizonOptions;
+@class MBNNEvStateData;
 @class MBNNFixLocation;
 @class MBNNHistoryRecorderHandle;
 @class MBNNInputsServiceHandle;
 @class MBNNNavigationSessionState;
+@class MBNNNavigationStatus;
 @class MBNNPredictiveCacheController;
 @class MBNNPredictiveCacheControllerOptions;
 @class MBNNPredictiveLocationTrackerOptions;
 @class MBNNRoadObjectsStore;
+@class MBNNRouteAlternative;
 @class MBNNSensorData;
 @class MBNNSetRoutesDataParams;
 @class MBNNSetRoutesParams;
@@ -60,6 +62,7 @@ __attribute__((visibility ("default")))
  * Hybrid means no restriction and used by default.
  * @param historyRecorder  history recorder created with `HistoryRecorderHandle.build` method
  * @param inputsService    inputs service created with 'InputsServiceHandle.build' method
+ * @param adasisFacadeHandle handle to AdasisFacade to access ADASIS functionalities. Optional, if not passed, ADASIS won't work.
  * @param offlineCache     offline cache handle created with `CacheFactory`, will be used by Hybrid router as a fallback in case of routing
  * on current tiles failed
  */
@@ -81,6 +84,13 @@ __attribute__((visibility ("default")))
                        historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
                  routerTypeRestriction:(MBNNRouterType)routerTypeRestriction
                          inputsService:(nullable MBNNInputsServiceHandle *)inputsService
+                    adasisFacadeHandle:(nullable MBNNAdasisFacadeHandle *)adasisFacadeHandle;
+- (nonnull instancetype)initWithConfig:(nonnull MBNNConfigHandle *)config
+                                 cache:(nonnull MBNNCacheHandle *)cache
+                       historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder
+                 routerTypeRestriction:(MBNNRouterType)routerTypeRestriction
+                         inputsService:(nullable MBNNInputsServiceHandle *)inputsService
+                    adasisFacadeHandle:(nullable MBNNAdasisFacadeHandle *)adasisFacadeHandle
                           offlineCache:(nullable MBNNCacheHandle *)offlineCache;
 /** Obtain config object that was used for Navigator construction */
 - (nonnull MBNNConfigHandle *)config __attribute((ns_returns_retained));
@@ -151,8 +161,11 @@ __attribute__((visibility ("default")))
  * Please call it before significant change of location, e.g. when restarting
  * navigation simulation, or before resetting location to not real (simulated)
  * position without recreation of navigator.
+ *
+ * @param callback If provided `reset()` runs asynchronously and callback is invoked on owning thread.
+ *                 If not provided method runs synchronously blocking owning thread.
  */
-- (void)resetForCallback:(nonnull MBNNResetCallback)callback;
+- (void)resetForCallback:(nullable MBNNResetCallback)callback;
 /**
  * Creates predictive cache controller to populate the specified tile store instance
  * with the tiles described by the specified tileset descriptors.
@@ -229,15 +242,6 @@ __attribute__((visibility ("default")))
 /** Get RouteAlternativesController */
 - (nonnull id<MBNNRouteAlternativesControllerInterface>)getRouteAlternativesController __attribute((ns_returns_retained));
 /**
- * Caution: Beta feature for ADAS / ADASIS SDK. Method interface may change soon.
- *
- * Sets a callback for ADASIS messages
- */
-- (void)setAdasisMessageCallbackForCallback:(nonnull MBNNADASISv2MessageCallback)callback
-                               adasisConfig:(nonnull MBNNAdasisConfig *)adasisConfig;
-/** Resets a callback for ADASIS messages */
-- (void)resetAdasisMessageCallback;
-/**
  * Returns interface implementing experimental APIs
  * Caller must guarantee `Navigator` instance is alive when calling any methods of returned instance
  */
@@ -278,5 +282,29 @@ __attribute__((visibility ("default")))
  * Note: all HD data is provided in `NavigationStatus.hdMatchingResult`
  */
 - (nullable id<MBNNLaneGraphAccessor>)getLaneGraphAccessor __attribute((ns_returns_retained));
+/**
+ * Invoke when any component of EV data is changed so that it can be used in alternatives requests.
+ * You should pass all components of EV data via [data], all the previous values will NOT be cached.
+ */
+- (void)onEvDataUpdatedForData:(nonnull MBNNEvStateData *)data;
+/**
+ * Return current primary route.
+ *
+ * Must be invoked only on owning thread.
+ */
+- (nullable id<MBNNRouteInterface>)getPrimaryRoute __attribute((ns_returns_retained));
+/**
+ * Return current alternative routes.
+ *
+ * Must be invoked only on owning thread.
+ */
+- (nonnull NSArray<MBNNRouteAlternative *> *)getAlternativeRoutes __attribute((ns_returns_retained));
+/**
+ * Return last navigation status.
+ *
+ * Must be invoked only on owning thread.
+ * Location is invalid (equal to 0.0,0.0) if updateLocation() has not been invoked before.
+ */
+- (nonnull MBNNNavigationStatus *)getNavigationStatus __attribute((ns_returns_retained));
 
 @end

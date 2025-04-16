@@ -19,135 +19,125 @@ __attribute__((visibility ("default")))
 /**
  * Builds adasis v2 configuration from JSON.
  * Example JSON:
- * ```   {
- * "cycleTimes": {
- * "metadataCycleOnStartMs": 100,
- * "metadataCycleSeconds": 5,
- * "positionCycleMs": 200
- * },
+ * ```
+ * {
  * "dataSending": {
- * "messageBinaryFormat": "ADASISv2LE",
- * "messageIntervalMs": 80,
- * "messagesInPackage": 4,
- * "sortProfileshortsByOffset": true,
- * "sortProfilelongsByOffset": true,
- * "enableRetransmission": true
+ * "outputBinaryFormat": "ADASISv2BE",
+ * "messageIntervalMs": 100,
+ * "messagesInPackage": 10,
+ * "metadataCycleSeconds": 5,
+ * "enableRetransmission": false,
+ * "retransmissionMeters": 100,
+ * "treeTrailingLength": 300,
+ * "enableUpdates": true,
+ * "sortMessagesByMppAndDist": false
  * },
- * "pathsConfigs": {
- * "mpp": {
+ * "pathConfigs": {
  * "stub": {
  * "enable": true,
- * "radiusMeters": 2000,
- * "repetitionMeters": 300
+ * "radiusMeters": 2000
  * },
  * "segment": {
  * "enable": true,
- * "radiusMeters": 2000,
- * "repetitionMeters": 300
+ * "radiusMeters": 2000
  * },
  * "profileshort": {
  * "enable": true,
  * "radiusMeters": 2000,
- * "repetitionMeters": 300,
  * "types": {
- * "slopeStep": false,
- * "slopeLinear": true,
+ * "slopeStep": true,
+ * "slopeLinear": false,
  * "curvature": true,
- * "routeNumTypes": false,
  * "roadCondition": true,
- * "roadAccessibility": true,
- * "variableSpeedSign": false,
- * "headingChange": true
- * }
+ * "variableSpeedSign": true,
+ * "headingChange": true,
+ * "historyAverageSpeed": true
+ * },
+ * "minDistanceBetweenCurvatures": 0,
+ * "bandwidthEnabled": true
  * },
  * "profilelong": {
  * "enable": true,
  * "radiusMeters": 2000,
- * "repetitionMeters": 300,
  * "types": {
- * "lat": true,
- * "lon": true,
- * "alt": true,
- * "trafficSign": false,
- * "extendedLane": false
- * }
- * }
- * },
- * "level1": {
- * "stub": {
- * "enable": true,
- * "radiusMeters": 300,
- * "repetitionMeters": 0
- * },
- * "segment": {
- * "enable": true,
- * "radiusMeters": 500,
- * "repetitionMeters": 100
- * },
- * "profileshort": {
- * "enable": true,
- * "radiusMeters": 500,
- * "repetitionMeters": 200,
- * "types": {
- * "slopeStep": false,
- * "slopeLinear": true,
- * "curvature": true,
- * "routeNumTypes": false,
- * "roadCondition": true,
- * "roadAccessibility": true,
- * "variableSpeedSign": false,
- * "headingChange": true
- * }
- * },
- * "profilelong": {
- * "enable": true,
- * "radiusMeters": 300,
- * "repetitionMeters": 30,
- * "types": {
- * "lat": true,
- * "lon": true,
- * "alt": true,
- * "trafficSign": false,
- * "extendedLane": false
- * }
- * }
- * },
- * "level2": {
- * "stub": {
- * "enable": true,
- * "radiusMeters": 200,
- * "repetitionMeters": 0
- * },
- * "segment": {
- * "enable": true,
- * "radiusMeters": 300,
- * "repetitionMeters": 100
- * },
- * "profileshort": {
- * "enable": true,
- * "radiusMeters": 300,
- * "repetitionMeters": 200,
- * "types": {
- * "slopeStep": false,
- * "slopeLinear": true,
- * "curvature": true,
- * "routeNumTypes": false,
- * "roadCondition": true,
- * "roadAccessibility": true,
- * "variableSpeedSign": false,
- * "headingChange": true
- * }
- * },
- * "profilelong": {
- * "enable": false,
- * "radiusMeters": 200,
- * "repetitionMeters": 30,
- * "types": {
- * "lat": true,
- * "lon": true,
- * "alt": true,
- * "trafficSign": false,
- * "extendedLane": false
+ * "lonLat": false,
+ * "trafficSign": {
+ * "enableSpeedLimit": true,
+ * "enableYield": true,
+ * "enableStop": true,
+ * "enableTrafficLight": true,
+ * "enablePedestrianCrossing": true,
+ * "enableZebra": true,
+ * "enablePassLeftOrRightSide": true,
+ * "enableDanger": true,
+ * "enablePassLeftSide": true,
+ * "enablePassRightSide": true,
+ * "enableDomesticAnimalsCrossing": true,
+ * "enableWildAnimalsCrossing": true,
+ * "enableRoadWorks": true,
+ * "enableResidentialArea": true,
+ * "enableEndOfResidentialArea": true,
+ * "enableRightBend": true,
+ * "enableLeftBend": true,
+ * "enableDoubleBendRightFirst": true,
+ * "enableDoubleBendLeftFirst": true,
+ * "enableCurvyRoad": true,
+ * "enableOvertakingByGoodsVehiclesProhibited": true,
+ * "enableEndOfProhibitionOnOvertakingForGoodsVehicles": true,
+ * "enableDangerousIntersection": true,
+ * "enableTunnel": true,
+ * "enableFerryTerminal": true,
+ * "enableNarrowBridge": true,
+ * "enableHumpbackBridgeBridge": true,
+ * "enableRiverBank": true,
+ * "enableRiverBankLeft": true,
+ * "enablePriorityRoad": true,
+ * "enableIntersection": true,
+ * "enableIntersectionWithMinorRoad": true,
+ * "enableIntersectionWithPriorityToTheRight": true,
+ * "enableDirectionToTheRight": true,
+ * "enableDirectionToTheLeft": true,
+ * "enableCarriagewayNarrows": true,
+ * "enableCarriagewayNarrowsRight": true,
+ * "enableCarriagewayNarrowsLeft": true,
+ * "enableLaneMergeCenter": true,
+ * "enableOvertakingProhibited": true,
+ * "enableLaneMergeLeft": true,
+ * "enableLaneMergeRight": true,
+ * "enableEndOfProhibitionOnOvertaking": true,
+ * "enableProtectiveOvertaking": true,
+ * "enablePedestrians": true,
+ * "enableChildren": true,
+ * "enableSchoolZone": true,
+ * "enableCyclists": true,
+ * "enableTwoWayTraffic": true,
+ * "enableRailwayCrossingWithGates": true,
+ * "enableRailwayCrossingWithoutGates": true,
+ * "enableRailwayCrossing": true,
+ * "enableTramway": true,
+ * "enableFallingRocks": true,
+ * "enableFallingRocksLeft": true,
+ * "enableFallingRocksRight": true,
+ * "enableSteepDropLeft": true,
+ * "enableSteepDropRight": true,
+ * "enableVariableSignMechanicElements": true,
+ * "enableSlipperyRoad": true,
+ * "enableSteepAscent": true,
+ * "enableSteepDescent": true,
+ * "enableUnevenRoad": true,
+ * "enableHump": true,
+ * "enableDip": true,
+ * "enableRoadFloods": true,
+ * "enableIcyRoad": true,
+ * "enableSideWinds": true,
+ * "enableTrafficCongestion": true,
+ * "enableHighAccidentArea": true,
+ * "enableVariableSignLightElements": true,
+ * "enablePriorityOverOncomingTraffic": true,
+ * "enablePriorityForOncomingTraffic": true,
+ * "enableSpeedCam": true,
+ * "enableRailroadCrossing": true,
+ * "enableSpeedBump": true
  * }
  * }
  * }

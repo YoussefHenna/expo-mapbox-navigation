@@ -24,7 +24,8 @@ __attribute__((visibility ("default")))
                           branchLength:(double)branchLength
       doNotRecalculateInUncertainState:(BOOL)doNotRecalculateInUncertainState
             minTimeDeltaBetweenUpdates:(nullable NSNumber *)minTimeDeltaBetweenUpdates
-                         alertsService:(nullable MBNNAlertsServiceOptions *)alertsService;
+                         alertsService:(nullable MBNNAlertsServiceOptions *)alertsService
+             enableEnhancedDataAlongEH:(BOOL)enableEnhancedDataAlongEH;
 
 /** The minimum length of the EHorizon ahead of the current position. */
 @property (nonatomic, readonly) double length;
@@ -58,6 +59,13 @@ __attribute__((visibility ("default")))
 
 /** Options for the alerts service (incidents and road objects collection and tracking) */
 @property (nonatomic, readonly, nullable) MBNNAlertsServiceOptions *alertsService;
+
+/**
+ * Set to "true" if access to enhanced data attributes (from ADAS data layer) is needed in the GraphAccessor.
+ * Note: using enhanced data will require additional resources: bandwidth, disk space, and RAM.
+ * Note: regardless whether the flag is set, enhanced data will be accessible if ADASIS callback is set.
+ */
+@property (nonatomic, readonly) BOOL enableEnhancedDataAlongEH;
 
 
 @end

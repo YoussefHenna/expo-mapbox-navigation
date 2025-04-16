@@ -13,6 +13,7 @@
 @class MBNNRoadName;
 @class MBNNRouteIndices;
 @class MBNNSpeedLimit;
+@class MBNNTurnLane;
 @class MBNNUpcomingRouteAlertUpdate;
 @class MBNNVoiceInstruction;
 
@@ -42,6 +43,7 @@ __attribute__((visibility ("default")))
                              geometryIndex:(uint32_t)geometryIndex
                                 shapeIndex:(uint32_t)shapeIndex
                          intersectionIndex:(uint32_t)intersectionIndex
+                                 turnLanes:(nonnull NSArray<MBNNTurnLane *> *)turnLanes
                    alternativeRouteIndices:(nonnull NSArray<MBNNRouteIndices *> *)alternativeRouteIndices
                                      roads:(nonnull NSArray<MBNNRoadName *> *)roads
                           voiceInstruction:(nullable MBNNVoiceInstruction *)voiceInstruction
@@ -58,7 +60,8 @@ __attribute__((visibility ("default")))
                        isSyntheticLocation:(BOOL)isSyntheticLocation
                      correctedLocationData:(nullable MBNNCorrectedLocationData *)correctedLocationData
                           hdMatchingResult:(nullable MBNNHdMatchingResult *)hdMatchingResult
-                      mapMatchedSystemTime:(nonnull NSDate *)mapMatchedSystemTime;
+                      mapMatchedSystemTime:(nonnull NSDate *)mapMatchedSystemTime
+                       isAdasDataAvailable:(nullable NSNumber *)isAdasDataAvailable;
 
 @property (nonatomic, readonly) MBNNRouteState routeState;
 /**
@@ -114,6 +117,9 @@ __attribute__((visibility ("default")))
 
 /** index in step bounds(i.e. on each new step we start indexing from 0) */
 @property (nonatomic, readonly) uint32_t intersectionIndex;
+
+/** List of turn lane objects from the next intersection (see intersectionIndex) */
+@property (nonatomic, readonly, nonnull, copy) NSArray<MBNNTurnLane *> *turnLanes;
 
 /**
  * List of route indices for each alternative route.
@@ -201,6 +207,13 @@ __attribute__((visibility ("default")))
 
 /** Local system time of the map matched get status */
 @property (nonatomic, readonly, nonnull) NSDate *mapMatchedSystemTime;
+
+/**
+ *  Nullopt if adas cache is OFF, e.g. neither ADASIS nor EH enabled
+ *  True if ADAS tiles are loaded for the current location
+ *  False if ADAS cache is ON, but no tiles around
+ */
+@property (nonatomic, readonly, nullable) NSNumber *isAdasDataAvailable;
 
 
 @end

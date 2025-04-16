@@ -6,5 +6,6 @@
 typedef NS_ENUM(NSInteger, MBNNRouteRefreshErrorType)
 {
     MBNNRouteRefreshErrorTypeUnknown,
-    MBNNRouteRefreshErrorTypeRouterError
+    MBNNRouteRefreshErrorTypeRouterError,
+    MBNNRouteRefreshErrorTypeRouteInvalidated
 } NS_SWIFT_NAME(RouteRefreshErrorType);

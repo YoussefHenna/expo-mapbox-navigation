@@ -1,8 +1,8 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "TopLevel",
-    "printedName": "TopLevel",
+    "name": "_MapboxNavigationHelpers",
+    "printedName": "_MapboxNavigationHelpers",
     "children": [
       {
         "kind": "Import",
@@ -168,6 +168,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "AsyncSequence",
             "printedName": "AsyncSequence",
             "children": [
@@ -193,6 +207,19 @@
                     "kind": "TypeNominal",
                     "name": "GenericTypeParam",
                     "printedName": "τ_0_0"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeWitness",
+                "name": "Failure",
+                "printedName": "Failure",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Never",
+                    "printedName": "Swift.Never",
+                    "usr": "s:s5NeverO"
                   }
                 ]
               }
@@ -264,6 +291,22 @@
         "declAttributes": [
           "AccessControl",
           "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -365,6 +408,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Sendable",
@@ -566,6 +623,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Sendable",
@@ -777,6 +848,20 @@
           "RawDocComment"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Sendable",
@@ -1130,6 +1215,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
@@ -1443,6 +1542,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
@@ -1677,6 +1790,20 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
@@ -1773,6 +1900,20 @@
           "AccessControl"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Sendable",
@@ -2093,6 +2234,22 @@
         "declAttributes": [
           "AccessControl",
           "Documentation"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
         ]
       },
       {
@@ -2215,6 +2372,41 @@
         "conformances": [
           {
             "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "ReferenceConvertible",
             "printedName": "ReferenceConvertible",
             "children": [
@@ -2234,27 +2426,6 @@
             ],
             "usr": "s:10Foundation20ReferenceConvertibleP",
             "mangledName": "$s10Foundation20ReferenceConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -2340,12 +2511,6 @@
                         "name": "TransferRepresentation",
                         "printedName": "CoreTransferable.TransferRepresentation",
                         "usr": "s:16CoreTransferable22TransferRepresentationP"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Sendable",
-                        "printedName": "Swift.Sendable",
-                        "usr": "s:s8SendableP"
                       }
                     ]
                   }
@@ -2477,17 +2642,24 @@
           },
           {
             "kind": "Conformance",
-            "name": "AnyActor",
-            "printedName": "AnyActor",
-            "usr": "s:12_Concurrency8AnyActorP",
-            "mangledName": "$ss8AnyActorP"
-          },
-          {
-            "kind": "Conformance",
             "name": "Sendable",
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           }
         ]
       },
@@ -2522,6 +2694,20 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -2743,6 +2929,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -2836,6 +3036,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "CancellableAsyncStateValue",
             "printedName": "CancellableAsyncStateValue",
             "usr": "s:24_MapboxNavigationHelpers26CancellableAsyncStateValueP",
@@ -2856,7 +3070,7 @@
               {
                 "kind": "TypeNominal",
                 "name": "AsyncThrowingStream",
-                "printedName": "_Concurrency.AsyncThrowingStream<τ_0_0.Output, Swift.Error>",
+                "printedName": "_Concurrency.AsyncThrowingStream<τ_0_0.Output, any Swift.Error>",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -2866,7 +3080,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Error",
-                    "printedName": "Swift.Error",
+                    "printedName": "any Swift.Error",
                     "usr": "s:s5ErrorP"
                   }
                 ],
@@ -2890,7 +3104,7 @@
                   {
                     "kind": "TypeNominal",
                     "name": "AsyncThrowingStream",
-                    "printedName": "_Concurrency.AsyncThrowingStream<τ_0_0.Output, Swift.Error>",
+                    "printedName": "_Concurrency.AsyncThrowingStream<τ_0_0.Output, any Swift.Error>",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -2900,7 +3114,7 @@
                       {
                         "kind": "TypeNominal",
                         "name": "Error",
-                        "printedName": "Swift.Error",
+                        "printedName": "any Swift.Error",
                         "usr": "s:s5ErrorP"
                       }
                     ],
@@ -2993,7 +3207,23 @@
           "Available",
           "Available"
         ],
-        "isExternal": true
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
       },
       {
         "kind": "TypeDecl",
@@ -3057,7 +3287,23 @@
           "ObjC",
           "Dynamic"
         ],
-        "isExternal": true
+        "isExternal": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
       },
       {
         "kind": "TypeDecl",
@@ -3067,13 +3313,34 @@
         "usr": "s:Sp",
         "mangledName": "$sSp",
         "moduleName": "Swift",
-        "genericSig": "<τ_0_0>",
-        "sugared_genericSig": "<Pointee>",
+        "genericSig": "<τ_0_0 where τ_0_0 : ~Copyable>",
+        "sugared_genericSig": "<Pointee where Pointee : ~Copyable>",
         "declAttributes": [
           "Frozen"
         ],
         "isExternal": true,
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
           {
             "kind": "Conformance",
             "name": "_Pointer",
@@ -3097,17 +3364,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "CustomDebugStringConvertible",
-            "printedName": "CustomDebugStringConvertible",
-            "usr": "s:s28CustomDebugStringConvertibleP",
-            "mangledName": "$ss28CustomDebugStringConvertibleP"
+            "name": "BitwiseCopyable",
+            "printedName": "BitwiseCopyable",
+            "usr": "s:s15BitwiseCopyableP",
+            "mangledName": "$ss15BitwiseCopyableP"
           },
           {
             "kind": "Conformance",
-            "name": "CustomReflectable",
-            "printedName": "CustomReflectable",
-            "usr": "s:s17CustomReflectableP",
-            "mangledName": "$ss17CustomReflectableP"
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
           },
           {
             "kind": "Conformance",
@@ -3115,6 +3382,13 @@
             "printedName": "Hashable",
             "usr": "s:SH",
             "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Comparable",
+            "printedName": "Comparable",
+            "usr": "s:SL",
+            "mangledName": "$sSL"
           },
           {
             "kind": "Conformance",
@@ -3140,17 +3414,17 @@
           },
           {
             "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
           },
           {
             "kind": "Conformance",
-            "name": "Comparable",
-            "printedName": "Comparable",
-            "usr": "s:SL",
-            "mangledName": "$sSL"
+            "name": "CustomReflectable",
+            "printedName": "CustomReflectable",
+            "usr": "s:s17CustomReflectableP",
+            "mangledName": "$ss17CustomReflectableP"
           },
           {
             "kind": "Conformance",
@@ -3165,13 +3439,6 @@
             "printedName": "CVarArg",
             "usr": "s:s7CVarArgP",
             "mangledName": "$ss7CVarArgP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Sendable",
-            "printedName": "Sendable",
-            "usr": "s:s8SendableP",
-            "mangledName": "$ss8SendableP"
           }
         ]
       },
@@ -3215,6 +3482,20 @@
         "moduleName": "CoreFoundation",
         "isExternal": true,
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "_ObjectiveCBridgeable",
@@ -3264,6 +3545,13 @@
             "printedName": "Equatable",
             "usr": "s:SQ",
             "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
           },
           {
             "kind": "Conformance",
@@ -3402,6 +3690,20 @@
         "sugared_genericSig": "<Self : Swift.Sequence, Self.Element == Self.SubSequence.Element, Self.Index : Swift.Comparable, Self.Index == Self.Indices.Element, Self.Indices : Swift.Collection, Self.Indices == Self.Indices.SubSequence, Self.SubSequence : Swift.Collection, Self.SubSequence == Self.SubSequence.SubSequence, Self.Indices.Element == Self.Indices.Index, Self.Indices.Index == Self.SubSequence.Index>",
         "isExternal": true,
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
           {
             "kind": "Conformance",
             "name": "Sequence",
@@ -3703,6 +4005,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -3785,10 +4101,25 @@
         "mangledName": "$sSS",
         "moduleName": "Swift",
         "declAttributes": [
+          "EagerMove",
           "Frozen"
         ],
         "isExternal": true,
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Decodable",
@@ -4328,12 +4659,6 @@
                         "name": "TransferRepresentation",
                         "printedName": "CoreTransferable.TransferRepresentation",
                         "usr": "s:16CoreTransferable22TransferRepresentationP"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Sendable",
-                        "printedName": "Swift.Sendable",
-                        "usr": "s:s8SendableP"
                       }
                     ]
                   }
@@ -4366,6 +4691,7 @@
             "mangledName": "$sSo6UIViewC24_MapboxNavigationHelpersE12autoresizingABXDyF",
             "moduleName": "_MapboxNavigationHelpers",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "AccessControl",
               "RawDocComment"
@@ -4403,6 +4729,7 @@
             "mangledName": "$sSo6UIViewC24_MapboxNavigationHelpersE19pinEdgesToSuperview7padding18respectingSafeAreay12CoreGraphics7CGFloatV_SbtF",
             "moduleName": "_MapboxNavigationHelpers",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -4443,6 +4770,7 @@
             "mangledName": "$sSo6UIViewC24_MapboxNavigationHelpersE14forEachSubview6actionyyABc_tF",
             "moduleName": "_MapboxNavigationHelpers",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "AccessControl",
               "Inline",
@@ -4459,6 +4787,7 @@
         "intro_iOS": "2.0",
         "objc_name": "UIView",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -4473,6 +4802,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -4581,6 +4924,7 @@
             "mangledName": "$sSo18NSLayoutConstraintC24_MapboxNavigationHelpersE6assign2toABXDABSgz_tF",
             "moduleName": "_MapboxNavigationHelpers",
             "declAttributes": [
+              "Preconcurrency",
               "Custom",
               "AccessControl",
               "DiscardableResult"
@@ -4596,6 +4940,7 @@
         "intro_iOS": "6.0",
         "objc_name": "NSLayoutConstraint",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -4609,6 +4954,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -4671,6 +5030,7 @@
         "intro_iOS": "9.0",
         "objc_name": "UILayoutGuide",
         "declAttributes": [
+          "Preconcurrency",
           "Available",
           "ObjC",
           "NonSendable",
@@ -4684,6 +5044,20 @@
           "ObjectiveC.NSObject"
         ],
         "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
           {
             "kind": "Conformance",
             "name": "Equatable",
@@ -4902,6 +5276,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -5009,12 +5397,16 @@
         "declKind": "Enum",
         "usr": "s:7SwiftUI11ColorSchemeO",
         "mangledName": "$s7SwiftUI11ColorSchemeO",
-        "moduleName": "SwiftUI",
+        "moduleName": "SwiftUICore",
         "intro_Macosx": "10.15",
         "intro_iOS": "13.0",
         "intro_tvOS": "13.0",
         "intro_watchOS": "6.0",
         "declAttributes": [
+          "OriginallyDefinedIn",
+          "OriginallyDefinedIn",
+          "OriginallyDefinedIn",
+          "OriginallyDefinedIn",
           "Available",
           "Available",
           "Available",
@@ -5058,6 +5450,20 @@
             "printedName": "Sendable",
             "usr": "s:s8SendableP",
             "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
           },
           {
             "kind": "Conformance",
@@ -5153,6 +5559,20 @@
           },
           {
             "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
             "name": "Equatable",
             "printedName": "Equatable",
             "usr": "s:SQ",
@@ -5207,385 +5627,385 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/API\/MapboxApiEndpoint.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/API\/MapboxApiEndpoint.swift",
       "kind": "StringLiteral",
       "offset": 156,
       "length": 7,
       "value": "\"https\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/API\/MapboxApiEndpoint.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/API\/MapboxApiEndpoint.swift",
       "kind": "StringLiteral",
       "offset": 190,
       "length": 16,
       "value": "\"api.mapbox.com\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/BackportedAPI\/URLSession+Backport.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/BackportedAPI\/URLSession+Backport.swift",
       "kind": "IntegerLiteral",
       "offset": 2009,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
       "kind": "BooleanLiteral",
       "offset": 467,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
       "kind": "StringLiteral",
       "offset": 619,
       "length": 43,
       "value": "\"Cannot active CancellableAsyncState twice\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
       "kind": "BooleanLiteral",
       "offset": 813,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/CancellableAsyncStateValue.swift",
       "kind": "BooleanLiteral",
       "offset": 984,
       "length": 4,
       "value": "true"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/UnfairLock.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/UnfairLock.swift",
       "kind": "IntegerLiteral",
       "offset": 219,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/UnfairLock.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Concurrency\/UnfairLock.swift",
       "kind": "IntegerLiteral",
       "offset": 377,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 312,
       "length": 3,
       "value": "\",\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 323,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 505,
       "length": 3,
       "value": "\",\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 516,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "IntegerLiteral",
       "offset": 1493,
       "length": 4,
       "value": "3600"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 2047,
       "length": 2,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "IntegerLiteral",
       "offset": 2082,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/DateComponentsFormatter+NavigationAdditions.swift",
       "kind": "StringLiteral",
       "offset": 2138,
       "length": 5,
       "value": "\"+%@\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/String++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/Foundation\/String++.swift",
       "kind": "IntegerLiteral",
       "offset": 81,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
       "kind": "BooleanLiteral",
       "offset": 212,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
       "kind": "IntegerLiteral",
       "offset": 300,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/Autolayout.swift",
       "kind": "BooleanLiteral",
       "offset": 339,
       "length": 5,
       "value": "false"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 105,
       "length": 3,
       "value": "1.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 134,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 146,
       "length": 3,
       "value": "255"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "StringLiteral",
       "offset": 151,
       "length": 23,
       "value": "\"Invalid red component\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 200,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 214,
       "length": 3,
       "value": "255"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "StringLiteral",
       "offset": 219,
       "length": 25,
       "value": "\"Invalid green component\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 269,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 282,
       "length": 3,
       "value": "255"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "StringLiteral",
       "offset": 287,
       "length": 24,
       "value": "\"Invalid blue component\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 352,
       "length": 5,
       "value": "255.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 383,
       "length": 5,
       "value": "255.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 412,
       "length": 5,
       "value": "255.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 426,
       "length": 3,
       "value": "1.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "FloatLiteral",
       "offset": 493,
       "length": 3,
       "value": "1.0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 544,
       "length": 2,
       "value": "16"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 550,
       "length": 4,
       "value": "0xFF"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 583,
       "length": 1,
       "value": "8"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 588,
       "length": 4,
       "value": "0xFF"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 618,
       "length": 4,
       "value": "0xFF"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 701,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 728,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 755,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 782,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 855,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 863,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 871,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 879,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 887,
       "length": 1,
       "value": "0"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 895,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "StringLiteral",
       "offset": 948,
       "length": 15,
       "value": "\"#%02X%02X%02X\""
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 979,
       "length": 3,
       "value": "255"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 1000,
       "length": 3,
       "value": "255"
     },
     {
-      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.4.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
+      "filePath": "\/Users\/draftbit\/Desktop\/mapbox-navigation-ios-3.8.0\/Sources\/_MapboxNavigationHelpers\/UI\/UIColor++.swift",
       "kind": "IntegerLiteral",
       "offset": 1021,
       "length": 3,

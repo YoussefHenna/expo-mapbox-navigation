@@ -18,3 +18,5 @@ typedef NS_ENUM(NSInteger, MBNNRoadSurface)
     MBNNRoadSurfacePath,
     MBNNRoadSurfaceImpassable
 } NS_SWIFT_NAME(RoadSurface);
+
+NSString* MBNNRoadSurfaceToString(MBNNRoadSurface road_surface);

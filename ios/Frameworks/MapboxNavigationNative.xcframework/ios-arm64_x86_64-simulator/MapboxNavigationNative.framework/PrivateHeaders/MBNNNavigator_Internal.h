@@ -23,9 +23,9 @@
                                     routeId:(nonnull NSString *)routeId
                               geometryIndex:(uint32_t)geometryIndex
                                    callback:(nonnull MBNNRefreshRouteCallback)callback __attribute__((deprecated));
-- (void)setRerouteControllerForController:(nonnull id<MBNNRerouteControllerInterface>)controller;
-- (nonnull id<MBNNRerouteControllerInterface>)getRerouteController __attribute((ns_returns_retained));
-- (nonnull id<MBNNRerouteDetectorInterface>)getRerouteDetector __attribute((ns_returns_retained));
+- (void)setRerouteControllerForController:(nonnull id<MBNNRerouteControllerInterface>)controller __attribute__((deprecated));
+- (nullable id<MBNNRerouteControllerInterface>)getRerouteController __attribute((ns_returns_retained));
+- (nullable id<MBNNRerouteDetectorInterface>)getRerouteDetector __attribute((ns_returns_retained));
 - (nonnull id<MBNNTelemetry>)getTelemetryForEventsMetadataProvider:(nonnull id<MBNNEventsMetadataInterface>)eventsMetadataProvider __attribute((ns_returns_retained));
 - (nonnull id<MBNNRouterInterface>)getRouter __attribute((ns_returns_retained));
 @end

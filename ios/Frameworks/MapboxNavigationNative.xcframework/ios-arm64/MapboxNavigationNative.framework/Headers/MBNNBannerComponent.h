@@ -45,4 +45,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly, nullable) MBNNShield *shield;
 
 
+- (BOOL)isEqualToBannerComponent:(nonnull MBNNBannerComponent *)other;
+
 @end

@@ -14,5 +14,7 @@ typedef NS_ENUM(NSInteger, MBNNForceRerouteReason)
     /** User changes routing settings, route should be re-requested */
     MBNNForceRerouteReasonParametersChange,
     /**  Server cannot determine route id for refreshes and alternatives */
-    MBNNForceRerouteReasonRouteInvalidated
+    MBNNForceRerouteReasonRouteInvalidated,
+    /**  User calls reroute by their internal unknown for us reason */
+    MBNNForceRerouteReasonUserTriggered
 } NS_SWIFT_NAME(ForceRerouteReason);

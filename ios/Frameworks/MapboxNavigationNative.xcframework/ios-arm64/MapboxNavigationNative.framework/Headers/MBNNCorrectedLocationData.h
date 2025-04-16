@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class MBNNDRSensorFusionStatus;
 @class MBNNFixLocation;
 @class MBNNIMUDerivedData;
 
@@ -20,7 +21,8 @@ __attribute__((visibility ("default")))
                                  isStill:(BOOL)isStill
                                  imuData:(nullable MBNNIMUDerivedData *)imuData
                          isDeadReckoning:(BOOL)isDeadReckoning
-                         satellitesCount:(nullable NSNumber *)satellitesCount;
+                         satellitesCount:(nullable NSNumber *)satellitesCount
+                    drSensorFusionStatus:(nullable MBNNDRSensorFusionStatus *)drSensorFusionStatus;
 
 /** Corrected location. */
 @property (nonatomic, readonly, nonnull) MBNNFixLocation *location;
@@ -37,5 +39,10 @@ __attribute__((visibility ("default")))
 /** Number of GPS satellites. */
 @property (nonatomic, readonly, nullable) NSNumber *satellitesCount;
 
+/** Status of sensor fuser. */
+@property (nonatomic, readonly, nullable) MBNNDRSensorFusionStatus *drSensorFusionStatus;
+
+
+- (BOOL)isEqualToCorrectedLocationData:(nonnull MBNNCorrectedLocationData *)other;
 
 @end

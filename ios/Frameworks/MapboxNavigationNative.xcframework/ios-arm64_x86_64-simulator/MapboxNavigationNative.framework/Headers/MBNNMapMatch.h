@@ -15,11 +15,15 @@ __attribute__((visibility ("default")))
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
 - (nonnull instancetype)initWithPosition:(nonnull MBNNGraphPosition *)position
-                                   proba:(float)proba;
+                                   proba:(float)proba
+                   fetchedCandidateIndex:(uint32_t)fetchedCandidateIndex;
 
 @property (nonatomic, readonly, nonnull) MBNNGraphPosition *position;
 /** probability of user is actually on this position */
 @property (nonatomic, readonly) float proba;
+
+/** original candidate index fetched around raw location before sorting by proba. For internal use */
+@property (nonatomic, readonly) uint32_t fetchedCandidateIndex;
 
 
 @end

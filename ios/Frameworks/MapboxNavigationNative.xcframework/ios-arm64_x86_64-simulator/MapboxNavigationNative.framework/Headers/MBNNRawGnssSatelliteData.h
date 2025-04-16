@@ -17,13 +17,14 @@ __attribute__((visibility ("default")))
 - (nonnull instancetype)initWithSvid:(int32_t)svid
                   carrierFrequencyHz:(nullable NSNumber *)carrierFrequencyHz
                      basebandCn0DbHz:(nullable NSNumber *)basebandCn0DbHz
-                             cn0DbHz:(double)cn0DbHz
-                           usedInFix:(BOOL)usedInFix
-                    hasEphemerisData:(BOOL)hasEphemerisData
-                      hasAlmanacData:(BOOL)hasAlmanacData
-                   constellationType:(MBNNConstellationType)constellationType
-                      azimuthDegrees:(float)azimuthDegrees
-                    elevationDegrees:(float)elevationDegrees;
+                             cn0DbHz:(nullable NSNumber *)cn0DbHz
+                           usedInFix:(nullable NSNumber *)usedInFix
+                    hasEphemerisData:(nullable NSNumber *)hasEphemerisData
+                      hasAlmanacData:(nullable NSNumber *)hasAlmanacData
+                   constellationType:(nullable NSNumber *)constellationType
+                      azimuthDegrees:(nullable NSNumber *)azimuthDegrees
+                    elevationDegrees:(nullable NSNumber *)elevationDegrees
+                            residual:(nullable NSNumber *)residual;
 
 /** The satellite id */
 @property (nonatomic, readonly) int32_t svid;
@@ -35,25 +36,28 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly, nullable) NSNumber *basebandCn0DbHz;
 
 /** The carrier-to-noise density in dB-Hz */
-@property (nonatomic, readonly) double cn0DbHz;
+@property (nonatomic, readonly, nullable) NSNumber *cn0DbHz;
 
 /** Whether the specific satellite has been seen and used in the calculation of the location (satellite in use) */
-@property (nonatomic, readonly) BOOL usedInFix;
+@property (nonatomic, readonly, nullable) NSNumber *usedInFix;
 
 /** Indicates whether ephemeris data is available */
-@property (nonatomic, readonly) BOOL hasEphemerisData;
+@property (nonatomic, readonly, nullable) NSNumber *hasEphemerisData;
 
 /** Indicates whether almanac data is available */
-@property (nonatomic, readonly) BOOL hasAlmanacData;
+@property (nonatomic, readonly, nullable) NSNumber *hasAlmanacData;
 
 /** Constellation type */
-@property (nonatomic, readonly) MBNNConstellationType constellationType;
+@property (nonatomic, readonly, nullable) NSNumber *constellationType;
 
 /** The azimuth of the satellite in degrees */
-@property (nonatomic, readonly) float azimuthDegrees;
+@property (nonatomic, readonly, nullable) NSNumber *azimuthDegrees;
 
 /** The elevation of the satellite in degrees */
-@property (nonatomic, readonly) float elevationDegrees;
+@property (nonatomic, readonly, nullable) NSNumber *elevationDegrees;
+
+/** A quality indicator for a GPS position that is determined during the differential correction process. High residuals are not desirable. */
+@property (nonatomic, readonly, nullable) NSNumber *residual;
 
 
 - (BOOL)isEqualToRawGnssSatelliteData:(nonnull MBNNRawGnssSatelliteData *)other;

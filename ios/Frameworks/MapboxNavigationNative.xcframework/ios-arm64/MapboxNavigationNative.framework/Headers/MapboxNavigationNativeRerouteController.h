@@ -5,3 +5,4 @@
 #import "MBNNRerouteError.h"
 #import "MBNNRerouteInfo.h"
 #import "MBNNRerouteObserver.h"
+#import "MBNNRouteOptionsAdapter.h"

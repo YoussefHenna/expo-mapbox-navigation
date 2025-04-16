@@ -2,5 +2,6 @@
 
 #import "MBNNFunctionalRoadClass.h"
 #import "MBNNRoadSurface.h"
+#import "MBNNSapaType.h"
 #import "MBNNEdgeMetadata.h"
 #import "MBNNGraphAccessor.h"

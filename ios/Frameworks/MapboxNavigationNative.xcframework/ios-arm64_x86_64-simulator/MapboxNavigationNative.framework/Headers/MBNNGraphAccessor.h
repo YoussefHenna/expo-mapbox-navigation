@@ -47,10 +47,9 @@ __attribute__((visibility ("default")))
  */
 - (nullable MBXCoordinate2D *)getPositionCoordinateForPosition:(nonnull MBNNGraphPosition *)position __attribute((ns_returns_retained));
 /**
- * Caution: Beta feature that cat be changed soon.
- *
  * Returns ADAS data for a given Edge.
  * If no ADAS data is available, returns null
+ * Adas-tiles should be available in cache, according to the current position and cache settings.
  */
 - (nullable MBNNEdgeAdasAttributes *)getAdasAttributesForEdgeId:(uint64_t)edgeId __attribute((ns_returns_retained));
 

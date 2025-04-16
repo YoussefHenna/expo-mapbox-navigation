@@ -20,4 +20,6 @@ __attribute__((visibility ("default")))
 
 @property (nonatomic, readonly, nonnull, copy) NSArray<NSNumber *> *serialized;
 
+- (BOOL)isEqualToNavigationSessionState:(nonnull MBNNNavigationSessionState *)other;
+
 @end

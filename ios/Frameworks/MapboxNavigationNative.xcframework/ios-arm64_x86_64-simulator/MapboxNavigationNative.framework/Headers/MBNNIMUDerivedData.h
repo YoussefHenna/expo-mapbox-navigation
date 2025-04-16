@@ -19,4 +19,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly, nullable) NSNumber *bearing;
 
 
+- (BOOL)isEqualToIMUDerivedData:(nonnull MBNNIMUDerivedData *)other;
+
 @end

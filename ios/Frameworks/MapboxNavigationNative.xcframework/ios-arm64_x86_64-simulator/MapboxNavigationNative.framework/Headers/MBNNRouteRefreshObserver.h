@@ -9,7 +9,7 @@ NS_SWIFT_NAME(RouteRefreshObserver)
 @protocol MBNNRouteRefreshObserver
 /**
  * Will be called if route refresh succeeded
- * @param  routeId  UUID-based id of the route being refreshed
+ * @param  routeId  UUID-based id of the route being refreshed, excluding index
  * @param  routeRefreshResponse  A string containing the json response from Directions Refresh API that represents refreshed route leg
  * @param  routeIndex  Index of the route in the original routes response
  * @param  legIndex  Index of the refreshed leg in the route with index routeIndex
@@ -22,12 +22,12 @@ NS_SWIFT_NAME(RouteRefreshObserver)
                                 routeGeometryIndex:(uint32_t)routeGeometryIndex;
 /**
  * Will be called in case route refresh was cancelled
- * @param  routeId  UUID-based id of the route being refreshed
+ * @param  routeId  UUID-based id of the route being refreshed, excluding index
  */
 - (void)onRouteRefreshCancelledForRouteId:(nonnull NSString *)routeId;
 /**
  * Will be called in case route refresh was failed
- * @param  routeId  UUID-based id of the route being refreshed
+ * @param  routeId  UUID-based id of the route being refreshed, excluding index
  * @param  error  details of the failure
  */
 - (void)onRouteRefreshFailedForRouteId:(nonnull NSString *)routeId

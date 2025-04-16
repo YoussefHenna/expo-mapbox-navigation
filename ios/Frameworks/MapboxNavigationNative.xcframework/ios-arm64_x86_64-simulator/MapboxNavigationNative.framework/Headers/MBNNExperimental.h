@@ -4,7 +4,6 @@
 #import <MapboxNavigationNative/MBNNGenerateEh360Callback.h>
 
 @class MBNNETCGateInfo;
-@class MBNNEdgeAdasAttributes;
 
 /**
  * Contains experimental APIs which might change without any deprecation process.
@@ -18,7 +17,7 @@ NS_SWIFT_NAME(Experimental)
  * NB: callback won't be called on the main thread
  */
 - (void)generateEh360ForGraphTraversalRadiusInMeters:(double)graphTraversalRadiusInMeters
-                                            callback:(nonnull MBNNGenerateEh360Callback)callback;
+                                            callback:(nonnull MBNNGenerateEh360Callback)callback __attribute__((deprecated));
 /**
  * Should be called as soon as vehicle passed Electronic Toll Collection(ETC) gate which operates in Japan.
  * This information can be used to improve map matching.
@@ -26,11 +25,4 @@ NS_SWIFT_NAME(Experimental)
  * @param etcGateInfo Information about ETC gate which was just passed by vehicle
  */
 - (void)updateETCGateInfoForEtcGateInfo:(nonnull MBNNETCGateInfo *)etcGateInfo __attribute__((deprecated));
-/**
- * Caution: Beta feature that cat be changed soon.
- *
- * Returns ADAS data for a given Edge.
- * If no ADAS data is available, returns null
- */
-- (nullable MBNNEdgeAdasAttributes *)getAdasAttributesForEdgeId:(uint64_t)edgeId;
 @end

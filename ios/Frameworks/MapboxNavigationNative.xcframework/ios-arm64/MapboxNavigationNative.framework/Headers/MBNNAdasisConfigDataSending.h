@@ -11,6 +11,8 @@
  * enableRetransmission - if true, retransmission will be enabled (package will be amended with messages from previous cycles)
  * retransmissionMeters - after passing this distance, messages will not be retransmitted
  * treeTrailingLength - the trailing length of the path tree, relatively to the map-matched position, in the adasis provider
+ * enableUpdates - send messages with update flag
+ * sortMessagesByMppAndDist - sort all messages by distance, first sent MPP
  */
 NS_SWIFT_NAME(AdasisConfigDataSending)
 __attribute__((visibility ("default")))
@@ -30,7 +32,9 @@ __attribute__((visibility ("default")))
                               metadataCycleSeconds:(uint32_t)metadataCycleSeconds
                               enableRetransmission:(BOOL)enableRetransmission
                               retransmissionMeters:(uint32_t)retransmissionMeters
-                                treeTrailingLength:(uint32_t)treeTrailingLength;
+                                treeTrailingLength:(uint32_t)treeTrailingLength
+                                     enableUpdates:(BOOL)enableUpdates
+                          sortMessagesByMppAndDist:(BOOL)sortMessagesByMppAndDist;
 
 @property (nonatomic, readonly) MBNNMessageBinaryFormat outputBinaryFormat;
 @property (nonatomic, readonly) uint32_t messageIntervalMs;
@@ -39,6 +43,8 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) BOOL enableRetransmission;
 @property (nonatomic, readonly) uint32_t retransmissionMeters;
 @property (nonatomic, readonly) uint32_t treeTrailingLength;
+@property (nonatomic, readonly) BOOL enableUpdates;
+@property (nonatomic, readonly) BOOL sortMessagesByMppAndDist;
 
 - (BOOL)isEqualToAdasisConfigDataSending:(nonnull MBNNAdasisConfigDataSending *)other;
 

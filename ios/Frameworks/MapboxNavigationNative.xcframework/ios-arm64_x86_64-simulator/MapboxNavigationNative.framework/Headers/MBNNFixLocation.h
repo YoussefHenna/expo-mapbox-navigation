@@ -88,4 +88,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) BOOL isMock;
 
 
+- (BOOL)isEqualToFixLocation:(nonnull MBNNFixLocation *)other;
+
 @end

@@ -7,6 +7,7 @@
 @class MBNNMatchableOpenLr;
 @class MBNNMatchablePoint;
 @class MBNNMatchingOptions;
+@class MBNNRoadObjectMatcherConfig;
 @protocol MBNNRoadObjectMatcherListener;
 
 /**
@@ -50,7 +51,22 @@ __attribute__((visibility ("default")))
 // This class provides custom init which should be called
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
+/**
+ * Constructs RoadObjectMatcher object with given dependencies. Default configuration is used.
+ *
+ * @param cache            cache handle created with `CacheFactory`
+ */
 - (nonnull instancetype)initWithCache:(nonnull MBNNCacheHandle *)cache;
+
+/**
+ * Constructs RoadObjectMatcher object with given dependencies.
+ *
+ * @param cache            cache handle created with `CacheFactory`
+ * @param config           RoadObjectMatcherConfig, created manually to adjust RoadObjectMatcher behaviour
+ */
+- (nonnull instancetype)initWithCache:(nonnull MBNNCacheHandle *)cache
+                               config:(nonnull MBNNRoadObjectMatcherConfig *)config;
+
 /**
  * Schedules a batch of OpenLRs to match. Supported references:
  * - TPEG: only line location

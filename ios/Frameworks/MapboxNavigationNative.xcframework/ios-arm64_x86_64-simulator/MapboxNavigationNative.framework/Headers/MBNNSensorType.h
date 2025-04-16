@@ -5,6 +5,12 @@
 // NOLINTNEXTLINE(modernize-use-using)
 typedef NS_ENUM(NSInteger, MBNNSensorType)
 {
+    /** Report if current weather is clear | fog | rain | snow */
     MBNNSensorTypeWeather,
-    MBNNSensorTypeLane
+    /** Current lane number, starting from 1 from the road boundary, e.g. for right side traffic 1 means the right lane */
+    MBNNSensorTypeLane,
+    /** Is trailer attached? Is maximum load over 3.5t? See adas::VehicleType for the supported types */
+    MBNNSensorTypeVehicleType
 } NS_SWIFT_NAME(SensorType);
+
+NSString* MBNNSensorTypeToString(MBNNSensorType sensor_type);

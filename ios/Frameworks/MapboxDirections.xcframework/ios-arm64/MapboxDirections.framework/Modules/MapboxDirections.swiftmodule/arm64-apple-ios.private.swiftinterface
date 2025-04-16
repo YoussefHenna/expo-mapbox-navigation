@@ -1,15 +1,8 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
-// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MapboxDirections
-// swift-module-flags-ignorable: -enable-bare-slash-regex
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name MapboxDirections
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import CoreGraphics
-import CoreLocation
-import CoreLocation
-import CoreLocation
-import CoreLocation
-import CoreLocation
-import CoreLocation
-import CoreLocation
 import CoreLocation
 import Foundation
 import Swift
@@ -133,7 +126,7 @@ public enum CongestionLevel : Swift.String, Swift.Codable, Swift.CaseIterable, S
   public init?(rawValue: Swift.String)
   public typealias AllCases = [MapboxDirections.CongestionLevel]
   public typealias RawValue = Swift.String
-  public static var allCases: [MapboxDirections.CongestionLevel] {
+  nonisolated public static var allCases: [MapboxDirections.CongestionLevel] {
     get
   }
   public var rawValue: Swift.String {
@@ -219,12 +212,12 @@ extension MapboxDirections.CustomValueOptionSet {
         let intersection = intersection(newMember, comparisonPolicy: comparisonPolicy)
 
         if intersection.rawValue == 0 {
-            // insert
+             
             rawValue = rawValue | newMember.rawValue
             customOptionsByRawValue.merge(newMember.customOptionsByRawValue) { current, _ in current }
             return nil
         } else {
-            // update
+             
             rawValue = rawValue | newMember.rawValue
             customOptionsByRawValue.merge(intersection.customOptionsByRawValue) { _, new in new }
             return intersection
@@ -357,38 +350,22 @@ extension MapboxDirections.CustomValueOptionSet {
 }
 public let MBDirectionsErrorDomain: Swift.String
 @_documentation(visibility: internal) open class Directions : @unchecked Swift.Sendable {
-  #if compiler(>=5.3) && $Sendable
   public typealias RouteCompletionHandler = @Sendable (_ result: Swift.Result<MapboxDirections.RouteResponse, MapboxDirections.DirectionsError>) -> Swift.Void
-  #endif
-  #if compiler(>=5.3) && $Sendable
   public typealias MatchCompletionHandler = @Sendable (_ result: Swift.Result<MapboxDirections.MapMatchingResponse, MapboxDirections.DirectionsError>) -> Swift.Void
-  #endif
-  #if compiler(>=5.3) && $Sendable
   public typealias RouteRefreshCompletionHandler = @Sendable (_ credentials: MapboxDirections.Credentials, _ result: Swift.Result<MapboxDirections.RouteRefreshResponse, MapboxDirections.DirectionsError>) -> Swift.Void
-  #endif
   public static let shared: MapboxDirections.Directions
   final public let credentials: MapboxDirections.Credentials
   public init(credentials: MapboxDirections.Credentials = .init(), urlSession: Foundation.URLSession = .shared, processingQueue: Dispatch.DispatchQueue = .global(qos: .userInitiated))
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func calculate(_ options: MapboxDirections.RouteOptions, completionHandler: @escaping MapboxDirections.Directions.RouteCompletionHandler) -> Foundation.URLSessionDataTask
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func calculate(_ options: MapboxDirections.MatchOptions, completionHandler: @escaping MapboxDirections.Directions.MatchCompletionHandler) -> Foundation.URLSessionDataTask
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func calculateRoutes(matching options: MapboxDirections.MatchOptions, completionHandler: @escaping MapboxDirections.Directions.RouteCompletionHandler) -> Foundation.URLSessionDataTask
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func refreshRoute(responseIdentifier: Swift.String, routeIndex: Swift.Int, fromLegAtIndex startLegIndex: Swift.Int = 0, completionHandler: @escaping MapboxDirections.Directions.RouteRefreshCompletionHandler) -> Foundation.URLSessionDataTask?
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func refreshRoute(responseIdentifier: Swift.String, routeIndex: Swift.Int, fromLegAtIndex startLegIndex: Swift.Int = 0, currentRouteShapeIndex: Swift.Int, completionHandler: @escaping MapboxDirections.Directions.RouteRefreshCompletionHandler) -> Foundation.URLSessionDataTask?
-  #endif
   open func urlRequest(forRefreshing responseIdentifier: Swift.String, routeIndex: Swift.Int, fromLegAtIndex startLegIndex: Swift.Int) -> Foundation.URLRequest
   open func urlRequest(forRefreshing responseIdentifier: Swift.String, routeIndex: Swift.Int, fromLegAtIndex startLegIndex: Swift.Int, currentRouteShapeIndex: Swift.Int) -> Foundation.URLRequest
   open func url(forCalculating options: MapboxDirections.DirectionsOptions) -> Foundation.URL
@@ -525,7 +502,7 @@ public enum DirectionsResultCodingKeys : Swift.String, Swift.CodingKey, Swift.Ca
   public init?(intValue: Swift.Int)
   public typealias AllCases = [MapboxDirections.DirectionsResultCodingKeys]
   public typealias RawValue = Swift.String
-  public static var allCases: [MapboxDirections.DirectionsResultCodingKeys] {
+  nonisolated public static var allCases: [MapboxDirections.DirectionsResultCodingKeys] {
     get
   }
   public var intValue: Swift.Int? {
@@ -755,16 +732,12 @@ extension MapboxDirections.IsochroneOptions {
 }
 open class Isochrones : @unchecked Swift.Sendable {
   public typealias Session = (options: MapboxDirections.IsochroneOptions, credentials: MapboxDirections.Credentials)
-  #if compiler(>=5.3) && $Sendable
   public typealias IsochroneCompletionHandler = @_Concurrency.MainActor @Sendable (_ result: Swift.Result<Turf.FeatureCollection, MapboxDirections.IsochroneError>) -> Swift.Void
-  #endif
   final public let credentials: MapboxDirections.Credentials
   public static let shared: MapboxDirections.Isochrones
   public init(credentials: MapboxDirections.Credentials = .init(), urlSession: Foundation.URLSession = .shared, processingQueue: Dispatch.DispatchQueue = .global(qos: .userInitiated))
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func calculate(_ options: MapboxDirections.IsochroneOptions, completionHandler: @escaping MapboxDirections.Isochrones.IsochroneCompletionHandler) -> Foundation.URLSessionDataTask
-  #endif
   open func url(forCalculating options: MapboxDirections.IsochroneOptions) -> Foundation.URL
   open func urlRequest(forCalculating options: MapboxDirections.IsochroneOptions) -> Foundation.URLRequest
   @objc deinit
@@ -835,7 +808,7 @@ public struct Match : MapboxDirections.DirectionsResult {
     public init?(intValue: Swift.Int)
     public typealias AllCases = [MapboxDirections.Match.CodingKeys]
     public typealias RawValue = Swift.String
-    public static var allCases: [MapboxDirections.Match.CodingKeys] {
+    nonisolated public static var allCases: [MapboxDirections.Match.CodingKeys] {
       get
     }
     public var intValue: Swift.Int? {
@@ -944,16 +917,12 @@ public enum MapboxStreetsRoadClass : Swift.String, Swift.Codable, Swift.Equatabl
 }
 open class Matrix : @unchecked Swift.Sendable {
   public typealias Session = (options: MapboxDirections.MatrixOptions, credentials: MapboxDirections.Credentials)
-  #if compiler(>=5.3) && $Sendable
   public typealias MatrixCompletionHandler = @Sendable (_ result: Swift.Result<MapboxDirections.MatrixResponse, MapboxDirections.MatrixError>) -> Swift.Void
-  #endif
   final public let credentials: MapboxDirections.Credentials
   public static let shared: MapboxDirections.Matrix
   public init(credentials: MapboxDirections.Credentials = .init(), urlSession: Foundation.URLSession = .shared, processingQueue: Dispatch.DispatchQueue = .global(qos: .userInitiated))
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   open func calculate(_ options: MapboxDirections.MatrixOptions, completionHandler: @escaping MapboxDirections.Matrix.MatrixCompletionHandler) -> Foundation.URLSessionDataTask
-  #endif
   open func url(forCalculating options: MapboxDirections.MatrixOptions) -> Foundation.URL
   open func urlRequest(forCalculating options: MapboxDirections.MatrixOptions) -> Foundation.URLRequest
   @objc deinit
@@ -1014,36 +983,22 @@ extension MapboxDirections.MatrixResponse : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
 }
 public typealias OfflineVersion = Swift.String
-#if compiler(>=5.3) && $Sendable
 public typealias OfflineDownloaderCompletionHandler = @Sendable (_ location: Foundation.URL?, _ response: Foundation.URLResponse?, _ error: (any Swift.Error)?) -> Swift.Void
-#endif
-#if compiler(>=5.3) && $Sendable
 public typealias OfflineDownloaderProgressHandler = @Sendable (_ bytesWritten: Swift.Int64, _ totalBytesWritten: Swift.Int64, _ totalBytesExpectedToWrite: Swift.Int64) -> Swift.Void
-#endif
-#if compiler(>=5.3) && $Sendable
 public typealias OfflineVersionsHandler = @Sendable (_ version: [MapboxDirections.OfflineVersion]?, _ error: (any Swift.Error)?) -> Swift.Void
-#endif
 public protocol OfflineDirectionsProtocol {
-  #if compiler(>=5.3) && $Sendable
   func fetchAvailableOfflineVersions(completionHandler: @escaping MapboxDirections.OfflineVersionsHandler) -> Foundation.URLSessionDataTask
-  #endif
-  #if compiler(>=5.3) && $Sendable
   func downloadTiles(in coordinateBounds: Turf.BoundingBox, version: MapboxDirections.OfflineVersion, completionHandler: @escaping MapboxDirections.OfflineDownloaderCompletionHandler) -> Foundation.URLSessionDownloadTask
-  #endif
 }
 extension MapboxDirections.Directions : MapboxDirections.OfflineDirectionsProtocol {
   public var availableVersionsURL: Foundation.URL {
     get
   }
   public func tilesURL(for coordinateBounds: Turf.BoundingBox, version: MapboxDirections.OfflineVersion) -> Foundation.URL
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   public func fetchAvailableOfflineVersions(completionHandler: @escaping MapboxDirections.OfflineVersionsHandler) -> Foundation.URLSessionDataTask
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @discardableResult
   public func downloadTiles(in coordinateBounds: Turf.BoundingBox, version: MapboxDirections.OfflineVersion, completionHandler: @escaping MapboxDirections.OfflineDownloaderCompletionHandler) -> Foundation.URLSessionDownloadTask
-  #endif
 }
 public typealias LocationCoordinate2D = CoreLocation.CLLocationCoordinate2D
 public struct Polyline {
@@ -1158,7 +1113,7 @@ public struct Route : MapboxDirections.DirectionsResult {
     public init?(intValue: Swift.Int)
     public typealias AllCases = [MapboxDirections.Route.CodingKeys]
     public typealias RawValue = Swift.String
-    public static var allCases: [MapboxDirections.Route.CodingKeys] {
+    nonisolated public static var allCases: [MapboxDirections.Route.CodingKeys] {
       get
     }
     public var intValue: Swift.Int? {
@@ -1216,7 +1171,7 @@ public struct RouteLeg : Swift.Codable, Turf.ForeignMemberContainer, Swift.Equat
     public init?(intValue: Swift.Int)
     public typealias AllCases = [MapboxDirections.RouteLeg.CodingKeys]
     public typealias RawValue = Swift.String
-    public static var allCases: [MapboxDirections.RouteLeg.CodingKeys] {
+    nonisolated public static var allCases: [MapboxDirections.RouteLeg.CodingKeys] {
       get
     }
     public var intValue: Swift.Int? {
@@ -1576,6 +1531,17 @@ public struct SpokenInstruction : Swift.Codable, Turf.ForeignMemberContainer, Sw
 extension MapboxDirections.SpokenInstruction {
   public static func == (lhs: MapboxDirections.SpokenInstruction, rhs: MapboxDirections.SpokenInstruction) -> Swift.Bool
 }
+public struct TimeZoneInformation : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let identifier: Swift.String
+  public let offset: Swift.String
+  public let abbreviation: Swift.String?
+  public var timeZone: Foundation.TimeZone? {
+    get
+  }
+  public static func == (a: MapboxDirections.TimeZoneInformation, b: MapboxDirections.TimeZoneInformation) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 public struct TollCollection : Swift.Codable, Swift.Equatable, Turf.ForeignMemberContainer, Swift.Sendable {
   public var foreignMembers: Turf.JSONObject
   public enum CollectionType : Swift.String, Swift.Codable, Swift.Sendable {
@@ -1640,7 +1606,7 @@ public enum TrafficTendency : Swift.Int, Swift.Codable, Swift.CaseIterable, Swif
   public init?(rawValue: Swift.Int)
   public typealias AllCases = [MapboxDirections.TrafficTendency]
   public typealias RawValue = Swift.Int
-  public static var allCases: [MapboxDirections.TrafficTendency] {
+  nonisolated public static var allCases: [MapboxDirections.TrafficTendency] {
     get
   }
   public var rawValue: Swift.Int {
@@ -1753,6 +1719,7 @@ public struct Waypoint : Swift.Codable, Turf.ForeignMemberContainer, Swift.Equat
   public var allowsArrivingOnOppositeSide: Swift.Bool
   public var name: Swift.String?
   public var separatesLegs: Swift.Bool
+  public var timeZone: MapboxDirections.TimeZoneInformation?
   public static func == (a: MapboxDirections.Waypoint, b: MapboxDirections.Waypoint) -> Swift.Bool
 }
 extension MapboxDirections.Waypoint : Swift.CustomStringConvertible {

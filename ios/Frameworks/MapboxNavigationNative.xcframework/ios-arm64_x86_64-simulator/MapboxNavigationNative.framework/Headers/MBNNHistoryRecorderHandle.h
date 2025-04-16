@@ -4,6 +4,7 @@
 #import <MapboxNavigationNative/MBNNDumpHistoryCallback.h>
 
 @class MBNNConfigHandle;
+@class MBNNSdkHistoryInfo;
 
 /**
  * HistoryRecorder handle is used for history trace recording.
@@ -51,12 +52,14 @@ __attribute__((visibility ("default")))
 /**
  * @param historyDir Path to the directory where history files could be stored when `stopRecording(...)` is called.
  * It could be existing directory or new one.
+ * @param sdkInfo    Information about current SDK which will be written to a history
  * @param config     Config created with `ConfigFactory`
  * Builds history recorder which can be re-used in other instances
  * Can return null if `historyDir` is empty or `historyDir` path is not a directory or HistoryRecorder couldn't create directory at `historyDir` path
  * using that path.
  */
 + (nullable MBNNHistoryRecorderHandle *)buildForHistoryDir:(nonnull NSString *)historyDir
+                                                   sdkInfo:(nonnull MBNNSdkHistoryInfo *)sdkInfo
                                                     config:(nonnull MBNNConfigHandle *)config __attribute((ns_returns_retained));
 /**
  * Build composite history recorder that will be only forwarding events to hosting recorders.

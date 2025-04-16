@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 #import <MapboxNavigationNative/MBNNFunctionalRoadClass.h>
 #import <MapboxNavigationNative/MBNNRoadSurface.h>
+#import <MapboxNavigationNative/MBNNSapaType.h>
 
 @class MBNNRoadName;
 
@@ -38,6 +39,30 @@ __attribute__((visibility ("default")))
                                isOneway:(BOOL)isOneway
                                 surface:(MBNNRoadSurface)surface
                                 isUrban:(BOOL)isUrban;
+
+- (nonnull instancetype)initWithHeading:(double)heading
+                                 length:(double)length
+                                    frc:(MBNNFunctionalRoadClass)frc
+                             speedLimit:(nullable NSNumber *)speedLimit
+                                  speed:(double)speed
+                                   ramp:(BOOL)ramp
+                               motorway:(BOOL)motorway
+                                 bridge:(BOOL)bridge
+                                 tunnel:(BOOL)tunnel
+                                   toll:(BOOL)toll
+                             roundabout:(BOOL)roundabout
+                                  names:(nonnull NSArray<MBNNRoadName *> *)names
+                              laneCount:(nullable NSNumber *)laneCount
+                          meanElevation:(nullable NSNumber *)meanElevation
+                              curvature:(uint8_t)curvature
+                        countryCodeIso3:(nullable NSString *)countryCodeIso3
+                        countryCodeIso2:(nullable NSString *)countryCodeIso2
+                              stateCode:(nullable NSString *)stateCode
+                     isRightHandTraffic:(BOOL)isRightHandTraffic
+                               isOneway:(BOOL)isOneway
+                                surface:(MBNNRoadSurface)surface
+                                isUrban:(BOOL)isUrban
+                               sapaType:(MBNNSapaType)sapaType;
 
 /** The bearing in degrees clockwise at the start of the edge. 0 points to North. */
 @property (nonatomic, readonly) double heading;
@@ -115,6 +140,9 @@ __attribute__((visibility ("default")))
 
 /** True if edge is considered to be in urban area */
 @property (nonatomic, readonly) BOOL isUrban;
+
+/** Returns whether the edge a part of service area or resst area or none */
+@property (nonatomic, readonly) MBNNSapaType sapaType;
 
 
 - (BOOL)isEqualToEdgeMetadata:(nonnull MBNNEdgeMetadata *)other;

@@ -3,6 +3,7 @@
 #import <Foundation/Foundation.h>
 
 @class MBNNAdasisConfigMessageOptions;
+@class MBNNAdasisConfigProfilelongTrafficSignOptions;
 @class MBNNAdasisConfigProfilelongTypeOptions;
 
 /**
@@ -21,10 +22,12 @@ __attribute__((visibility ("default")))
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
 - (nonnull instancetype)initWithOptions:(nonnull MBNNAdasisConfigMessageOptions *)options
-                                  types:(nonnull MBNNAdasisConfigProfilelongTypeOptions *)types;
+                                  types:(nonnull MBNNAdasisConfigProfilelongTypeOptions *)types
+                            trafficSign:(nonnull MBNNAdasisConfigProfilelongTrafficSignOptions *)trafficSign;
 
 @property (nonatomic, readonly, nonnull) MBNNAdasisConfigMessageOptions *options;
 @property (nonatomic, readonly, nonnull) MBNNAdasisConfigProfilelongTypeOptions *types;
+@property (nonatomic, readonly, nonnull) MBNNAdasisConfigProfilelongTrafficSignOptions *trafficSign;
 
 - (BOOL)isEqualToProfilelong:(nonnull MBNNProfilelong *)other;
 

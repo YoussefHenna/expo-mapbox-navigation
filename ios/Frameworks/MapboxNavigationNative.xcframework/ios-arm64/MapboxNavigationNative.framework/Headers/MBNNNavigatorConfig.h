@@ -1,6 +1,7 @@
 // This file is generated and will be overwritten automatically.
 
 #import <Foundation/Foundation.h>
+#import <MapboxNavigationNative/MBNNRerouteStrategyForMatchRoute.h>
 
 @class MBNNElectronicHorizonOptions;
 @class MBNNIncidentsOptions;
@@ -22,7 +23,8 @@ __attribute__((visibility ("default")))
                                                   polling:(nullable MBNNPollingConfig *)polling
                                          incidentsOptions:(nullable MBNNIncidentsOptions *)incidentsOptions
                                 noSignalSimulationEnabled:(nullable NSNumber *)noSignalSimulationEnabled
-                                               useSensors:(nullable NSNumber *)useSensors;
+                                               useSensors:(nullable NSNumber *)useSensors
+                             rerouteStrategyForMatchRoute:(MBNNRerouteStrategyForMatchRoute)rerouteStrategyForMatchRoute;
 
 /**
  * The threshold at which we will return a voice instruction after current progress has passed it.
@@ -49,6 +51,9 @@ __attribute__((visibility ("default")))
  * Default: false.
  */
 @property (nonatomic, readwrite, nullable) NSNumber *useSensors;
+
+/** Set behaviour of going offroute from the current route built with map-matched api. */
+@property (nonatomic, readwrite) MBNNRerouteStrategyForMatchRoute rerouteStrategyForMatchRoute;
 
 
 @end

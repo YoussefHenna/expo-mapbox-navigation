@@ -18,3 +18,5 @@ typedef NS_ENUM(NSInteger, MBNNFunctionalRoadClass)
     MBNNFunctionalRoadClassResidential,
     MBNNFunctionalRoadClassServiceOther
 } NS_SWIFT_NAME(FunctionalRoadClass);
+
+NSString* MBNNFunctionalRoadClassToString(MBNNFunctionalRoadClass functional_road_class);

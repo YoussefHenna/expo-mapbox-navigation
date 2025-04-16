@@ -6,6 +6,7 @@
 #import "MBNNUpcomingRouteAlertUpdate.h"
 #import "MBNNRouteInfo.h"
 #import "MBNNRouteIndices.h"
+#import "MBNNTimeZone.h"
 #import "MBNNWaypoint.h"
 #import "MBNNRouteIntersection.h"
 #import "MBNNAlternativeRouteInfo.h"

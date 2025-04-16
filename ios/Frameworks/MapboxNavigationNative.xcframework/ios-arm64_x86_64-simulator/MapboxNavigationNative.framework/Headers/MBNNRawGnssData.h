@@ -2,7 +2,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class MBNNRawGnssLocation;
 @class MBNNRawGnssSatelliteData;
 
 /** Raw GNSS data */
@@ -16,12 +15,41 @@ __attribute__((visibility ("default")))
 // This class provides custom init which should be called
 + (nonnull instancetype)new NS_UNAVAILABLE;
 
-- (nonnull instancetype)initWithLocation:(nonnull MBNNRawGnssLocation *)location
-                              satellites:(nonnull NSArray<MBNNRawGnssSatelliteData *> *)satellites
-           monotonicTimestampNanoseconds:(int64_t)monotonicTimestampNanoseconds;
+- (nonnull instancetype)initWithGdop:(nullable NSNumber *)gdop
+                                pdop:(nullable NSNumber *)pdop
+                                tdop:(nullable NSNumber *)tdop
+                                vdop:(nullable NSNumber *)vdop
+                                hdop:(nullable NSNumber *)hdop
+                                ndop:(nullable NSNumber *)ndop
+                                edop:(nullable NSNumber *)edop
+                          satellites:(nonnull NSArray<MBNNRawGnssSatelliteData *> *)satellites
+       monotonicTimestampNanoseconds:(int64_t)monotonicTimestampNanoseconds;
 
-/** Raw GNSS location data */
-@property (nonatomic, readonly, nonnull) MBNNRawGnssLocation *location;
+/**
+ * Dilution of Precision (DOP) - an indicator of satellite geometry for a unique constellation of satellites used to determine a position.
+ * Positions tagged with a higher DOP value generally constitute poorer measurement results than those tagged with lower DOP.
+ *
+ * Geometric dilution of precision
+ */
+@property (nonatomic, readonly, nullable) NSNumber *gdop;
+
+/** Position dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *pdop;
+
+/** Time dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *tdop;
+
+/** Vertical dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *vdop;
+
+/** Horizontal dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *hdop;
+
+/** Northing dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *ndop;
+
+/** Easting dilution of precision */
+@property (nonatomic, readonly, nullable) NSNumber *edop;
 
 /** Raw GNSS satellites data */
 @property (nonatomic, readonly, nonnull, copy) NSArray<MBNNRawGnssSatelliteData *> *satellites;

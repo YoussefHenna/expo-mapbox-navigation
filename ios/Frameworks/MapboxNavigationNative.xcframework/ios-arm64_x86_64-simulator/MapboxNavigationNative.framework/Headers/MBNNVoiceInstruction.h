@@ -24,4 +24,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) uint32_t index;
 
 
+- (BOOL)isEqualToVoiceInstruction:(nonnull MBNNVoiceInstruction *)other;
+
 @end

@@ -9,12 +9,14 @@
  * Two types of sensors are supported:
  * - Actual weather data for current location
  * value is an array of i8 of 3 possible weather conditions: 0 - "Rain(Wetness)", 1 - "Snow(Icy)", 2 - "Fog".
- * If array is empty  - no special weather conditions are detected.
+ * An empty array means clear weather - no special weather conditions are detected.
  * - Lane sensor
  * value is an object with the following fields:
  * {"currentLaneIndex": 1, "laneCount": 3}
  * For right-hand traffic 1 is the very right lane and so on
  * currentLaneIndex == 0 means that lane information is not available
+ * - Vehicle type
+ * Set the current vehicle type of supported in adas::VehicleType as a string representation, e.g. "Car", "Trailer", "Bus", "Truck", etc.
  * !!IMPORTANT!!: monotonicTimestampNanoseconds should be based on the same source as FixLocation::monotonicTimestampNanoseconds
  */
 NS_SWIFT_NAME(SensorData)

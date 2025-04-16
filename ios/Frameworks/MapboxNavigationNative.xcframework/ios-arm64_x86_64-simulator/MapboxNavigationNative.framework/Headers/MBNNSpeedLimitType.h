@@ -3,14 +3,14 @@
 #import <Foundation/Foundation.h>
 
 /**
- * Speed limit type
- * Implicit for default value (e.g. for cities / highways)
- * Explicit for speed limits specified with traffic signs
+ *  Speed limit type
+ *  Implicit for default value (e.g. for cities / highways)
+ *  Explicit for speed limits specified with traffic signs
  */
 // NOLINTNEXTLINE(modernize-use-using)
 typedef NS_ENUM(NSInteger, MBNNSpeedLimitType)
 {
-    /** Means no sign, limmit is set by regulations for urban / rural / living_street */
+    /** Means no sign, limit is set by regulations for urban / rural / living_street */
     MBNNSpeedLimitTypeImplicit,
     /** Edge starts with a speed limit sign */
     MBNNSpeedLimitTypeExplicit,

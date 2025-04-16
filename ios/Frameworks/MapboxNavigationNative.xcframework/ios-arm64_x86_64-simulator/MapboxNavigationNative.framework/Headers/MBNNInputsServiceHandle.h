@@ -6,6 +6,7 @@
 @class MBNNCompassData;
 @class MBNNConfigHandle;
 @class MBNNETCGateInfo;
+@class MBNNFixLocation;
 @class MBNNHistoryRecorderHandle;
 @class MBNNImuTemperatureData;
 @class MBNNOdometryData;
@@ -31,6 +32,7 @@ __attribute__((visibility ("default")))
                                     historyRecorder:(nullable MBNNHistoryRecorderHandle *)historyRecorder __attribute((ns_returns_retained));
 /** Data update */
 - (void)updateOdometryDataForData:(nonnull MBNNOdometryData *)data;
+- (void)updateRawLocationForLocation:(nonnull MBNNFixLocation *)location;
 - (void)updateRawGnssDataForData:(nonnull MBNNRawGnssData *)data;
 - (void)updateCompassDataForData:(nonnull MBNNCompassData *)data;
 - (void)updateAltimeterDataForData:(nonnull MBNNAltimeterData *)data;

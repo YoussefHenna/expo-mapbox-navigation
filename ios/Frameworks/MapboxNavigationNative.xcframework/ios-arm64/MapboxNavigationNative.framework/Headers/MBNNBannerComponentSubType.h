@@ -26,3 +26,5 @@ typedef NS_ENUM(NSInteger, MBNNBannerComponentSubType)
     /** direction signboard guidance view */
     MBNNBannerComponentSubTypeDirectionboard
 } NS_SWIFT_NAME(BannerComponentSubType);
+
+NSString* MBNNBannerComponentSubTypeToString(MBNNBannerComponentSubType banner_component_sub_type);

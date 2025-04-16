@@ -36,5 +36,6 @@ NS_SWIFT_NAME(RerouteObserver)
  * Called when a re-route is finished.
  * @param route The new route.
  */
-- (void)onSwitchToAlternativeForRoute:(nonnull id<MBNNRouteInterface>)route;
+- (void)onSwitchToAlternativeForRoute:(nonnull id<MBNNRouteInterface>)route
+                             legIndex:(uint32_t)legIndex;
 @end

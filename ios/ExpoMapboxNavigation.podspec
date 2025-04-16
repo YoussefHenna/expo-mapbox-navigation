@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ExpoModulesCore'
   s.dependency 'MapboxMaps', ENV['ExpoNavigationMapboxMapsVersion']
-  s.dependency 'Turf', '~> 3.0'
+  s.dependency 'Turf', '~> 4.0.0'
 
   s.source_files = "**/*.{h,m,swift}"
   s.exclude_files = ["Frameworks/*.xcframework/**/*.h"]

@@ -30,4 +30,6 @@ __attribute__((visibility ("default")))
 @property (nonatomic, readonly) NSTimeInterval remainingDuration;
 
 
+- (BOOL)isEqualToActiveGuidanceProgress:(nonnull MBNNActiveGuidanceProgress *)other;
+
 @end

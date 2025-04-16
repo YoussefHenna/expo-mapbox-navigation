@@ -28,4 +28,6 @@ NS_SWIFT_NAME(MutableNavigatorSettings)
  * Contains IETF BCP 47 language tags
  */
 - (void)setUserLanguagesForLanguages:(nonnull NSArray<NSString *> *)languages;
+/** First of the user's preferable languages supported by Valhalla. See `setUserLanguages(...)`. */
+- (nonnull NSString *)userLanguageSupportedByValhalla;
 @end

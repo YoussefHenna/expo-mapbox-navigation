@@ -1,6 +1,7 @@
 // This file is generated and will be overwritten automatically.
 
 #import "MBNNBillingProductType.h"
+#import "MBNNRerouteStrategyForMatchRoute.h"
 #import "MBNNProfileApplication.h"
 #import "MBNNProfilePlatform.h"
 #import "MBNNPollingConfig.h"

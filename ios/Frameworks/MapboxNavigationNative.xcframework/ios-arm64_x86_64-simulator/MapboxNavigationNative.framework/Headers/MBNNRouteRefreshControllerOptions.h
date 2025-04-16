@@ -18,7 +18,7 @@ __attribute__((visibility ("default")))
                                routeIndex:(uint32_t)routeIndex
                            routingProfile:(nonnull MBNNRoutingProfile *)routingProfile;
 
-/** A uuid specifying the request containing the route being refreshed */
+/** A uuid specifying the request containing the route being refreshed, excluding index */
 @property (nonatomic, readonly, nonnull, copy) NSString *requestId;
 
 /** The index of the specified route */
