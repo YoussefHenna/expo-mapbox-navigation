@@ -1,13 +1,17 @@
 import { requireNativeViewManager } from "expo-modules-core";
 import * as React from "react";
 
-import { ExpoMapboxNavigationViewProps } from "./ExpoMapboxNavigation.types";
+import {
+  ExpoMapboxNavigationViewProps,
+  ExpoMapboxNavigationViewRef,
+} from "./ExpoMapboxNavigation.types";
 
 const NativeView: React.ComponentType<ExpoMapboxNavigationViewProps> =
   requireNativeViewManager("ExpoMapboxNavigation");
 
-export default function ExpoMapboxNavigationView(
-  props: ExpoMapboxNavigationViewProps
-) {
-  return <NativeView {...props} />;
-}
+export default React.forwardRef<
+  ExpoMapboxNavigationViewRef,
+  ExpoMapboxNavigationViewProps
+>((props, ref) => {
+  return <NativeView {...props} ref={ref} />;
+});

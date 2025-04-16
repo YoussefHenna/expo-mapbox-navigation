@@ -1,4 +1,5 @@
 import { ViewStyle, StyleProp } from "react-native/types";
+import { Ref } from "react";
 
 type ProgressEvent = {
   distanceRemaining: number;
@@ -7,7 +8,12 @@ type ProgressEvent = {
   fractionTraveled: number;
 };
 
+export type ExpoMapboxNavigationViewRef = {
+  recenterMap: () => void;
+};
+
 export type ExpoMapboxNavigationViewProps = {
+  ref?: Ref<ExpoMapboxNavigationViewRef>;
   coordinates: Array<{ latitude: number; longitude: number }>;
   waypointIndices?: number[];
   useRouteMatchingApi?: boolean;

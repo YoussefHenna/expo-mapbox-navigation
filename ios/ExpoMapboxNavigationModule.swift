@@ -55,6 +55,10 @@ public class ExpoMapboxNavigationModule: Module {
       Prop("mute"){ (view: ExpoMapboxNavigationView, isMuted: Bool?) in
           view.controller.setIsMuted(isMuted: isMuted) 
       }
+
+      AsyncFunction("recenterMap") { (view: ExpoMapboxNavigationView) in
+        view.controller.recenterMap()
+      }
     }
   }
 }

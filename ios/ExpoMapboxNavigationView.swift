@@ -43,7 +43,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var routingProvider: RoutingProvider? = nil
     var navigation: NavigationController? = nil
     var tripSession: SessionController? = nil
-
+    var navigationViewController: NavigationViewController? = nil
+    
     var currentCoordinates: Array<CLLocationCoordinate2D>? = nil
     var currentWaypointIndices: Array<Int>? = nil
     var currentLocale: Locale = Locale.current
@@ -181,6 +182,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
         update()
     }
 
+    func recenterMap(){
+        let navigationMapView = navigationViewController?.navigationMapView
+        navigationMapView?.navigationCamera.update(cameraState: .following)
+    }
+
      func setIsMuted(isMuted: Bool?){
         if(isMuted != nil){
             ExpoMapboxNavigationViewController.navigationProvider.routeVoiceController.speechSynthesizer.muted = isMuted!
@@ -271,10 +277,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
             bottomBanner: bottomBanner
         )
 
-        let navigationViewController = NavigationViewController(
+        navigationViewController = NavigationViewController(
             navigationRoutes: navigationRoutes,
             navigationOptions: navigationOptions
         )
+        let navigationViewController = navigationViewController!
 
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
