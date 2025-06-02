@@ -46,6 +46,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var navigationViewController: NavigationViewController? = nil
     
     var currentCoordinates: Array<CLLocationCoordinate2D>? = nil
+    var initialLocation: CLLocationCoordinate2D? = nil
+    var initialLocationSet: Bool = false
     var currentWaypointIndices: Array<Int>? = nil
     var currentLocale: Locale = Locale.current
     var currentRouteProfile: String? = nil
@@ -187,10 +189,14 @@ class ExpoMapboxNavigationViewController: UIViewController {
         navigationMapView?.navigationCamera.update(cameraState: .following)
     }
 
-     func setIsMuted(isMuted: Bool?){
+    func setIsMuted(isMuted: Bool?){
         if(isMuted != nil){
             ExpoMapboxNavigationViewController.navigationProvider.routeVoiceController.speechSynthesizer.muted = isMuted!
         }
+    }
+
+    func setInitialLocation(location: CLLocationCoordinate2D){
+        initialLocation = location
     }
 
     func update(){
@@ -283,8 +289,15 @@ class ExpoMapboxNavigationViewController: UIViewController {
         )
         let navigationViewController = navigationViewController!
 
+        
+
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
+
+        if(initialLocation != nil && !initialLocationSet){
+            navigationMapView!.mapView.mapboxMap.setCamera(to: CameraOptions(center: initialLocation!, zoom: 15))
+            initialLocationSet = true
+        }
 
         let style = currentMapStyle != nil ? StyleURI(rawValue: currentMapStyle!) : StyleURI.streets
         navigationMapView!.mapView.mapboxMap.loadStyle(style!, completion: { _ in
