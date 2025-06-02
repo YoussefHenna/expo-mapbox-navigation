@@ -16,16 +16,17 @@ import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.Location
 import com.mapbox.geojson.Point
+import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.EdgeInsets
-import com.mapbox.maps.ImageHolder
-import com.mapbox.maps.MapView
-import com.mapbox.maps.MapboxMap
-import com.mapbox.maps.Style
 import com.mapbox.maps.extension.localization.localizeLabels
-import com.mapbox.maps.plugin.LocationPuck2D
+import com.mapbox.maps.ImageHolder
+import com.mapbox.maps.MapboxMap
+import com.mapbox.maps.MapView
 import com.mapbox.maps.plugin.animation.camera
-import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
+import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
+import com.mapbox.maps.plugin.LocationPuck2D
+import com.mapbox.maps.Style
 import com.mapbox.navigation.base.extensions.applyDefaultNavigationOptions
 import com.mapbox.navigation.base.formatter.DistanceFormatterOptions
 import com.mapbox.navigation.base.route.NavigationRoute
@@ -62,20 +63,20 @@ import com.mapbox.navigation.ui.components.maneuver.view.MapboxManeuverView
 import com.mapbox.navigation.ui.components.maps.camera.view.MapboxRecenterButton
 import com.mapbox.navigation.ui.components.maps.camera.view.MapboxRouteOverviewButton
 import com.mapbox.navigation.ui.components.voice.view.MapboxSoundButton
-import com.mapbox.navigation.ui.maps.camera.NavigationCamera
 import com.mapbox.navigation.ui.maps.camera.data.FollowingFrameOptions.FocalPoint
 import com.mapbox.navigation.ui.maps.camera.data.MapboxNavigationViewportDataSource
 import com.mapbox.navigation.ui.maps.camera.lifecycle.NavigationBasicGesturesHandler
+import com.mapbox.navigation.ui.maps.camera.NavigationCamera
 import com.mapbox.navigation.ui.maps.camera.state.NavigationCameraState
 import com.mapbox.navigation.ui.maps.camera.transition.NavigationCameraTransitionOptions
 import com.mapbox.navigation.ui.maps.location.NavigationLocationProvider
-import com.mapbox.navigation.ui.maps.route.RouteLayerConstants.TOP_LEVEL_ROUTE_LINE_LAYER_ID
 import com.mapbox.navigation.ui.maps.route.arrow.api.MapboxRouteArrowApi
 import com.mapbox.navigation.ui.maps.route.arrow.api.MapboxRouteArrowView
 import com.mapbox.navigation.ui.maps.route.arrow.model.RouteArrowOptions
 import com.mapbox.navigation.ui.maps.route.line.api.MapboxRouteLineApi
 import com.mapbox.navigation.ui.maps.route.line.api.MapboxRouteLineView
 import com.mapbox.navigation.ui.maps.route.line.model.*
+import com.mapbox.navigation.ui.maps.route.RouteLayerConstants.TOP_LEVEL_ROUTE_LINE_LAYER_ID
 import com.mapbox.navigation.voice.api.*
 import com.mapbox.navigation.voice.model.SpeechAnnouncement
 import com.mapbox.navigation.voice.model.SpeechError
@@ -845,6 +846,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
             soundButton
                     .findViewById<ImageView>(com.mapbox.navigation.ui.components.R.id.buttonIcon)
                     .setImageResource(if (isMuted) R.drawable.icon_mute else R.drawable.icon_sound)
+        }
+    }
+
+    fun setInitialLocation(initialLocation: Point?) {
+        if (initialLocation != null) {
+            val cameraOptions = CameraOptions.Builder().center(initialLocation).zoom(14.0).build()
+            mapView.getMapboxMap().setCamera(cameraOptions)
         }
     }
 

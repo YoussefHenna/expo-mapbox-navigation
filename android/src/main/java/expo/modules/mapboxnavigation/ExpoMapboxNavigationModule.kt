@@ -90,6 +90,16 @@ class ExpoMapboxNavigationModule : Module() {
 
       Prop("mute") { view: ExpoMapboxNavigationView, isMuted: Boolean? -> view.setIsMuted(isMuted) }
 
+      Prop("initialLocation") { view: ExpoMapboxNavigationView, initialLocation: Map<String, Any>?
+        ->
+        val longValue = initialLocation?.get("longitude")
+        val latValue = initialLocation?.get("latitude")
+
+        if (longValue is Double && latValue is Double) {
+          view.setInitialLocation(Point.fromLngLat(longValue, latValue))
+        }
+      }
+
       AsyncFunction("recenterMap") { view: ExpoMapboxNavigationView -> view.recenterMap() }
     }
   }
