@@ -286,10 +286,20 @@ class ExpoMapboxNavigationViewController: UIViewController {
             bottomBanner: bottomBanner
         )
 
-        navigationViewController = NavigationViewController(
-            navigationRoutes: navigationRoutes,
-            navigationOptions: navigationOptions
-        )
+        let newNavigationControllerRequired = navigationViewController == nil
+
+        if(newNavigationControllerRequired){
+            navigationViewController = NavigationViewController(
+                navigationRoutes: navigationRoutes,
+                navigationOptions: navigationOptions
+            )
+        } else {
+            navigationViewController!.prepareViewLoading(
+                navigationRoutes: navigationRoutes,
+                navigationOptions: navigationOptions
+            )
+        }
+        
         let navigationViewController = navigationViewController!
 
         
@@ -297,7 +307,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
 
-        if(initialLocation != nil){
+        if(initialLocation != nil && newNavigationControllerRequired){
             navigationMapView!.mapView.mapboxMap.setCamera(to: CameraOptions(center: initialLocation!, zoom: 15))
         }
 
