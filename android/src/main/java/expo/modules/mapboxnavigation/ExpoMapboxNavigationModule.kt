@@ -94,9 +94,10 @@ class ExpoMapboxNavigationModule : Module() {
         ->
         val longValue = initialLocation?.get("longitude")
         val latValue = initialLocation?.get("latitude")
+        val zoomValue = initialLocation?.get("zoom")
 
-        if (longValue is Double && latValue is Double) {
-          view.setInitialLocation(Point.fromLngLat(longValue, latValue))
+        if (longValue is Double && latValue is Double && zoomValue is Double?) {
+          view.setInitialLocation(Point.fromLngLat(longValue, latValue), zoomValue)
         }
       }
 

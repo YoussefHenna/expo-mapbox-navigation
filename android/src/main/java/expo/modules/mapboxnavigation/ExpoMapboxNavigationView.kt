@@ -849,9 +849,9 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         }
     }
 
-    fun setInitialLocation(initialLocation: Point?) {
+    fun setInitialLocation(initialLocation: Point?, zoom: Double?) {
         if (initialLocation != null) {
-            val cameraOptions = CameraOptions.Builder().center(initialLocation).zoom(14.0).build()
+            val cameraOptions = CameraOptions.Builder().center(initialLocation).zoom(zoom ?: 14.0).build()
             mapView.getMapboxMap().setCamera(cameraOptions)
         }
     }

@@ -24,7 +24,7 @@ export type ExpoMapboxNavigationViewProps = {
   mute?: boolean;
   vehicleMaxHeight?: number;
   vehicleMaxWidth?: number;
-  initialLocation?: { latitude: number; longitude: number };
+  initialLocation?: { latitude: number; longitude: number; zoom?: number };
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
   onCancelNavigation?: () => void;
   onWaypointArrival?: (event: {

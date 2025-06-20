@@ -60,8 +60,9 @@ public class ExpoMapboxNavigationModule: Module {
         if(location != nil){
           let longValue = location!["longitude"]
           let latValue = location!["latitude"]
-          if let long = longValue as? Double, let lat = latValue as? Double {
-              view.controller.setInitialLocation(location: CLLocationCoordinate2D(latitude: lat, longitude: long))
+          let zoomValue = location!["zoom"]
+          if let long = longValue as? Double, let lat = latValue as? Double, let zoom = zoomValue as? Double? {
+              view.controller.setInitialLocation(location: CLLocationCoordinate2D(latitude: lat, longitude: long), zoom: zoom)
           }
         }
       }
