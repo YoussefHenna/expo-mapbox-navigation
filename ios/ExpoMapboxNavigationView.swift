@@ -271,8 +271,44 @@ class ExpoMapboxNavigationViewController: UIViewController {
         onCancelNavigation?()
     }
 
+    func convertRoute(route: Route) -> Any {
+        return [
+            "distance": route.distance,
+            "expectedTravelTime": route.expectedTravelTime,
+            "legs": route.legs.map { leg in
+                return [
+                    "source": leg.source != nil ? [
+                        "latitude": leg.source!.coordinate.latitude,
+                        "longitude": leg.source!.coordinate.longitude
+                    ] : nil,
+                    "destination": leg.destination != nil ? [
+                        "latitude": leg.destination!.coordinate.latitude,
+                        "longitude": leg.destination!.coordinate.longitude
+                    ] : nil,
+                    "steps": leg.steps.map { step in
+                        return [
+                            "shape": step.shape != nil ? [
+                                "coordinates": step.shape!.coordinates.map { coordinate in
+                                    return [
+                                        "latitude": coordinate.latitude,
+                                        "longitude": coordinate.longitude,
+                                    ]
+                                }
+                            ] : nil
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
     func onRoutesCalculated(navigationRoutes: NavigationRoutes){
-        onRoutesLoaded?()
+        onRoutesLoaded?([
+            "routes": [
+                "mainRoute": convertRoute(route: navigationRoutes.mainRoute.route),
+                "alternativeRoutes": navigationRoutes.alternativeRoutes.map { convertRoute(route: $0.route) }
+            ]
+        ])
 
         let topBanner = TopBannerViewController()
         topBanner.instructionsBannerView.distanceFormatter.locale = currentLocale
@@ -340,7 +376,14 @@ class ExpoMapboxNavigationViewController: UIViewController {
     }
 }
 extension ExpoMapboxNavigationViewController: NavigationViewControllerDelegate {
-    func navigationViewController(_ navigationViewController: NavigationViewController, didRerouteAlong route: Route) {}
+    func navigationViewController(_ navigationViewController: NavigationViewController, didRerouteAlong route: Route) {
+        onRoutesLoaded?([
+            "routes": [
+                "mainRoute": convertRoute(route: route),
+                "alternativeRoutes": []
+            ]
+        ])
+    }
 
     func navigationViewControllerDidDismiss(
         _ navigationViewController: NavigationViewController,
