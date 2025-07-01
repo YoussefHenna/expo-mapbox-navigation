@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.Location
+import com.mapbox.geojson.utils.PolylineUtils
 import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.EdgeInsets
@@ -771,8 +772,34 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         maneuverApi.cancel()
     }
 
+    private fun convertRoute(route: NavigationRoute): Map<String, Any> {
+        return mapOf(
+            "distance" to route.directionsRoute.distance(),
+            "expectedTravelTime" to route.directionsRoute.duration(),
+            "legs" to route.directionsRoute.legs()?.map { leg ->
+                mapOf(
+                    "steps" to leg.steps()?.map { step ->
+                        val stepGeometry = step.geometry() 
+                        val decodedPoints = stepGeometry?.let { PolylineUtils.decode(it, 6) } ?: emptyList()
+
+                        mapOf(
+                            "shape" to mapOf(
+                                "coordinates" to decodedPoints.map { point ->
+                                    mapOf(
+                                        "latitude" to point.latitude(),
+                                        "longitude" to point.longitude()
+                                    )
+                                }
+                            )
+                        )
+                    }
+                )
+            }
+        ) as Map<String, Any>
+    }
+
     private fun onRoutesReady(routes: List<NavigationRoute>) {
-        onRoutesLoaded(mapOf())
+        onRoutesLoaded(mapOf("mainRoute" to routes.map { convertRoute(it) }, "alternativeRoutes" to emptyList()))
         mapboxNavigation?.setNavigationRoutes(routes)
         mapboxNavigation?.startTripSession(withForegroundService = false)
         navigationCamera.requestNavigationCameraToFollowing(
