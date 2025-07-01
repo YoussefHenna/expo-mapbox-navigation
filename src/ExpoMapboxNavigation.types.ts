@@ -53,5 +53,8 @@ export type ExpoMapboxNavigationViewProps = {
   onRouteChanged?: () => void;
   onUserOffRoute?: () => void;
   onRoutesLoaded?: (event: { nativeEvent: { routes: Routes } }) => void;
+  onRouteFailedToLoad?: (event: {
+    nativeEvent: { errorMessage: string };
+  }) => void;
   style?: StyleProp<ViewStyle>;
 };

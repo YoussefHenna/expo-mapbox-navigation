@@ -14,6 +14,7 @@ class ExpoMapboxNavigationView: ExpoView {
     private let onRouteChanged = EventDispatcher()
     private let onUserOffRoute = EventDispatcher()
     private let onRoutesLoaded = EventDispatcher()
+    private let onRouteFailedToLoad = EventDispatcher()
 
     let controller = ExpoMapboxNavigationViewController()
 
@@ -29,6 +30,7 @@ class ExpoMapboxNavigationView: ExpoView {
         controller.onRouteChanged = onRouteChanged
         controller.onUserOffRoute = onUserOffRoute
         controller.onRoutesLoaded = onRoutesLoaded
+        controller.onRouteFailedToLoad = onRouteFailedToLoad
     }
 
     override func layoutSubviews() {
@@ -64,6 +66,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var onRouteChanged: EventDispatcher? = nil
     var onUserOffRoute: EventDispatcher? = nil
     var onRoutesLoaded: EventDispatcher? = nil
+    var onRouteFailedToLoad: EventDispatcher? = nil
 
     var calculateRoutesTask: Task<Void, Error>? = nil
     private var routeProgressCancellable: AnyCancellable? = nil
@@ -240,6 +243,9 @@ class ExpoMapboxNavigationViewController: UIViewController {
         calculateRoutesTask = Task {
             switch await self.routingProvider!.calculateRoutes(options: routeOptions).result {
             case .failure(let error):
+                onRouteFailedToLoad?([
+                    "errorMessage": error.localizedDescription
+                ])
                 print(error.localizedDescription)
             case .success(let navigationRoutes):
                 onRoutesCalculated(navigationRoutes: navigationRoutes)
@@ -260,6 +266,9 @@ class ExpoMapboxNavigationViewController: UIViewController {
         calculateRoutesTask = Task {
             switch await self.routingProvider!.calculateRoutes(options: matchOptions).result {
             case .failure(let error):
+                onRouteFailedToLoad?([
+                    "errorMessage": error.localizedDescription
+                ])
                 print(error.localizedDescription)
             case .success(let navigationRoutes):
                 onRoutesCalculated(navigationRoutes: navigationRoutes)
