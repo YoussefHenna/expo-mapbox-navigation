@@ -349,7 +349,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
         
         let navigationViewController = navigationViewController!
 
-        
+        navigationViewController.usesNightStyleWhileInTunnel = false
 
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
