@@ -24,6 +24,11 @@ import com.mapbox.maps.MapView
 import com.mapbox.maps.MapboxMap
 import com.mapbox.maps.Style
 import com.mapbox.maps.extension.localization.localizeLabels
+import com.mapbox.maps.extension.style.layers.*
+import com.mapbox.maps.extension.style.layers.generated.RasterLayer
+import com.mapbox.maps.extension.style.sources.TileSet
+import com.mapbox.maps.extension.style.sources.addSource
+import com.mapbox.maps.extension.style.sources.generated.RasterSource
 import com.mapbox.maps.plugin.LocationPuck2D
 import com.mapbox.maps.plugin.animation.camera
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
@@ -102,6 +107,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     private var currentRouteProfile: String? = null
     private var currentRouteExcludeList: List<String>? = null
     private var currentMapStyle: String? = null
+    private var currentCustomRasterSourceUrl: String? = null
+    private var currentPlaceCustomRasterLayerAbove: String? = null
     private var vehicleMaxHeight: Double? = null
     private var vehicleMaxWidth: Double? = null
 
@@ -777,38 +784,52 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
 
     private fun convertRoute(route: NavigationRoute): Map<String, Any> {
         return mapOf(
-            "distance" to route.directionsRoute.distance(),
-            "expectedTravelTime" to route.directionsRoute.duration(),
-            "legs" to route.directionsRoute.legs()?.map { leg ->
-                mapOf(
-                    "steps" to leg.steps()?.map { step ->
-                        val stepGeometry = step.geometry() 
-                        val decodedPoints = stepGeometry?.let { PolylineUtils.decode(it, 6) } ?: emptyList()
+                "distance" to route.directionsRoute.distance(),
+                "expectedTravelTime" to route.directionsRoute.duration(),
+                "legs" to
+                        route.directionsRoute.legs()?.map { leg ->
+                            mapOf(
+                                    "steps" to
+                                            leg.steps()?.map { step ->
+                                                val stepGeometry = step.geometry()
+                                                val decodedPoints =
+                                                        stepGeometry?.let {
+                                                            PolylineUtils.decode(it, 6)
+                                                        }
+                                                                ?: emptyList()
 
-                        mapOf(
-                            "shape" to mapOf(
-                                "coordinates" to decodedPoints.map { point ->
-                                    mapOf(
-                                        "latitude" to point.latitude(),
-                                        "longitude" to point.longitude()
-                                    )
-                                }
+                                                mapOf(
+                                                        "shape" to
+                                                                mapOf(
+                                                                        "coordinates" to
+                                                                                decodedPoints.map {
+                                                                                        point ->
+                                                                                    mapOf(
+                                                                                            "latitude" to
+                                                                                                    point.latitude(),
+                                                                                            "longitude" to
+                                                                                                    point.longitude()
+                                                                                    )
+                                                                                }
+                                                                )
+                                                )
+                                            }
                             )
-                        )
-                    }
-                )
-            }
-        ) as Map<String, Any>
+                        }
+        ) as
+                Map<String, Any>
     }
 
     private fun onRoutesReady(routes: List<NavigationRoute>) {
         onRoutesLoaded(
-            mapOf(
-                "routes" to mapOf(
-                    "mainRoute" to convertRoute(routes.first()),
-                    "alternativeRoutes" to routes.drop(1).map { convertRoute(it) }
+                mapOf(
+                        "routes" to
+                                mapOf(
+                                        "mainRoute" to convertRoute(routes.first()),
+                                        "alternativeRoutes" to
+                                                routes.drop(1).map { convertRoute(it) }
+                                )
                 )
-            )
         )
         mapboxNavigation?.setNavigationRoutes(routes)
         mapboxNavigation?.startTripSession(withForegroundService = false)
@@ -894,8 +915,52 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         }
     }
 
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setCustomRasterSourceUrl(url: String?) {
+        currentCustomRasterSourceUrl = url
+        update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setPlaceCustomRasterLayerAbove(layerId: String?) {
+        currentPlaceCustomRasterLayerAbove = layerId
+        update()
+    }
+
     fun recenterMap() {
         navigationCamera.requestNavigationCameraToFollowing()
+    }
+
+    fun addCustomRasterLayer() {
+        val style = mapboxMap.getStyle() ?: return
+
+        val sourceId = "raster-source"
+        val layerId = "raster-layer"
+
+        if (style.styleLayerExists(layerId)) {
+            style.removeStyleLayer(layerId)
+        }
+        if (style.styleSourceExists(sourceId)) {
+            style.removeStyleSource(sourceId)
+        }
+
+        if (currentCustomRasterSourceUrl.isNullOrEmpty()) {
+            return
+        }
+
+        val rasterSource =
+                RasterSource.Builder(sourceId)
+                        .tileSet(
+                                TileSet.Builder("tileset", listOf(currentCustomRasterSourceUrl!!))
+                                        .build()
+                        )
+                        .tileSize(256)
+                        .build()
+        style.addSource(rasterSource)
+
+        val rasterLayer = RasterLayer(layerId, sourceId)
+        val aboveLayerId = currentPlaceCustomRasterLayerAbove ?: "water"
+        style.addLayerAbove(rasterLayer, aboveLayerId)
     }
 
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
@@ -911,9 +976,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
             mapboxMap.loadStyle(currentMapStyle!!) { style: Style ->
                 mapboxStyle = style
                 style.localizeLabels(currentLocale)
+                addCustomRasterLayer()
             }
         } else {
-            mapboxMap.getStyle { style: Style -> style.localizeLabels(currentLocale) }
+            mapboxMap.getStyle { style: Style ->
+                style.localizeLabels(currentLocale)
+                addCustomRasterLayer()
+            }
         }
 
         val distanceFormatter =
