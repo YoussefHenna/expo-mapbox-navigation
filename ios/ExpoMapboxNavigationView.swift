@@ -55,6 +55,8 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var currentRouteProfile: String? = nil
     var currentRouteExcludeList: Array<String>? = nil
     var currentMapStyle: String? = nil
+    var currentCustomRasterSourceUrl: String? = nil
+    var currentPlaceCustomRasterLayerAbove: String? = nil
     var isUsingRouteMatchingApi: Bool = false
     var vehicleMaxHeight: Double? = nil
     var vehicleMaxWidth: Double? = nil
@@ -137,6 +139,46 @@ class ExpoMapboxNavigationViewController: UIViewController {
         fatalError("This controller should not be loaded through a story board")
     }
 
+    func addCustomRasterLayer() {
+        let navigationMapView = navigationViewController?.navigationMapView
+        let sourceId = "raster-source"
+        let layerId = "raster-layer"
+
+        if(currentCustomRasterSourceUrl == nil){
+            if let mapView = navigationMapView?.mapView.mapboxMap {
+                if mapView.layerExists(withId: layerId) {
+                    try? mapView.removeLayer(withId: layerId)
+                }
+                if mapView.sourceExists(withId: sourceId) {
+                    try? mapView.removeSource(withId: sourceId)
+                }
+            }
+            return
+        }
+
+        let sourceUrl = currentCustomRasterSourceUrl! 
+
+        var rasterSource = RasterSource(id: sourceId)
+
+        rasterSource.tiles = [sourceUrl]
+        rasterSource.tileSize = 256
+
+        let rasterLayer = RasterLayer(id: layerId, source: sourceId)
+
+
+        if let mapView = navigationMapView?.mapView.mapboxMap {
+            if mapView.layerExists(withId: layerId) {
+                try? mapView.removeLayer(withId: layerId)
+            }
+            if mapView.sourceExists(withId: sourceId) {
+                try? mapView.removeSource(withId: sourceId)
+            }
+
+            try? mapView.addSource(rasterSource)
+            try? mapView.addLayer(rasterLayer, layerPosition: .above(currentPlaceCustomRasterLayerAbove ?? "water"))    
+        }
+    }
+
 
     func setCoordinates(coordinates: Array<CLLocationCoordinate2D>) {
         currentCoordinates = coordinates
@@ -184,6 +226,16 @@ class ExpoMapboxNavigationViewController: UIViewController {
 
     func setMapStyle(style: String?){
         currentMapStyle = style
+        update()
+    }
+
+    func setCustomRasterSourceUrl(url: String?){
+        currentCustomRasterSourceUrl = url
+        update()
+    }
+
+    func setPlaceCustomRasterLayerAbove(layerId: String?){
+        currentPlaceCustomRasterLayerAbove = layerId
         update()
     }
 
@@ -329,6 +381,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
             mapboxNavigation: self.mapboxNavigation!,
             voiceController: ExpoMapboxNavigationViewController.navigationProvider.routeVoiceController,
             eventsManager: ExpoMapboxNavigationViewController.navigationProvider.eventsManager(),
+            styles: [DayStyle()],
             topBanner: topBanner,
             bottomBanner: bottomBanner
         )
@@ -350,6 +403,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
         let navigationViewController = navigationViewController!
 
         navigationViewController.usesNightStyleWhileInTunnel = false
+        navigationViewController.automaticallyAdjustsStyleForTimeOfDay = false
 
         let navigationMapView = navigationViewController.navigationMapView
         navigationMapView!.puckType = .puck2D(.navigationDefault)
@@ -364,8 +418,9 @@ class ExpoMapboxNavigationViewController: UIViewController {
             do{
                 try navigationMapView!.mapView.mapboxMap.localizeLabels(into: self.currentLocale)
             } catch {}
+            self.addCustomRasterLayer()
         })
- 
+        
 
         let cancelButton = navigationViewController.navigationView.bottomBannerContainerView.findViews(subclassOf: CancelButton.self)[0]
         cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)

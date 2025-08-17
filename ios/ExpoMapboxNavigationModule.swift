@@ -67,6 +67,14 @@ public class ExpoMapboxNavigationModule: Module {
         }
       }
 
+      Prop("customRasterSourceUrl") { (view: ExpoMapboxNavigationView, url: String?) in
+        view.controller.setCustomRasterSourceUrl(url: url)
+      }
+
+      Prop("placeCustomRasterLayerAbove") { (view: ExpoMapboxNavigationView, layerId: String?) in
+        view.controller.setPlaceCustomRasterLayerAbove(layerId: layerId)
+      }
+
       AsyncFunction("recenterMap") { (view: ExpoMapboxNavigationView) in
         view.controller.recenterMap()
       }
