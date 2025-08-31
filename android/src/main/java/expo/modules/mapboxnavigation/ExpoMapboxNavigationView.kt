@@ -12,6 +12,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.setViewTreeLifecycleOwner
 import com.mapbox.api.directions.v5.models.RouteOptions
 import com.mapbox.bindgen.Expected
 import com.mapbox.common.location.Location
@@ -97,6 +99,17 @@ val PIXEL_DENSITY = Resources.getSystem().displayMetrics.density
 
 class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         ExpoView(context, appContext) {
+
+    // Set view tree lifecycle owner to the activity
+    // Otherwise leads to crashes when mapbox package tries to query the view tree lifecycle owner
+    // and gets null. Not set automatically for some reason.
+    // https://github.com/mapbox/mapbox-navigation-android/blob/188d4781b31bb328733eeca593edc8087e38d915/ui-utils/src/main/java/com/mapbox/navigation/ui/utils/internal/lifecycle/ViewLifecycleRegistry.kt#L67
+    init {
+        this.setViewTreeLifecycleOwner(
+                appContext.activityProvider?.currentActivity as LifecycleOwner
+        )
+    }
+
     private var isMuted = false
     private var currentCoordinates: List<Point>? = null
     private var currentLocale = Locale.getDefault()
