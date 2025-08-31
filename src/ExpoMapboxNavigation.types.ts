@@ -1,3 +1,4 @@
+//@ts-ignore
 import { ViewStyle, StyleProp } from "react-native/types";
 import { Ref } from "react";
 
