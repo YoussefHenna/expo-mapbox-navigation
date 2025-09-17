@@ -101,7 +101,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         ExpoView(context, appContext) {
 
     // Set view tree lifecycle owner to the activity
-    // Otherwise leads to crashes when mapbox package tries to query the view tree lifecycle owner
+    // Otherwise leads to crashes when mapbox package tries to query the view tree lifecycle
+    // owner
     // and gets null. Not set automatically for some reason.
     // https://github.com/mapbox/mapbox-navigation-android/blob/188d4781b31bb328733eeca593edc8087e38d915/ui-utils/src/main/java/com/mapbox/navigation/ui/utils/internal/lifecycle/ViewLifecycleRegistry.kt#L67
     init {
@@ -122,6 +123,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     private var currentMapStyle: String? = null
     private var currentCustomRasterSourceUrl: String? = null
     private var currentPlaceCustomRasterLayerAbove: String? = null
+    private var currentDisableAlterntiveRoutes: Boolean? = null
     private var vehicleMaxHeight: Double? = null
     private var vehicleMaxWidth: Double? = null
 
@@ -322,7 +324,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
                     // Add observer to navigation camera
                     navigationCamera.registerNavigationCameraStateChangeObserver {
                             navigationCameraState ->
-                        // shows/hide the recenter button depending on the camera state
+                        // shows/hide the recenter button depending on the camera
+                        // state
                         when (navigationCameraState) {
                             NavigationCameraState.TRANSITION_TO_FOLLOWING,
                             NavigationCameraState.FOLLOWING -> recenterButton.visibility = View.GONE
@@ -940,6 +943,12 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
         update()
     }
 
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setDisableAlterntiveRoutes(disableAlterntiveRoutes: Boolean?) {
+        currentDisableAlterntiveRoutes = disableAlterntiveRoutes
+        update()
+    }
+
     fun recenterMap() {
         navigationCamera.requestNavigationCameraToFollowing()
     }
@@ -1037,6 +1046,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
                         .language(currentLocale.toLanguageTag())
                         .maxHeight(vehicleMaxHeight ?: null)
                         .maxWidth(vehicleMaxWidth ?: null)
+                        .alternatives(currentDisableAlterntiveRoutes != true)
 
         if (currentWaypointIndices != null) {
             optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)

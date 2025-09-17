@@ -52,6 +52,7 @@ export type ExpoMapboxNavigationViewProps = {
    */
   customRasterSourceUrl?: string;
   placeCustomRasterLayerAbove?: string;
+  disableAlterntiveRoutes?: boolean;
   onRouteProgressChanged?: (event: { nativeEvent: ProgressEvent }) => void;
   onCancelNavigation?: () => void;
   onWaypointArrival?: (event: {

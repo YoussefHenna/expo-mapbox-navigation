@@ -110,6 +110,12 @@ class ExpoMapboxNavigationModule : Module() {
         view.setPlaceCustomRasterLayerAbove(layerId)
       }
 
+      Prop("disableAlterntiveRoutes") {
+              view: ExpoMapboxNavigationView,
+              disableAlterntiveRoutes: Boolean? ->
+        view.setDisableAlterntiveRoutes(disableAlterntiveRoutes)
+      }
+
       AsyncFunction("recenterMap") { view: ExpoMapboxNavigationView -> view.recenterMap() }
     }
   }
