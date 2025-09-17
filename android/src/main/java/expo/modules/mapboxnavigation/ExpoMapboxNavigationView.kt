@@ -123,7 +123,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     private var currentMapStyle: String? = null
     private var currentCustomRasterSourceUrl: String? = null
     private var currentPlaceCustomRasterLayerAbove: String? = null
-    private var currentDisableAlterntiveRoutes: Boolean? = null
+    private var currentDisableAlternativeRoutes: Boolean? = null
     private var vehicleMaxHeight: Double? = null
     private var vehicleMaxWidth: Double? = null
 
@@ -944,8 +944,8 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     }
 
     @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
-    fun setDisableAlterntiveRoutes(disableAlterntiveRoutes: Boolean?) {
-        currentDisableAlterntiveRoutes = disableAlterntiveRoutes
+    fun setDisableAlternativeRoutes(disableAlternativeRoutes: Boolean?) {
+        currentDisableAlternativeRoutes = disableAlternativeRoutes
         update()
     }
 
@@ -1046,7 +1046,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
                         .language(currentLocale.toLanguageTag())
                         .maxHeight(vehicleMaxHeight ?: null)
                         .maxWidth(vehicleMaxWidth ?: null)
-                        .alternatives(currentDisableAlterntiveRoutes != true)
+                        .alternatives(currentDisableAlternativeRoutes != true)
 
         if (currentWaypointIndices != null) {
             optionsBuilder = optionsBuilder.waypointIndicesList(currentWaypointIndices!!)
