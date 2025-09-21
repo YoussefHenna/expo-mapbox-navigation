@@ -89,10 +89,9 @@ repositories {
 dependencies {
   def lifecycle_version = "2.9.3"
   implementation project(':expo-modules-core')
-  implementation "com.mapbox.navigationcore:android:3.4.0"
-  implementation "com.mapbox.navigationcore:ui-components:3.4.0"
+  implementation("com.mapbox.navigationcore:android-ndk27:3.11.0")
+  implementation ("com.mapbox.navigationcore:ui-components-ndk27:3.11.0")
   implementation "com.google.android.gms:play-services-location:21.0.1"
   implementation "androidx.constraintlayout:constraintlayout:2.2.0-alpha13"
   implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
-
 }

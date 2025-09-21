@@ -15,21 +15,21 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@rnmapbox/maps": "10.1.38",
+    "@rnmapbox/maps": "10.1.44",
     "babel-plugin-module-resolver": "^5.0.2",
-    "expo": "^52.0.0",
-    "expo-build-properties": "~0.13.3",
-    "expo-location": "~18.0.10",
-    "expo-screen-orientation": "~8.0.4",
-    "expo-splash-screen": "~0.29.24",
-    "expo-status-bar": "~2.0.1",
-    "react": "18.3.1",
-    "react-native": "0.76.9"
+    "expo": "53",
+    "expo-build-properties": "~0.14.8",
+    "expo-location": "~18.1.6",
+    "expo-screen-orientation": "~8.1.7",
+    "expo-splash-screen": "~0.30.10",
+    "expo-status-bar": "~2.2.3",
+    "react": "19.0.0",
+    "react-native": "0.79.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "~18.3.12",
-    "typescript": "^5.3.0"
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
   },
   "expo": {
     "autolinking": {

@@ -92,7 +92,7 @@ An array of road types and locations to exclude from the route. See the `exclude
 
 The style of the Mapbox map. See [here](https://docs.mapbox.com/api/maps/styles/) for details.
 
-#### `muted`
+#### `mute`
 
 Whether the navigation audio is initially muted.
 
@@ -103,6 +103,19 @@ The maximum height of the vehicle in meters. This is used to avoid routes with h
 #### `vehicleMaxWidth`
 
 The maximum width of the vehicle in meters. This is used to avoid routes with width restrictions.
+
+#### `customRasterSourceUrl`
+
+The URL of a custom raster source to use for the map. Should be a template string with `{x}`, `{y}`, `{z}` placeholders.  
+Example: `"https://tile.openstreetmap.org/{z}/{x}/{y}.png"`
+
+#### `placeCustomRasterLayerAbove`
+
+The ID of the layer above which the custom raster layer should be placed. Useful for controlling the rendering order of map layers.
+
+#### `disableAlternativeRoutes`
+
+If true, disables calculation and display of alternative routes. By default, alternative routes may be shown if available.
 
 #### `onRouteProgressChanged`
 
