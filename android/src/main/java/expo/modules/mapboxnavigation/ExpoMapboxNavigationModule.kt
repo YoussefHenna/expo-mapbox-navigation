@@ -29,12 +29,6 @@ class ExpoMapboxNavigationModule : Module() {
       }
     }
 
-    OnActivityEntersBackground {
-      (activity as LifecycleOwner).lifecycleScope.launch(Dispatchers.Main) {
-        MapboxNavigationApp.detach(activity as LifecycleOwner)
-      }
-    }
-
     View(ExpoMapboxNavigationView::class) {
       Events(
               "onRouteProgressChanged",
