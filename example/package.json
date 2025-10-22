@@ -17,14 +17,14 @@
   "dependencies": {
     "@rnmapbox/maps": "10.1.44",
     "babel-plugin-module-resolver": "^5.0.2",
-    "expo": "53",
+    "expo": "~53.0.23",
     "expo-build-properties": "~0.14.8",
     "expo-location": "~18.1.6",
     "expo-screen-orientation": "~8.1.7",
     "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
-    "react-native": "0.79.5"
+    "react-native": "0.79.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
