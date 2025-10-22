@@ -389,20 +389,16 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
             object : LocationObserver {
                 override fun onNewLocationMatcherResult(
                         locationMatcherResult: LocationMatcherResult
-                ) {
-                    val enhancedLocation = locationMatcherResult.enhancedLocation
-
+                ) {}
+                override fun onNewRawLocation(rawLocation: com.mapbox.common.location.Location) {
                     // Update puck location
                     navigationLocationProvider.changePosition(
-                            location = enhancedLocation,
-                            keyPoints = locationMatcherResult.keyPoints,
+                            location = rawLocation,
                     )
-
                     // Update viewport data source
-                    viewportDataSource.onLocationChanged(enhancedLocation)
+                    viewportDataSource.onLocationChanged(rawLocation)
                     viewportDataSource.evaluate()
                 }
-                override fun onNewRawLocation(rawLocation: com.mapbox.common.location.Location) {}
             }
 
     private val arrivalObserver =
