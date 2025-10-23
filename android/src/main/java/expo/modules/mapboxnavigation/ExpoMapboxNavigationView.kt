@@ -124,6 +124,7 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     private var currentCustomRasterSourceUrl: String? = null
     private var currentPlaceCustomRasterLayerAbove: String? = null
     private var currentDisableAlternativeRoutes: Boolean? = null
+    private var currentFollowingZoom: Double? = null
     private var vehicleMaxHeight: Double? = null
     private var vehicleMaxWidth: Double? = null
 
@@ -949,6 +950,13 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     fun setDisableAlternativeRoutes(disableAlternativeRoutes: Boolean?) {
         currentDisableAlternativeRoutes = disableAlternativeRoutes
         update()
+    }
+
+    @com.mapbox.navigation.base.ExperimentalPreviewMapboxNavigationAPI
+    fun setFollowingZoom(followingZoom: Double?) {
+        currentFollowingZoom = followingZoom
+        viewportDataSource.followingZoomPropertyOverride(followingZoom)
+        viewportDataSource.evaluate()
     }
 
     fun recenterMap() {
