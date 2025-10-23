@@ -269,7 +269,11 @@ class ExpoMapboxNavigationViewController: UIViewController {
     func setFollowingZoom(followingZoom: Double?){
         let navigationMapView = navigationViewController?.navigationMapView
         currentFollowingZoom = followingZoom
-        navigationMapView?.viewportDataSource.options.followingCameraOptions.zoomRange = followingZoom..followingZoom
+        if(navigationMapView != nil && followingZoom != nil){
+            let newDataSource = MobileViewportDataSource(navigationMapView!.mapView)
+            newDataSource.options.followingCameraOptions.zoomRange = followingZoom!...followingZoom!
+            navigationMapView?.navigationCamera.viewportDataSource = newDataSource
+        }
     }
 
     func update(){
