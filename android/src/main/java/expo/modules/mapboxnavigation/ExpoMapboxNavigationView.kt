@@ -296,6 +296,22 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     private val routesObserver =
             object : RoutesObserver {
                 override fun onRoutesChanged(result: RoutesUpdatedResult) {
+                    onRoutesLoaded(
+                            mapOf(
+                                    "routes" to
+                                            mapOf(
+                                                    "mainRoute" to
+                                                            convertRoute(
+                                                                    result.navigationRoutes.first()
+                                                            ),
+                                                    "alternativeRoutes" to
+                                                            result.navigationRoutes.drop(1).map {
+                                                                convertRoute(it)
+                                                            }
+                                            )
+                            )
+                    )
+
                     // Handle viewport data source
                     if (result.navigationRoutes.isNotEmpty()) {
                         viewportDataSource.onRouteChanged(result.navigationRoutes.first())
@@ -833,16 +849,6 @@ class ExpoMapboxNavigationView(context: Context, appContext: AppContext) :
     }
 
     private fun onRoutesReady(routes: List<NavigationRoute>) {
-        onRoutesLoaded(
-                mapOf(
-                        "routes" to
-                                mapOf(
-                                        "mainRoute" to convertRoute(routes.first()),
-                                        "alternativeRoutes" to
-                                                routes.drop(1).map { convertRoute(it) }
-                                )
-                )
-        )
         mapboxNavigation?.setNavigationRoutes(routes)
         mapboxNavigation?.startTripSession(withForegroundService = false)
         navigationCamera.requestNavigationCameraToFollowing(
