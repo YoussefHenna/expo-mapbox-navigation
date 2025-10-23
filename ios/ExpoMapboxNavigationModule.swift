@@ -79,6 +79,10 @@ public class ExpoMapboxNavigationModule: Module {
         view.controller.setDisableAlternativeRoutes(disableAlternativeRoutes: disableAlternativeRoutes)
       }
 
+      Prop("followingZoom") { (view: ExpoMapboxNavigationView, followingZoom: Double?) in
+        view.controller.setFollowingZoom(followingZoom: followingZoom)
+      }
+
       AsyncFunction("recenterMap") { (view: ExpoMapboxNavigationView) in
         view.controller.recenterMap()
       }

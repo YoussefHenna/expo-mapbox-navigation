@@ -58,6 +58,7 @@ class ExpoMapboxNavigationViewController: UIViewController {
     var currentCustomRasterSourceUrl: String? = nil
     var currentPlaceCustomRasterLayerAbove: String? = nil
     var currentDisableAlternativeRoutes: Bool? = nil
+    var currentFollowingZoom: Double? = nil
     var isUsingRouteMatchingApi: Bool = false
     var vehicleMaxHeight: Double? = nil
     var vehicleMaxWidth: Double? = nil
@@ -263,6 +264,12 @@ class ExpoMapboxNavigationViewController: UIViewController {
         if(initialLocation != nil && navigationMapView != nil){
             navigationMapView!.mapView.mapboxMap.setCamera(to: CameraOptions(center: initialLocation!, zoom: initialLocationZoom ?? 15))
         }
+    }
+
+    func setFollowingZoom(followingZoom: Double?){
+        let navigationMapView = navigationViewController?.navigationMapView
+        currentFollowingZoom = followingZoom
+        navigationMapView?.viewportDataSource.options.followingCameraOptions.zoomRange = followingZoom..followingZoom
     }
 
     func update(){
