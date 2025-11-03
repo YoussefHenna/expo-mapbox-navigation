@@ -1,4 +1,5 @@
 import ExpoModulesCore
+import CoreLocation
 
 public class ExpoMapboxNavigationModule: Module {
 
@@ -17,7 +18,7 @@ public class ExpoMapboxNavigationModule: Module {
                 points.append(CLLocationCoordinate2D(latitude: lat, longitude: long))
             }
           }
-          view.controller.setCoordinates(coordinates: points) 
+          view.controller.setCoordinates(coordinates: points)
       }
 
       Prop("vehicleMaxHeight") { (view: ExpoMapboxNavigationView, maxHeight: Double?) in
@@ -29,31 +30,31 @@ public class ExpoMapboxNavigationModule: Module {
       }
 
       Prop("locale") { (view: ExpoMapboxNavigationView, locale: String?) in
-          view.controller.setLocale(locale: locale) 
+          view.controller.setLocale(locale: locale)
       }
 
       Prop("useRouteMatchingApi"){ (view: ExpoMapboxNavigationView, useRouteMatchingApi: Bool?) in
-          view.controller.setIsUsingRouteMatchingApi(useRouteMatchingApi: useRouteMatchingApi) 
+          view.controller.setIsUsingRouteMatchingApi(useRouteMatchingApi: useRouteMatchingApi)
       }
 
       Prop("waypointIndices"){ (view: ExpoMapboxNavigationView, indices: Array<Int>?) in
-          view.controller.setWaypointIndices(waypointIndices: indices) 
+          view.controller.setWaypointIndices(waypointIndices: indices)
       }
 
       Prop("routeProfile"){ (view: ExpoMapboxNavigationView, profile: String?) in
-          view.controller.setRouteProfile(profile: profile) 
+          view.controller.setRouteProfile(profile: profile)
       }
 
       Prop("routeExcludeList"){ (view: ExpoMapboxNavigationView, excludeList: Array<String>?) in
-          view.controller.setRouteExcludeList(excludeList: excludeList) 
+          view.controller.setRouteExcludeList(excludeList: excludeList)
       }
 
       Prop("mapStyle"){ (view: ExpoMapboxNavigationView, style: String?) in
-          view.controller.setMapStyle(style: style) 
+          view.controller.setMapStyle(style: style)
       }
 
       Prop("mute"){ (view: ExpoMapboxNavigationView, isMuted: Bool?) in
-          view.controller.setIsMuted(isMuted: isMuted) 
+          view.controller.setIsMuted(isMuted: isMuted)
       }
 
       Prop("initialLocation") { (view: ExpoMapboxNavigationView, location: Dictionary<String, Any>?) in
