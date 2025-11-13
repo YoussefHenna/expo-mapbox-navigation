@@ -82,7 +82,7 @@ A string representation of a locale/language code that adjusts the Map labels, d
 
 #### `routeProfile`
 
-The profile to use for route generation. `mapbox/driving-traffic` by default. See [here](https://docs.mapbox.com/api/navigation/directions/#routing-profiles) for details
+The profile to use for route generation. `mapbox/driving-traffic` by default. See [here](https://docs.mapbox.com/api/navigation/directions/#routing-profiles) for details. NOTE: For android, you need to omit the `mapbox/` prefix.
 
 #### `routeExcludeList`
 
