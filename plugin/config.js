@@ -1,4 +1,8 @@
-const { withDangerousMod } = require("@expo/config-plugins");
+const {
+  withDangerousMod,
+  withAndroidColors,
+  AndroidConfig,
+} = require("@expo/config-plugins");
 const fs = require("fs/promises");
 const path = require("path");
 
@@ -71,4 +75,32 @@ const withIosConfig = (config, { accessToken, mapboxMapsVersion }) => {
   return configWithAccessToken;
 };
 
-module.exports = withIosConfig;
+const withAndroidConfig = (config, { androidColorOverrides }) => {
+  return withAndroidColors(config, (config) => {
+    let currentModResults = config.modResults;
+
+    for (const [name, value] of Object.entries(androidColorOverrides)) {
+      AndroidConfig.Colors.assignColorValue(currentModResults, { name, value });
+    }
+
+    config.modResults = currentModResults;
+
+    return config;
+  });
+};
+
+const withConfig = (
+  config,
+  { accessToken, mapboxMapsVersion, androidColorOverrides }
+) => {
+  const configWithIos = withIosConfig(config, {
+    accessToken,
+    mapboxMapsVersion,
+  });
+  const configWithAndroid = withAndroidConfig(configWithIos, {
+    androidColorOverrides,
+  });
+  return configWithAndroid;
+};
+
+module.exports = withConfig;

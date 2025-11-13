@@ -52,6 +52,26 @@ Additionally you need to enable `useFrameworks` in your ios config. This can be 
 ]
 ```
 
+#### More notes on plugin
+
+The plugin also has a `androidColorOverrides` field which allows you to define resource colors in the android app. This is particualrly useful to override some of the predefined mapbox colors and customize the apperance of the components. It is somewhat tricky to find which colors to change, but looking through the [mapbox repo](https://github.com/mapbox/mapbox-navigation-android/blob/main/ui-components/src/main/res/values/colors-maneuver.xml) may help
+
+```json
+"plugins": [
+    ...other plugins
+     [
+        "@youssefhenna/expo-mapbox-navigation",
+        {
+          "accessToken": "<YOUR_TOKEN>",
+          "mapboxMapsVersion": "<MAPBOX_MAPS_VERSION>",
+          "androidColorOverrides": {
+            "mapbox_main_maneuver_background_color": "#FF0000"
+          }
+        }
+      ]
+]
+```
+
 ### Usage
 
 After getting location permissions you can render the navigation map as follows anywhere in the app

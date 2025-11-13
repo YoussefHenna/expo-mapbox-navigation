@@ -1,1 +1,1 @@
-module.exports = require("./plugin/withIosConfig.js");
+module.exports = require("./plugin/config.js");
